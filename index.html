@@ -34,14 +34,24 @@
             </form>
             <div class="text-end">
               <button type="button" class="btn btn-outline-light me-2">Login</button>
-              <button type="button" class="btn btn-warning">Sign-up</button>
+              <!--Al pulsar scrollea hasta el registro-->
+              <a href="#registro" data-scroll="true" data-scroll-duration="500" class="btn btn-warning">Registro</a>
             </div>
           </div>
         </div>
        </header>
-       <hr>
-       <div class="container d-flex justify-content-center alight-items-center">
-      <div class="jumbotron jumbotron-fluid "3 >
+
+       <hr class="invisible">
+       
+       <div class="container d-flex justify-content-left alighn-items-center">
+        <div class="jumbotron jumbotron-fluid">
+          
+        </div>
+       </div>
+       <hr class="invisible">
+
+       <div class="container d-flex justify-content-center alighn-items-center ">
+      <div id="registro" class="jumbotron jumbotron-fluid ">
         <h1 class="display-5"> Solicita acceso</h1>
         <form>
           <div class="form-row">
@@ -50,12 +60,20 @@
               <label for="inputDni">Dni</label>
               <input type="dni" class="form-control" id="inputDni" placeholder="dni">
             </div>
-
+            <div class="form-group col-md-6">
+              <label for="inputNumeroExpedicionDni">Expedicion</label>
+              <input type="dni" class="form-control" id="inputNumeroExpedicionDni" placeholder="Numero de expedicion DNI">
+            </div>
             <div class="form-group col-md-6">
               <label for="inputNombre">Nombre</label>
               <input type="nombre" class="form-control" id="inputNombre" placeholder="nombre">
             </div>
-            
+          </div>
+          <div class="form-group">
+            <div class="form-group">
+              <label for="inputNumeroTelefono">Tlf</label>
+              <input type="text" class="form-control" id="inputNumeroTelefono" placeholder="Numero de telefono">
+            </div>
           </div>
           <div class="form-group col-md-20">
             <div class="form-group">
@@ -69,11 +87,14 @@
               <input type="text" class="form-control" id="inputCalle" placeholder="Calle, numero">
             </div>
           </div>
+
+          <hr class="invisible">
+
           <div class="form-group">
             <div class="form-group">
-              
-              <button type="submit" class="btn btn-primary">Sign in</button>
+              <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
+            
           </div>
           
         </form>
