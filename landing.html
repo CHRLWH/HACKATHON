@@ -13,37 +13,36 @@
   <body class="bg-light text-white">
   <header class="p-3"> <!--HEADDER GENERAL-->
     <div class="container">
-      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">       
-
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 junter mb-md-0 justify-content-center">
-          
-          <li class="nav-item">
-            <a href="landing.html" class="text-start nav-link px1 fs-3 fw-bold text-dark  nunito-sans">HILAN</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="text-end nav-link px2 text-black nunito-sans">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <!--Pagina que explica el objetivo y demás del proyecto y un poco de informacion general-->
-            <a href="" class="nav-link px2 text-black nunito-sans">Información</a>
-          </li>
-          <li class="nav-item">
-            <!--Formulario de registro de información, telefono y direccion de mail-->
-            <a href="" class="nav-link px2 text-black nunito-sans">Contacto</a>
-          </li>         
+      <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
+        <a href="landing.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+          <span class="text-start nav-link px2 fs-3 fw-bold text-dark  nunito-sans">HILAN</span>
+        </a>
+  
+        <ul class="nav nav-pills">
+          <li class="nav-item"><a href="#" class="nav-link text-dark">Inicio</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-dark">Informacion</a></li>
+          <li class="nav-item"><a href="#" class="nav-link text-dark">Contacto</a></li>
         </ul>
-      </div>
         <div class="text-end fondoAzul rounded">
-          <a href="pages/Login.html" data-scroll="true" data-scroll-duration="500" class="btn text-white">Acceder</a>
-          <!--Al pulsar scrollea hasta el registro-->
+          <a href="pages/Login.html" class="btn text-white">Acceder</a>
         </div>
       </div>
-    </div>
-  </header>
-    <hr class="invisible">
+      </header>
+       <hr class="invisible">
   <div class="container"> <!--Primer parrafo con el carousel-->
-    <div class="row align-items-start"><!--Tanto el carousel como el texto están en la misma linea de celdas-->
+    <div class="row align-items-start">
+      <!--Tanto el carousel como el texto están en la misma linea de celdas-->
+      <div class="col-md-6 ps-3">
+        <hr class="invisible">
+        <!-- Caja de texto-->
+        <h3 class="h3 text-black">Explicacion de proyecto</h3>
+        <p class="ps-3 lh-base nunito-sans text-black text-bold">Lorem ipsum odor amet, consectetuer adipiscing elit. Morbi euismod nisi eu rutrum suspendisse euismod quis ornare dis.
+          Pretium justo sagittis tincidunt eleifend porttitor magna potenti sodales potenti. Litora taciti praesent ut id interdum ullamcorper.
+          Euismod metus sapien erat venenatis quisque dignissim lectus pulvinar. Non phasellus quam a nullam dictum neque velit.
+          Pellentesque litora ultrices, lectus inceptos auctor velit. Ullamcorper malesuada pellentesque convallis purus efficitur justo auctor.
+          Urna rhoncus a mollis proin per ridiculus.</p>
+      </div>
       <div class="col-md-6">
         <div id="carouselControls" class="carousel slide w-100" data-bs-ride="carousel">
           <div class="carousel-indicators">
@@ -71,14 +70,6 @@
             <span class="visually-hidden">Next</span>
           </button>
         </div>
-      </div>
-      <div class="col-md-6 ps-3"> <!-- Caja de texto-->
-        <h3 class="h3 text-black">Explicacion de proyecto</h3>
-        <p class="ps-3 lh-base nunito-sans text-black text-bold">Lorem ipsum odor amet, consectetuer adipiscing elit. Morbi euismod nisi eu rutrum suspendisse euismod quis ornare dis.
-          Pretium justo sagittis tincidunt eleifend porttitor magna potenti sodales potenti. Litora taciti praesent ut id interdum ullamcorper.
-          Euismod metus sapien erat venenatis quisque dignissim lectus pulvinar. Non phasellus quam a nullam dictum neque velit.
-          Pellentesque litora ultrices, lectus inceptos auctor velit. Ullamcorper malesuada pellentesque convallis purus efficitur justo auctor.
-          Urna rhoncus a mollis proin per ridiculus.</p>
       </div>
     </div>
   </div>
