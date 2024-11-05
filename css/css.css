@@ -11,6 +11,9 @@
     background-color:#E2C5A6 ;
 }
 
+.fondoMerigold{
+    background-color: #FCAE1E;
+}
 
 .nunito-sans {
   font-family: "Nunito Sans", sans-serif;
@@ -67,3 +70,5 @@
     width: 0px;
 
 }
+
+/*Slider*/
