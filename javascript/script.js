@@ -1,32 +1,12 @@
-console.clear();
+document.querySelector('.first-button').addEventListener('click', function () {
 
-gsap.registerPlugin(ScrollTrigger);
-
-window.addEventListener("load", () => {
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: ".wrapper",
-        start: "top top",
-        end: "+=150%",
-        pin: true,
-        scrub: true,
-        markers: true
-      }
-    })
-    .to("img", {
-      scale: 2,
-      z: 350,
-      transformOrigin: "center center",
-      ease: "power1.inOut"
-    })
-    .to(
-      ".section.hero",
-      {
-        scale: 1.1,
-        transformOrigin: "center center",
-        ease: "power1.inOut"
-      },
-      "<"
-    );
-});
+  document.querySelector('.animated-icon1').classList.toggle('open');
+  });
+  document.querySelector('.second-button').addEventListener('click', function () {
+  
+  document.querySelector('.animated-icon2').classList.toggle('open');
+  });
+  document.querySelector('.third-button').addEventListener('click', function () {
+  
+  document.querySelector('.animated-icon3').classList.toggle('open');
+  });
