@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto - Tienda Online</title>
+    <link rel="stylesheet" href="Aproducto.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <h1>Tienda Online</h1>
+            </div>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="agregar-producto.html">Agregar Producto</a></li>
+                <li><a href="#">Carrito</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="form-section">
+        <h2>Agregar Nuevo Producto</h2>
+        <form action="#" method="POST" class="product-form">
+            <label for="product-name">Nombre del Producto</label>
+            <input type="text" id="product-name" name="product-name" required>
+
+            <label for="product-description">Descripción</label>
+            <textarea id="product-description" name="product-description" rows="4" required></textarea>
+
+            <label for="product-price">Precio ($)</label>
+            <input type="number" id="product-price" name="product-price" min="0" required>
+
+            <label for="product-image">Imagen del Producto (URL)</label>
+            <input type="url" id="product-image" name="product-image" required>
+
+            <button type="submit">Agregar Producto</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Tienda Online. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
