@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto - Tienda Online</title>
+    <link rel="stylesheet" href="css/Aproducto.css">
+    <link href="css/scss.css" rel="stylesheet">
+    <link href="css/css.css" rel="stylesheet">
+    <link href="css/casillaArrastrarProducto.css" rel="stylesheet">
+</head>
+<body>
+    <header class="p-3"> <!--HEADDER GENERAL-->
+        <nav class="SuperNav">
+          <div class="menubar">
+            <p href="#0" class="nunito-sans text-black h4 text-bold">HILAN</>
+            <div class="icons">
+              <div class="secondary-icons">
+                  <i class="icon-first">
+                  <input id="searchBar" class="searchbar rounded" type="text" placeholder="Buscar">
+                  <a id="btnSearch" class="btn-search"></a>
+                  </i>
+                  <i class="icon-second">
+                    <img src="https://rafaelavlucas.github.io/assets/icons/gray1/icon-198.svg">
+                  </i>
+              </div>
+        
+              <i class="icon-menu"><span></span></i>
+            </div>
+          </div>
+          <ul class="menu">
+        
+            <li class="menu-link"><a href="#0" class="text-item">EJEMPLO</a></li>
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a></li>
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a></li>
+              <li class="menu-link">
+                <a href="#0" class="text-item">EJEMPLO</a></li>
+          </ul>
+        </nav>
+      </header>
+    <div class="container">
+    <section class="form-section">
+        <h2>Agregar Nuevo Producto</h2>
+        <form action="#" method="POST" class="product-form">
+            <label for="product-name">Nombre del Producto</label>
+            <input type="text" id="product-name" name="product-name" required>
+
+            <label for="product-description">Descripción</label>
+            <textarea id="product-description" name="product-description" rows="4" required></textarea>
+
+            <label for="product-price">Precio ($)</label>
+            <input type="number" id="product-price" name="product-price" min="0" required>
+
+            <button type="submit">Agregar Producto</button>
+        </form>
+    </section>
+    
+    
+</div>
+
+    <footer>
+        <p>&copy; 2024 Tienda Online. Todos los derechos reservados.</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    
+    <script src="javascript/script.js"></script>
+</body>
+</html>
