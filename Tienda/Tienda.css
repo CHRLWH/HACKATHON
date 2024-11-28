@@ -8,39 +8,53 @@ body {
     font-family: Arial, sans-serif;
     background-color: #fff;
     color: #333;
+    display: flex;
 }
 
-header {
-    background-color: #c0392b; /* Rojo */
+/* Estilo del menú de categorías */
+.sidebar {
+    width: 250px;
+    background-color: #7f8c8d; /* Gris oscuro */
+    color: #fff;
     padding: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sidebar h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-decoration: underline;
 }
 
-nav .logo h1 {
-    color: #fff;
-}
-
-nav ul {
+.sidebar ul {
     list-style: none;
-    display: flex;
+    text-decoration-color: black;
 }
 
-nav ul li {
-    margin-left: 20px;
+.sidebar ul li {
+    margin-bottom: 20px;
+    text-decoration-color: black;
 }
 
-nav ul li a {
-    text-decoration: none;
+.sidebar ul li a {
     color: #fff;
-    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+
 }
 
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustar productos para dejar espacio al menú */
 .products {
+    margin-left: 270px; /* Desplazar productos a la derecha */
     padding: 40px;
     text-align: center;
     background-color: #ecf0f1; /* Gris claro */
@@ -75,12 +89,6 @@ nav ul li a {
     font-size: 14px;
     color: #777;
     margin-bottom: 15px;
-}
-
-.product-card span {
-    font-size: 18px;
-    color: #c0392b; /* Rojo */
-    font-weight: bold;
 }
 
 .product-card button {
