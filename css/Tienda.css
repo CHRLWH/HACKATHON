@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+    display: flex;
+}
+
+/* Estilo del menú de categorías */
+.sidebar {
+    width: 250px;
+    background-color: #7f8c8d; /* Gris oscuro */
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h3 {
+    margin-top: 30px;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+.sidebar ul {
+    list-style: none;
+    text-decoration-color: black;
+}
+
+.sidebar ul li {
+    margin-bottom: 20px;
+    text-decoration-color: black;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Ajustar productos para dejar espacio al menú */
+.products {
+    margin-left: 270px; /* Desplazar productos a la derecha */
+    padding: 40px;
+    text-align: center;
+    background-color: #ecf0f1; /* Gris claro */
+}
+
+.products h2 {
+    color: #c0392b; /* Rojo */
+    margin-bottom: 20px;
+}
+
+.product-card {
+    display: inline-block;
+    width: 200px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+.product-card h3 {
+    color: #333;
+    margin: 15px 0;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.product-card button {
+    background-color: #c0392b; /* Rojo */
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+.product-card button:hover {
+    background-color: #e74c3c; /* Rojo más claro */
+}
+
+footer {
+    background-color: #7f8c8d; /* Gris oscuro */
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

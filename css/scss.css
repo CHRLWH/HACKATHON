@@ -42,7 +42,7 @@ $bg-03: #5788a0;
 $bg-04: #73a5b5;
 */
 body {
-  
+  background-color: #98514b ;
   font-family: "Barlow";
   -webkit-tap-highlight-color: transparent;
   justify-content: center;
