@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Perfil de Empresa</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body>
+        <script src="script.js"></script>
+        <header>
+            <div class="container">
+                <h1>Tus Objetos</h1>
+            </div>
+        </header>
+
+        <main class="container">
+            <section id="presentacion">
+                <h2>Lorem Ipsum</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer tempus efficitur justo, non feugiat neque. Sed convallis mi at purus mattis, quis sagittis sapien maximus. Fusce ac commodo diam, et mattis mi. Fusce varius nibh vitae justo facilisis vulputate. Aenean auctor condimentum nisi id iaculis.</p>
+            </section>
+            <section class="gorda">
+                <section id="creacion-encuesta">
+                    <h2>Subir un Objeto</h2>
+                    <form action="#">
+                        <label for="titulo">¿Como se llama?</label>
+                        <input type="text" id="titulo" name="titulo" oninput="actualizarVistaPrevia()" required>
+
+                        <label for="descripcion">¿Que es?</label>
+                        <textarea id="descripcion" name="descripcion" rows="4" oninput="actualizarVistaPrevia()" required></textarea>
+
+                        <label for="imagen">Imagen:</label>
+                        <input type="file" id="imagen" name="imagen" accept="image/*" onchange="mostrarImagen(this)" required>
+
+                        <label for="fecha">fecha limite:</label><br>
+                        <input type="date" name="date" id="date"><br><br><br>
+                        
+                        <button type="submit">Añadir</button><br><br>
+                    </form>
+                </section>
+
+                <section id="vista-previa-encuesta">
+                    <h2>Vista Previa</h2>
+                    <div id="encuesta">
+                        <h3 id="titulo-previo" src="#" alt="Texto encuesta">Título</h3>
+                        <section id="imagen-grande" class="hidden">
+                            <img id="imagen-grande-src" src="#" alt="Imagen de la encuesta">
+                        </section>
+                        <p id="descripcion-previa" src="#" alt="Descripción encuesta">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+                    </div>
+                </section>
+            </section>
+            <br><br><br><br><br><br>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Estugame</p>
+        </footer>
+    </body>
+</html>

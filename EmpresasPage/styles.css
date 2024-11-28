@@ -1,0 +1,140 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFEBD0;
+    text-align: justify;
+    h2{
+        text-align: center;
+    }
+}
+
+.gorda{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #F88D3B;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px 0;
+}
+
+footer {
+    background-color: #F88D3B;
+    color: #ffffff;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Estilos específicos para el contenido */
+#presentacion, #creacion-encuesta {
+    margin-bottom: 30px;
+}
+
+#creacion-encuesta form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#creacion-encuesta label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#creacion-encuesta input[type="text"],
+#creacion-encuesta textarea,
+#creacion-encuesta input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#creacion-encuesta button {
+    background-color: #F88D3B;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#creacion-encuesta button:hover {
+    background-color: #924f4a;
+}
+
+#imagen-grande {
+    text-align: center;
+}
+
+#imagen-grande img {
+    max-width: 100%;
+    height: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+#vista-previa-encuesta {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+#encuesta {
+    text-align: center;
+}
+
+#encuesta h3 {
+    color: #2b3e57;
+}
+
+#encuesta img {
+    max-width: 100%;
+    height: auto;
+    margin: 20px 0;
+}
+
+#imagen-grande img {
+    max-width: 600px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
