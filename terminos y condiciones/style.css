@@ -1,0 +1,109 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f88d3b; /* Azul Marino */
+    color: #ffffff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f88d3b; 
+    color: #ffffff;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav a {
+    margin-left: 1rem;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 1rem;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background-color: #f8b786; 
+    color: #f8b786;
+}
+
+.content {
+    background: #ffffff;
+    color: #f8b786;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    text-align: justify;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f88d3b; /* Violeta */
+    color: #ffffff;
+}
+/* Contenedor de Términos y Condiciones */
+.terms-section {
+    width: 60%;
+    background-color: #f8b786;
+    padding: 40px;
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+/* Encabezado principal */
+.terms-title {
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Subtítulos */
+.terms-subtitle {
+    color: #FC383D;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* Texto descriptivo */
+.terms-text {
+    color: #ffffff;
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+/* Listas de términos */
+.terms-list {
+    list-style: none;
+    padding: 0;
+}
+
+.terms-list li {
+    color: #ffffff;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.terms-list li::before {
+    content: "✔";
+    color: #FC383D;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
