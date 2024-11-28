@@ -25,6 +25,14 @@
           backdrop-filter: blur(5px);
   position: absolute;
 }
+.SuperNav div {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;    /* Centrar verticalmente */
+  text-align: center;     /* Asegura que el texto dentro del div esté centrado */
+  height: 100%;           /* Si quieres que ocupe todo el espacio del contenedor */
+}
+
 
 
 /*
@@ -63,7 +71,7 @@ nav .menubar {
   justify-content: space-between;
   padding: 0 40px;
   box-sizing: border-box;
-  background-color: #2d0c03;
+  background-color: white;
 
   /* Logo */
   /* Icons */
