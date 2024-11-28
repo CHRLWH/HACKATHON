@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="PaginaPerfil.css">
+    
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Sección izquierda - Artículos -->
+        <div class="articles-section">
+            <div class="article-card">
+                <h3>Artículo 1</h3>
+                <p>Descripción breve del artículo 1.</p>
+            </div>
+            <div class="article-card">
+                <h3>Artículo 2</h3>
+                <p>Descripción breve del artículo 2.</p>
+            </div>
+            <div class="article-card">
+                <h3>Artículo 3</h3>
+                <p>Descripción breve del artículo 3.</p>
+            </div>
+            <!-- Puedes añadir más artículos aquí -->
+        </div>
+    
+        <!-- Sección derecha - Perfil -->
+        <div class="profile-section">
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img src="https://via.placeholder.com/150" alt="Foto de perfil" id="profile-picture" class="profile-picture">
+                    <h1 id="user-name">Nombre Apellido</h1>
+                    <p id="user-title">Tu Ocupación</p>
+                </div>
+                <div class="profile-info">
+                    <h2>Acerca de mí</h2>
+                    <p id="user-bio">Escribe una breve descripción sobre ti aquí.</p>
+                </div>
+                <div class="profile-gallery">
+                    <h2>Galería</h2>
+                    <div id="gallery-grid"></div>
+                </div>
+                <button id="edit-profile-btn">Editar Perfil</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar perfil -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Editar Perfil</h2>
+            <form id="edit-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" value="Nombre Apellido">
+                
+                <label for="title">Ocupación:</label>
+                <input type="text" id="title" value="Tu Ocupación">
+                
+                <label for="bio">Descripción:</label>
+                <textarea id="bio" rows="4">Escribe una breve descripción sobre ti aquí.</textarea>
+                
+                <label for="photo">Foto de perfil (URL):</label>
+                <input type="text" id="photo" value="https://via.placeholder.com/150">
+                
+                <label for="gallery-item">Añadir imagen a la galería (URL):</label>
+                <input type="text" id="gallery-item">
+                
+                <button type="button" id="save-btn">Guardar Cambios</button>
+                <button type="button" id="close-modal">Cerrar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../javascript/script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
