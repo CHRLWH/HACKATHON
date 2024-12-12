@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Producto</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .drop-zone {
+            border: 2px dashed #c0392b;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            color: #c0392b;
+            cursor: pointer;
+            position: relative;
+        }
+        .drop-zone.dragover {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .preview-container img {
+            max-width: 100px;
+            max-height: 100px;
+            border-radius: 5px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body style="background-color:#f8b786">
+    <!-- Header -->
+    <header class="bg-danger text-white py-3">
+        <nav class="container d-flex justify-content-between align-items-center">
+            <h1 class="h3">Zona de Productos</h1>
+            <ul class="nav">
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="index.html">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="agregar-producto.html">Agregar Producto</a></li>
+                <li class="nav-item"><a class="nav-link text-white fw-bold" href="#">Chats</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Form Section -->
+    <section class="container my-5">
+        <div class="text-center mb-4">
+            <h2 class="text-danger">Agregar Nuevo Producto</h2>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form action="#" method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-white">
+                    <div class="mb-3">
+                        <label for="product-name" class="form-label fw-bold">Nombre del Producto</label>
+                        <input type="text" id="product-name" name="product-name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="product-description" class="form-label fw-bold">Descripción</label>
+                        <textarea id="product-description" name="product-description" rows="4" class="form-control" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Imágenes del Producto</label>
+                        <input type="file" id="product-image" name="product-image[]" class="form-control d-none" accept="image/*" multiple aria-label="Cargar imágenes">
+                        <div class="drop-zone" id="drop-zone" aria-label="Zona de carga de imágenes">
+                            Arrastra y suelta archivos aquí o haz clic para seleccionar.
+                        </div>
+                        <div class="preview-container" id="preview-container"></div>
+                    </div>
+                    <button type="submit" class="btn btn-danger w-100">Agregar Producto</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white text-center py-3">
+        <p class="mb-0">© 2024 Zona de Productos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        const dropZone = document.getElementById('drop-zone');
+        const fileInput = document.getElementById('product-image');
+        const previewContainer = document.getElementById('preview-container');
+
+        // Manejo de eventos de la zona de carga
+        const manejarEventosZona = (e) => {
+            e.preventDefault();
+            e.type === 'dragover' ? dropZone.classList.add('dragover') : dropZone.classList.remove('dragover');
+        };
+
+        // Mostrar vista previa de múltiples imágenes
+        const mostrarVistaPrevia = (files) => {
+            previewContainer.innerHTML = ''; // Limpiar las vistas previas actuales
+            Array.from(files).forEach(file => {
+                if (file.type.startsWith('image/') && file.size <= 2 * 1024 * 1024) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        previewContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert(`"${file.name}" no es válido. Asegúrate de que sea una imagen y no exceda 2 MB.`);
+                }
+            });
+        };
+
+        // Eventos de la zona de carga
+        dropZone.addEventListener('click', () => fileInput.click());
+        dropZone.addEventListener('dragover', manejarEventosZona);
+        dropZone.addEventListener('dragleave', manejarEventosZona);
+        dropZone.addEventListener('drop', (e) => {
+            manejarEventosZona(e);
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files; // Asignar archivos al input
+                mostrarVistaPrevia(files);
+            }
+        });
+
+        // Evento del input de archivo
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                mostrarVistaPrevia(fileInput.files);
+            }
+        });
+    </script>
+</body>
+</html>
