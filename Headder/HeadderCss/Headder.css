@@ -1,6 +1,7 @@
 
 /*headder*/
 @import url("https://fonts.googleapis.com/css?family=Barlow:200,300,400,500,600,700,800,900&display=swap");
+
 .headder{
 
 .about {
@@ -56,7 +57,7 @@ nav .menubar {
   justify-content: space-between;
   padding: 0 40px;
   box-sizing: border-box;
-  background-color: white;
+  background-color: #98514b;
 
   /* Logo */
   /* Icons */
@@ -233,22 +234,22 @@ nav .menu.open .menu-link {
   }
 }
 nav .menu.open .menu-link:nth-child(1) {
-  background-image: url("../img/producto2.png");
+  background-image: url("../../img/WhatsApp\ Image\ 2024-12-04\ at\ 10.34.26.jpeg");
   background-color: #2d3561;
   animation-duration: 0.6s;
 }
 nav .menu.open .menu-link:nth-child(2) {
-  background-image: url("../img/producto4.png");
+  background-image: url("../../img/WhatsApp\ Image\ 2024-12-04\ at\ 10.34.27.jpeg");
   background-color: #c05c7e;
   animation-duration: 0.8s;
 }
 nav .menu.open .menu-link:nth-child(3) {
-  background-image: url("../img/producto1.png");
+  background-image: url("../../img/WhatsApp\ Image\ 2024-12-04\ at\ 10.34.27\ \(1\).jpeg");
   background-color: #f3826f;
   animation-duration: 1s;
 }
 nav .menu.open .menu-link:nth-child(4) {
-  background-image: url("../img/producto3.png");
+  background-image: url("../../img/WhatsApp\ Image\ 2024-12-04\ at\ 10.34.27\ \(2\).jpeg");
   background-color: #ffb961;
   animation-duration: 1.2s;
 }

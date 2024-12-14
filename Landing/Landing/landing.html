@@ -4,106 +4,153 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Comunidad de madrid home</title>
-    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="scss.css" rel="stylesheet">
+    <link href="css.css" rel="stylesheet">
     <link href="../LandingCss/Landing.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   </head>
   <body>
-  <header class="p-3 fondoBeige"> <!--HEADDER GENERAL-->
-    <header class="p-3"> <!--HEADDER GENERAL-->
-      <nav class="SuperNav">
-        <div class="class="col-md-3 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none>
-          <img src="../imgs/H-2-removebg-preview.png" class="img-fluid" style="max-width: 250px;">
-          <div class="icons">
-      </nav>
-    </header>
-      <hr class="invisible">
-      <hr class="invisible">
-       <hr class="invisible">
-  <div class="container"> <!--Primer parrafo con el carousel-->
-    <div class="row align-items-center">
-      <!--Tanto el carousel como el texto están en la misma linea de celdas-->
-      <div class="col-md-6 ps-3">
-        <hr class="invisible">
-        <!-- Caja de texto-->
-        <h3 class="h3 text-black">SOBRE NOSOTROS</h3>
-        <p class="ps-3 lh-base nunito-sans text-black text-bold">Este proyecto surge con el propósito de crear una comunidad solidaria entre familias de
-          acogida. Sabemos que construir un hogar no solo requiere amor; también conlleva gastos y
-          desafíos diarios. Por eso, queremos crear un espacio donde las familias puedan ayudarse
-          mutuamente compartiendo lo que ya no necesitan y encontrando lo que otros pueden
-          ofrecer.
-          Nuestra plataforma permite que objetos como ropa, juguetes o artículos de bebé tengan
-          una segunda vida en manos de otra familia que lo necesita. No se trata solo de ahorrar
-          dinero, sino de generar un ciclo de ayuda mutua que fortalezca los lazos entre quienes
-          comparten la experiencia única de formar una familia.
-          Creemos que cada aportación, por pequeña que parezca, puede marcar una gran diferencia.
-          Juntos, estamos creando una red de apoyo basada en generosidad y el respeto, permitiendo
-          que cada familia pueda enfocarse en lo más importante: el bienestar y felicidad de sus hijos.</p>
+  
+    <body>
+      <!-- Header -->
+      <header class="p-3"> <!--HEADDER GENERAL-->
+        <nav class="SuperNav">
+          <div class="menubar">
+            <p href="#0" class="nunito-sans text-black h4 text-bold">
+              <img src="img/H-2-removebg-preview.png" class="img-fluid" style="max-width: 250px;">
+            </p>
+            
+            <div class="icons">
+              <div class="secondary-icons">
+                  <i class="icon-first">
+                  <input id="searchBar" class="searchbar rounded" type="text" placeholder="Buscar">
+                  <a id="btnSearch" class="btn-search"></a>
+                  </i>
+                  <i class="icon-second">
+                    <img src="https://rafaelavlucas.github.io/assets/icons/gray1/icon-198.svg">
+                  </i>
+              </div>
+        
+              <i class="icon-menu"><span></span></i>
+            </div>
+          </div>
+  
+          <ul class="menu">
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a>
+            </li>
+  
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a>
+            </li>
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a>
+            </li>
+            <li class="menu-link">
+              <a href="#0" class="text-item">EJEMPLO</a>
+            </li>
+          </ul>
+        </nav>
+        <script src="javascript/script.js"></script>
+      </header>
+      
+  
+      <!-- Hero Section -->
+      <div class="hero">
+        <h1>¡Bienvenidos a la Comunidad Solidaria!</h1>
+        <p>Un espacio donde las familias se ayudan compartiendo lo que ya no necesitan.</p>
+        <a href="login.html" class="btn btn-primary btn-lg">Acceder</a>
       </div>
-      <div class="col-md-6">
-        <div id="carouselControls" class="carousel slide w-100" data-bs-ride="carousel">
-          <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselControls" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselControls" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselControls" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  
+      <!-- Sobre Nosotros -->
+      <div class="section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <h3>Sobre Nosotros</h3>
+              <p>Creamos una comunidad solidaria entre familias de acogida, fomentando el intercambio de artículos como ropa, juguetes y más. ¡Juntos podemos marcar la diferencia!</p>
+            </div>
+            <div class="col-md-6">
+              <div id="carouselControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="img/pexels-kindelmedia-7979757.jpg" class="d-block w-100" alt="Imagen 1">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/pexels-kindelmedia-7979756.jpg" class="d-block w-100" alt="Imagen 2">
+                  </div>
+                  <div class="carousel-item">
+                    <img src="img/pexels-kindelmedia-7979605.jpg" class="d-block w-100" alt="Imagen 3">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="../imgs/pexels-kindelmedia-7979757.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-              <img src="../imgs/pexels-kindelmedia-7979756.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-              <img src="../imgs/pexels-kindelmedia-7979605.jpg" class="d-block w-100">
-            </div>
-          </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselControls" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselControls" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </button>
         </div>
       </div>
-    </div>
-  </div>
-  <hr class="invisible">
-
-  <div class="fondoNaranja rounded"> <!--Segmento de pagina-->
-  <hr class="invisible">
-  <div class="mx-auto" style="width: 1300px">
-    <span class="border-2">
-    <h5 class="text-light nunito-sans">Imagina que tu hijo ha crecido y ya no necesita esa cuna que tan importante fue en sus
-      primeros años. En lugar de almacenarla o desecharla, puedes ponerla a disposición de otra
-      familia a través de nuestra plataforma. A cambio, podrías encontrar materiales escolares,
-      ropa de su talla actual o juguetes que otra familia comparte con cariño.
-      Este intercambio no solo ayuda a reducir gastos, sino que también crea una comunidad
-      donde los objetos adquieren un nuevo significado al ser útiles para otros. Cada sección de
-      nuestra plataforma está diseñada para conectar necesidades con soluciones, permitiendo
-      que las familias apoyen y se beneficien mutuamente de forma sencilla, práctica y solidaria.
-    </h5>
-    </span>
-  </div>
-  <hr class="invisible">
-</div>
-<div class="rounded">
-<div class="mx-auto container rounded" style="width: 200px"> <!--Segmento de pagina-->
-  <hr class="invisible">
-    <span class="border-0">
-    <h3 class="text-dark">ACCEDE YA !</h3>
-    <div class="mx-auto text-center fondoAzul rounded" style="width: 100px">
-      <a href="../../Login/LoginHtml/Login.html" class="btn text-white">Acceder</a>
-    </div>
-  </span>
-  <hr class="invisible">
-</div>
-</div>
+  
+      <!-- Características -->
+      <div class="section">
+        <div class="container text-center">
+          <h3>Características</h3>
+          <p>Intercambia artículos, conecta con familias y genera un impacto positivo.</p>
+        </div>
+      </div>
+  
+      <!-- Beneficios -->
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 text-center">
+              <h4>Ahorro</h4>
+              <p>Reduce gastos al reutilizar artículos útiles.</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <h4>Sostenibilidad</h4>
+              <p>Contribuye al medio ambiente con el reciclaje.</p>
+            </div>
+            <div class="col-md-4 text-center">
+              <h4>Comunidad</h4>
+              <p>Fomenta vínculos entre familias solidarias.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Testimonios -->
+      <div class="section testimonials">
+        <div class="container text-center">
+          <h3>Testimonios</h3>
+          <div class="row">
+            <div class="col-md-4">
+              <img src="img/testimonio1.jpg" alt="Usuario 1">
+              <p>"¡Una experiencia increíble! He encontrado todo lo que necesitaba para mis hijos."</p>
+            </div>
+            <div class="col-md-4">
+              <img src="img/testimonio2.jpg" alt="Usuario 2">
+              <p>"Es genial poder ayudar a otros mientras reutilizo artículos en buen estado."</p>
+            </div>
+            <div class="col-md-4">
+              <img src="img/testimonio3.jpg" alt="Usuario 3">
+              <p>"Recomiendo esta plataforma a todas las familias. Es muy fácil de usar."</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
   <script src="javascript/script.js"></script>
+  <script src="../../Headder/HeadderJs/Headder.js"
   </body>
   <hr class="invisible">
 </html>
