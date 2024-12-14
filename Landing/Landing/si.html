@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crafter - Handmade Marketplace</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+      .fondoPaginaEntera{
+        background-color: #2d0c03 ;
+      }
+      .fondo1{
+        background-color: #98514b;
+      }
+        :root {
+            --primary-dark: #2C2620;
+            --primary-gold: #9C8B7C;
+            --accent-orange: #FFA500;
+        }
+
+        body {
+            background-color: var(--primary-dark);
+            color: #fff;
+        }
+
+        .navbar {
+            background-color: var(--primary-dark) !important;
+            padding: 1rem 2rem;
+        }
+
+        .search-bar {
+            background-color: rgba(156, 139, 124, 0.2);
+            border: none;
+            color: #fff;
+        }
+
+        .search-bar::placeholder {
+            color: var(--primary-gold);
+        }
+
+        .hero-section {
+            background-image: url('/placeholder.svg?height=600&width=1200');
+            background-size: cover;
+            background-position: center;
+            padding: 8rem 0;
+            position: relative;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .featured-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .featured-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            color: var(--primary-dark);
+        }
+
+        .story-card {
+            background-color: rgba(156, 139, 124, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .testimonial-card {
+            background-color: rgba(156, 139, 124, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-orange);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #e69500;
+        }
+
+        .footer-link {
+            color: var(--primary-gold);
+            text-decoration: none;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+        }
+
+        .social-icons i {
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            color: var(--primary-gold);
+        }
+
+        
+        /* Previous styles remain unchanged */
+        .hero-section .container {
+          max-width: 900px; /* Limita el ancho máximo del contenedor */
+          margin: 0 auto; /* Centra el contenedor horizontalmente */
+          padding: 0 15px; /* Añade algo de espacio a los lados */
+      }
+      
+      .hero-section .carousel-inner {
+          height: 60vh; /* Ajusta el alto del carousel, 60% de la altura de la pantalla */
+      }
+      
+      .hero-section .carousel-caption {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          padding: 0 15px; /* Añadido para dar espacio en los bordes */
+      }
+      
+      .hero-section .carousel-inner {
+        height: 60vh; /* Ajusta la altura al 60% de la pantalla */
+    }
+    
+    .hero-section .carousel-item {
+        height: 100%; /* Cada elemento ocupa el 100% de la altura del contenedor */
+    }
+    
+    .hero-section .carousel-item img {
+        width: 100%; /* Asegura que las imágenes ocupen el 100% del ancho del contenedor */
+        height: 100%; /* Asegura que las imágenes ocupen el 100% de la altura */
+        object-fit: cover; /* Recorta o expande las imágenes para ajustarlas */
+    }
+    
+      
+      /* Nueva capa negra encima de las imágenes */
+      .hero-section .carousel-item .overlay {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5); /* Sombra negra con opacidad */
+          z-index: 1;
+      }
+      
+
+      /* Estilos para centrar únicamente el contenedor */
+.center-container {
+  display: flex; /* Activa flexbox */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  height: 100vh; /* Hace que el contenedor ocupe toda la pantalla */
+  background-color: #f0f0f0; /* Fondo opcional */
+}
+
+/* Estilos para el card */
+.featured-card {
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 20px; /* Espacio interno */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+  width: 300px; /* Ancho fijo para el card */
+}
+
+      
+      
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+              <a class="navbar-brand mx-auto" href="#">
+                <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 100px; height: 50px; display: block;">
+              </a>
+            </div>
+          
+           
+        </div>
+    </nav>
+
+<!-- Updated Hero Section with Carousel -->
+<section class="hero-section ">
+  <div class="container"> <!-- Contenedor para limitar el ancho -->
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+              <!-- First Carousel Item -->
+              <div class="carousel-item active" style="background-image: url('../../img/Captura\ de\ pantalla\ 2024-12-14\ 232016.png'); background-size: cover; background-position: center;">
+                  <!-- Capa negra encima de la imagen -->
+                  <div class="overlay"></div>
+                  <div class="carousel-caption d-flex justify-content-center align-items-center">
+                      <div class="text-center text-white">
+                          <h1 class="display-4 mb-4">Ayuda a familias</h1>
+                      </div>
+                  </div>
+              </div>
+              <!-- Second Carousel Item -->
+              <div class="carousel-item" style="background-image: url('../../img/Captura\ de\ pantalla\ 2024-12-14\ 231928.png'); background-size: cover; background-position: center;">
+                  <!-- Capa negra encima de la imagen -->
+                  <div class="overlay"></div>
+                  <div class="carousel-caption d-flex justify-content-center align-items-center">
+                      <div class="text-center text-white">
+                          <h1 class="display-4 mb-4">NOSE</h1>
+                      </div>
+                  </div>
+              </div>
+              <!-- Third Carousel Item -->
+              <div class="carousel-item" style="background-image: url('../../img/Captura\ de\ pantalla\ 2024-12-14\ 231946.png'); background-size: cover; background-position: center;">
+                  <!-- Capa negra encima de la imagen -->
+                  <div class="overlay"></div>
+                  <div class="carousel-caption d-flex justify-content-center align-items-center">
+                      <div class="text-center text-white">
+                          <h1 class="display-4 mb-4">NOSE</h1>
+                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- Carousel Controls -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
+      </div>
+  </div> <!-- Cierre del contenedor -->
+</section>
+
+
+
+    <!-- Featured Shops -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Sobre nosotros</h2>
+            <p>Creamos una comunidad solidaria entre familias de acogida, fomentando el intercambio de artículos como ropa, juguetes y más. ¡Juntos podemos marcar la diferencia!</p>
+           
+                
+            </div>
+        </div>
+    </section>
+    <hr class="invisible">
+    <section class="py-5 ">
+      <div class="container">
+          <h2 class="mb-4"></h2>
+          <div class="row g-4">
+              <div class="col-md-3">
+                  <div class="story-card">
+                      <h5>Ahorro</h5>
+                      <p>Reduce gastos al reutilizar articulos utiles</p>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="story-card">
+                      <h5>Sostenibilidad</h5>
+                      <p class="">Contribuye al medio ambiente con el reciclaje.</p>
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="story-card">
+                      <h5>Comunidad</h5>
+                      <p>Fomenta vínculos entre familias solidarias.</p>
+                  </div>
+              </div>
+             
+          </div>
+      </div>
+  </section>
+    <!-- Featured Products -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">En que consiste?</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="product-card">
+                        <img src="/placeholder.svg?height=200&width=200" alt="Ceramic Mug">
+                          <div class="p-3">
+                            <p>Intercambia artículos, conecta con familias y genera un impacto positivo.</p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+        </div>
+    </section>
+     <hr class="invisible">
+    <!-- Customer Testimonials -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="mb-4">Opiniones de clientes</h2>
+            <div class="row g-4">
+                <div class="col-md-3">
+                    <div class="testimonial-card">
+                        <img src="/placeholder.svg?height=200&width=200" class="img-fluid mb-3" alt="Customer Review">
+                        <p class="mb-2">@lunabean</p>
+                        <p>""¡Una experiencia increíble! He encontrado todo lo que necesitaba para mis hijos.""</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="testimonial-card">
+                        <img src="/placeholder.svg?height=200&width=200" class="img-fluid mb-3" alt="Customer Review">
+                        <p class="mb-2">@sophia_rowland</p>
+                        <p>"Es genial poder ayudar a otros mientras reutilizo artículos en buen estado."</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="testimonial-card">
+                        <img src="/placeholder.svg?height=200&width=200" class="img-fluid mb-3" alt="Customer Review">
+                        <p class="mb-2">@kristin_ess</p>
+                        <p>"Recomiendo esta plataforma a todas las familias. Es muy fácil de usar."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 text-center">
+                    <h2 class="mb-4">Stay in the loop</h2>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control search-bar" placeholder="Enter your email address">
+                        <button class="btn btn-primary">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-2">
+                    <a href="#" class="footer-link">About</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="footer-link">Blog</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="footer-link">Press</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="footer-link">Careers</a>
+                </div>
+                <div class="col-md-2">
+                    <a href="#" class="footer-link">Help</a>
+                </div>
+            </div>
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <a href="#" class="footer-link">Policies</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="footer-link">Terms of Service</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="text-center social-icons">
+                <a href="#" class="footer-link"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="footer-link"><i class="bi bi-pinterest"></i></a>
+                <a href="#" class="footer-link"><i class="bi bi-twitter"></i></a>
+                <a href="#" class="footer-link"><i class="bi bi-facebook"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

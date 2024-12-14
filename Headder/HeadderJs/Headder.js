@@ -1,8 +1,8 @@
 // Esperar a que el DOM se cargue completamente
 document.addEventListener('DOMContentLoaded', function() {
   // Seleccionar el ícono de menú y el menú desplegable
-  const iconMenu = document.querySelector('.icon-menu');
-  const menu = document.querySelector('.menu');
+  const iconMenu = document.querySelector('.headder .icon-menu');
+  const menu = document.querySelector('.headder .menu');
 
   // Verificar si ambos elementos existen
   if (iconMenu && menu) {
