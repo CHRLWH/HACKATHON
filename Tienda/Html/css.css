@@ -8,6 +8,8 @@
 body {
   background-color: var(--primary-bg);
   color: var(--text-light);
+  font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
 }
 
 .navbar {
@@ -25,16 +27,23 @@ body {
     z-index: 1;
 }
 
-
+.buttonBackground{
+  background-color: #b9935a;
+  color: var(--text-light);
+  font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 .search-bar-headder {
-  background-color: #f8b786;
+  background-color: #b9935a;
   border: none;
   color: var(--text-light);
+  font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
 }
 
 .search-button {
   background-color: var(--accent-color);
   color: var(--primary-bg);
+  font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 .hero-carousel .carousel-item {
