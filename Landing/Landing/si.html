@@ -38,7 +38,7 @@
     background-color: var(--primary-bg);
     border: 1px solid var(--border-color);
     border-radius: 5px;
-    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 15px var(--accent-orange)
 }
 
 /* Envoltura para centrar el video */
@@ -49,7 +49,7 @@
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    background-color: var(--card-bg);
+    background-color: var(--primary-dark);
 }
 
 /* Propiedades del reproductor */
@@ -227,7 +227,7 @@
   width: 300px; /* Ancho fijo para el card */
 }
 
-/* Contenedor general */
+/* Estilos para la sección "story-section" */
 .story-section {
     display: flex;
     flex-direction: column;
@@ -237,7 +237,7 @@
 }
 
 /* Contenedor horizontal para tarjetas y video */
-.container {
+.story-section .container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -246,15 +246,15 @@
 }
 
 /* Estilos de tarjetas */
-.card-container {
+.story-section .card-container {
     display: flex;
     flex-direction: column;
     gap: 20px;
     flex: 1; /* Permite que se ajuste con el video */
-    max-width: 45%;
+    max-width: 50%;
 }
 
-.story-card {
+.story-section .story-card {
     padding: 20px;
     border-radius: 5px;
     background-color: var(--card-bg);
@@ -263,19 +263,19 @@
     text-align: center;
 }
 
-.story-card h3 {
+.story-section .story-card h3 {
     margin-bottom: 10px;
     font-size: 1.5rem;
     color: var(--accent-color);
 }
 
-.story-card h5 {
+.story-section .story-card h5 {
     font-size: 1rem;
     font-weight: 300;
 }
 
 /* Estilos del contenedor de video */
-.video-wrapper {
+.story-section .video-wrapper {
     flex: 1; /* Se ajusta al espacio disponible */
     max-width: 45%;
     overflow: hidden;
@@ -284,7 +284,7 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
-.video-player {
+.story-section .video-player {
     width: 100%;
     height: auto;
     border: none;
@@ -293,13 +293,13 @@
 
 /* Responsividad */
 @media (max-width: 768px) {
-    .container {
+    .story-section .container {
         flex-direction: column;
         align-items: center;
     }
 
-    .card-container,
-    .video-wrapper {
+    .story-section .card-container,
+    .story-section .video-wrapper {
         max-width: 100%;
     }
 }
