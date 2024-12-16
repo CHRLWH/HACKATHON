@@ -25,6 +25,7 @@
         body {
             background-color: var(--primary-dark);
             color: #fff;
+            justify-content: center;
             
         }
 
@@ -225,6 +226,84 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra opcional */
   width: 300px; /* Ancho fijo para el card */
 }
+
+/* Contenedor general */
+.story-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--primary-bg);
+    padding: 20px;
+}
+
+/* Contenedor horizontal para tarjetas y video */
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap; /* Se ajusta en pantallas pequeñas */
+}
+
+/* Estilos de tarjetas */
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1; /* Permite que se ajuste con el video */
+    max-width: 45%;
+}
+
+.story-card {
+    padding: 20px;
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    color: var(--text-light);
+    text-align: center;
+}
+
+.story-card h3 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.story-card h5 {
+    font-size: 1rem;
+    font-weight: 300;
+}
+
+/* Estilos del contenedor de video */
+.video-wrapper {
+    flex: 1; /* Se ajusta al espacio disponible */
+    max-width: 45%;
+    overflow: hidden;
+    border-radius: 5px;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.video-player {
+    width: 100%;
+    height: auto;
+    border: none;
+    outline: none;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card-container,
+    .video-wrapper {
+        max-width: 100%;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -294,7 +373,7 @@
 
     <!-- Featured Shops -->
     <section class="py-5">
-        <div class="container">
+        <div class="container ">
             <h2 class="mb-4">Sobre nosotros</h2>
             <p>Creamos una comunidad solidaria entre familias de acogida, fomentando el intercambio de artículos como ropa, juguetes y más. ¡Juntos podemos marcar la diferencia!</p>
            
@@ -309,87 +388,96 @@
         <div class="container justify-content-center">
             <div class="row g-4 justify-content-center">
                 
-                    <div class="story-card">
-                        <div class="container ">
-                            <div class="row g-4 justify-content-center">
-                                <div class="col-md-3">
-                                    <div class="story-card ">
+                <div class="story-section">
+                    <div class="container d-flex align-items-center justify-content-between flex-wrap">
+                        <!-- Contenedor de tarjetas -->
+                        <div class="card-container d-flex flex-column">
+                            <div class="row g-4">
+                                <div class="col-md-12">
+                                    <div class="story-card">
                                         <h3>Ahorro</h3>
-                                        <h5>Reduce gastos al reutilizar articulos utiles</h5>
+                                        <h5>Reduce gastos al reutilizar artículos útiles</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-12">
                                     <div class="story-card">
                                         <h3>Sostenibilidad</h3>
-                                        <h5>Contribuye al medio ambiente con el reciclaje.</>
+                                        <h5>Contribuye al medio ambiente con el reciclaje.</h5>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-12">
                                     <div class="story-card">
                                         <h3>Comunidad</h3>
                                         <h5>Fomenta vínculos entre familias solidarias.</h5>
                                     </div>
                                 </div>
-                               
                             </div>
+                        </div>
+                
+                        <!-- Contenedor del video -->
+                        <div class="video-wrapper rounded">
+                            <video class="video-player" controls>
+                                <source src="tu-video.mp4" type="video/mp4">
+                                Tu navegador no soporta la reproducción de video.
+                            </video>
+                        </div>
+                    </div>
+                
+                    <hr>
+                    <h4 class="text-center mt-4">
+                        Intercambia artículos, conecta con familias y genera un impacto positivo.
+                    </h4>
+                </div>
+                
+                        <div class="container justify-content-center">
+                            <h2 class="mb-4">Opiniones de usuarios</h2>
+                            <div class="row g-4 justify-content-center">
+                                <div class="col-md-3">
+                                    <div class="testimonial-card">
+                                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
+                                        <p class="mb-2">@lunabean</p>
+                                        <p>""¡Una experiencia increíble! He encontrado todo lo que necesitaba para mis hijos.""</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-3">
+                                    <div class="testimonial-card text-center">
+                                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
+                                        <p class="mb-2">@sophia_rowland</p>
+                                        <p>"Es genial poder ayudar a otros mientras reutilizo artículos en buen estado."</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="testimonial-card text-center">
+                                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
+                                        <p class="mb-2">@kristin_ess</p>
+                                        <p>"Recomiendo esta plataforma a todas las familias. Es muy fácil de usar."</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <hr>
-                         <h4>Intercambia artículos, conecta con familias y genera un impacto positivo.</h4>
-                            <div class="video-wrapper rounded justify-content">
-                                <video class="video-player" controls>
-                                    <source src="tu-video.mp4" type="video/mp4">
-                                    Tu navegador no soporta la reproducción de video.
-                                </video>
+                    <!-- Newsletter -->
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-6 text-center">
+                                    <h2 class="mb-4">Accede ya!</h2>
+                                    <div class="input-group mb-3 justify-content-center">
+                                        
+                                        <a href="../../Login/LoginHtml/Login.html" class="btn btn-primary btn-lg">Acceder</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                   </div>
+                  
               </div>
         </div>
     </section>
      <hr class="invisible">
     <!-- Customer Testimonials -->
     <section class="py-5">
-        <div class="container justify-content-center">
-            <h2 class="mb-4">Opiniones de usuarios</h2>
-            <div class="row g-4 justify-content-center">
-                <div class="col-md-3">
-                    <div class="testimonial-card">
-                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
-                        <p class="mb-2">@lunabean</p>
-                        <p>""¡Una experiencia increíble! He encontrado todo lo que necesitaba para mis hijos.""</p>
-                    </div>
-                </div>
-                
-                <div class="col-md-3">
-                    <div class="testimonial-card text-center">
-                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
-                        <p class="mb-2">@sophia_rowland</p>
-                        <p>"Es genial poder ayudar a otros mientras reutilizo artículos en buen estado."</p>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="testimonial-card text-center">
-                        <img src="../../img/cuna.jpeg" class="img-fluid mb-3" alt="Customer Review">
-                        <p class="mb-2">@kristin_ess</p>
-                        <p>"Recomiendo esta plataforma a todas las familias. Es muy fácil de usar."</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center">
-                    <h2 class="mb-4">Accede ya!</h2>
-                    <div class="input-group mb-3 justify-content-center">
-                        
-                        <a href="../../Login/LoginHtml/Login.html" class="btn btn-primary btn-lg">Acceder</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
     </section>
 
     <!-- Footer -->
