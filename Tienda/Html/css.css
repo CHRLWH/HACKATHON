@@ -11,11 +11,11 @@ body {
   font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
 }
-
 .navbar {
   background-color: var(--primary-bg);
   border-bottom: 1px solid var(--accent-color);
 }
+
 
 .hero-carousel .carousel-item .overlay {
     position: absolute;
