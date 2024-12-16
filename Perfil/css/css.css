@@ -1,0 +1,80 @@
+:root {
+    --primary-bg: #1C1810;
+    --accent-color: #F5A623;
+    --text-light: #E5E5E5;
+    --card-bg: #2A241C;
+  }
+  
+  body {
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+  }
+
+  .buttonBackground{
+    background-color: #b9935a;
+    color: var(--text-light);
+    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  }
+  .search-bar-
+  .navbar {
+    background-color: var(--primary-bg);
+    border-bottom: 1px solid var(--accent-color);
+  }
+
+  .search-bar-headder {
+    background-color: #b9935a;
+    border: none;
+    color: var(--text-light);
+    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  
+  }
+
+  .shop-header {
+    background:  var(--primary-bg);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 1rem;
+  }
+
+
+  
+.footer-link {
+    color: var(--primary-gold);
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    color: #fff;
+}
+
+.footerhr{
+  background-color: var(--primary-gold);
+}
+
+.drop-zone {
+    border: 2px dashed var(--accent-color);
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+    color: var(--accent-color);
+    cursor: pointer;
+    position: relative;
+}
+.drop-zone.dragover {
+    background-color: var(--accent-color);
+    color: var(--primary-bg);
+}
+.preview-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+.preview-container img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 1px solid var(--primary-bg);
+}

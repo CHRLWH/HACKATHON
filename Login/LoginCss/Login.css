@@ -345,7 +345,7 @@ input::placeholder {
 } /*# sourceMappingURL=login.css.map */
 
 .footer-link {
-  color: var(--primary-gold);
+  color: var(--text-light);
   text-decoration: none;
 }
 .fondoSeparador{
@@ -353,7 +353,7 @@ input::placeholder {
 }
 
 .footer-link:hover {
-  color: #fff;
+  color: var(--accent-color);
 }
 
 .footerhr{

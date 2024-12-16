@@ -1,4 +1,4 @@
-   <?php
+<?php
     // Parámetros de conexión a la BBDD
     $servername = "localhost";  // Servidor de la base de datos
     $username = "usuariophpdam";         // Usuario de la base de datos
