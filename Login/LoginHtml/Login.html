@@ -18,15 +18,15 @@
   <div class="user_options-container">
     <div class="user_options-text">
       <div class="user_options-unregistered">
-        <h2 class="user_unregistered-title">Don't have an account?</h2>
-        <p class="user_unregistered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
-        <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+        <h2 class="user_unregistered-title">No estas registrado?</h2>
+        <p class="user_unregistered-text">Solicita acceso pulsando en el boton de abajo</p>
+        <button class="user_unregistered-signup" id="signup-button">Solicitar acceso</button>
       </div>
 
       <div class="user_options-registered">
-        <h2 class="user_registered-title">Have an account?</h2>
-        <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
-        <button class="user_registered-login" id="login-button">Login</button>
+        <h2 class="user_registered-title">Tienes cuenta?</h2>
+        <p class="user_registered-text">Inicia sesion usando el codigo proporcionado, nombre de usuario y contraseña</p>
+        <button class="user_registered-login" id="login-button">Iniciar sesion</button>
       </div>
     </div>
 
@@ -36,14 +36,19 @@
         <form class="forms_form" action="../../Tienda/Html/TiendaV2.html" method="GET">
           <fieldset class="forms_fieldset">
             <div class="forms_field">
-              <input type="email" placeholder="Email" class="forms_field-input" required autofocus />
+              <input type="email" placeholder="Codigo" class="forms_field-input" required autofocus />
             </div>
             <div class="forms_field">
-              <input type="password" placeholder="Password" class="forms_field-input" required />
+              <input type="password" placeholder="Usuario" class="forms_field-input" required />
+            </div>
+            <div class="forms_field">
+              <input type="password" placeholder="Contraseña" class="forms_field-input" required />
             </div>
           </fieldset>
           <div class="forms_buttons">
-            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+            <button type="button" class="forms_buttons-forgot">Contraseña olvidada?</button>
+            <button type="button" class="forms_buttons-forgot">Codigo de acceso olvidado?</button>
+
             <input type="submit" value="Log In" class="forms_buttons-action">
           </div>
         </form>
