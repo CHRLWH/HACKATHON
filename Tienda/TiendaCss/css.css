@@ -12,6 +12,7 @@ body {
 
 }
 .navbar {
+  padding-left: 1%;
   background-color: var(--primary-bg);
   border-bottom: 1px solid var(--accent-color);
 }
