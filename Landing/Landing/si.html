@@ -19,11 +19,53 @@
             --accent-orange: #FFA500;
         }
 
+        *{
+            font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
         body {
             background-color: var(--primary-dark);
             color: #fff;
             
         }
+
+        /* Contenedor de video */
+.video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background-color: var(--primary-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Envoltura para centrar el video */
+.video-wrapper {
+    width: 100%;
+    max-width: 800px; /* Ancho máximo del video */
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background-color: var(--card-bg);
+}
+
+/* Propiedades del reproductor */
+.video-player {
+    width: 100%;
+    height: auto;
+    border: none;
+    outline: none;
+    background-color: var(--primary-bg);
+}
+
+/* Estilo responsivo */
+@media screen and (max-width: 768px) {
+    .video-wrapper {
+        max-width: 100%;
+    }
+}
 
         .navbar {
             background-color: var(--primary-dark) !important;
@@ -183,9 +225,6 @@
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra opcional */
   width: 300px; /* Ancho fijo para el card */
 }
-
-      
-      
     </style>
 </head>
 <body>
@@ -264,42 +303,44 @@
         </div>
     </section>
     <hr class="invisible">
-    <section class="py-5">
-      <div class="container ">
-          <h2 class="mb-4">Nuestros objetivos son</h2>
-          <div class="row g-4 justify-content-center">
-              <div class="col-md-3">
-                  <div class="story-card ">
-                      <h3>Ahorro</h3>
-                      <h5>Reduce gastos al reutilizar articulos utiles</h5>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="story-card">
-                      <h3>Sostenibilidad</h3>
-                      <h5>Contribuye al medio ambiente con el reciclaje.</>
-                  </div>
-              </div>
-              <div class="col-md-3">
-                  <div class="story-card">
-                      <h3>Comunidad</h3>
-                      <h5>Fomenta vínculos entre familias solidarias.</h5>
-                  </div>
-              </div>
-             
-          </div>
-      </div>
-  </section>
+ 
     <!-- Featured Products -->
     <section class="py-5">
         <div class="container justify-content-center">
-            <h2 class="mb-4">En que consiste?</h2>
             <div class="row g-4 justify-content-center">
-                <div class="col-md-3">
-                    <div class="product-card">
-                        
-                            <p>Intercambia artículos, conecta con familias y genera un impacto positivo.</p>
-                      </div>
+                
+                    <div class="story-card">
+                        <div class="container ">
+                            <div class="row g-4 justify-content-center">
+                                <div class="col-md-3">
+                                    <div class="story-card ">
+                                        <h3>Ahorro</h3>
+                                        <h5>Reduce gastos al reutilizar articulos utiles</h5>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="story-card">
+                                        <h3>Sostenibilidad</h3>
+                                        <h5>Contribuye al medio ambiente con el reciclaje.</>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="story-card">
+                                        <h3>Comunidad</h3>
+                                        <h5>Fomenta vínculos entre familias solidarias.</h5>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        <hr>
+                         <h4>Intercambia artículos, conecta con familias y genera un impacto positivo.</h4>
+                            <div class="video-wrapper rounded justify-content">
+                                <video class="video-player" controls>
+                                    <source src="tu-video.mp4" type="video/mp4">
+                                    Tu navegador no soporta la reproducción de video.
+                                </video>
+                            </div>
+                        </div>
                   </div>
               </div>
         </div>
