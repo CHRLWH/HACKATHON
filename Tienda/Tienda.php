@@ -8,12 +8,12 @@ try {
     $pdo = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql = "SELECT idProducto, nombre, descripcion FROM productos ORDER BY idProducto";
+    $sql = "SELECT id, nombre, imagen, imagen2, imagen3, imagen4, imagen5 FROM objeto ORDER BY id";
     $stmt = $pdo->query($sql);
     $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-    die("Error en la BBDD" . $e->getMessage());
+    die("Error en la BBDD: " . $e->getMessage());
 }
 ?>
 
@@ -33,9 +33,17 @@ try {
             <?php foreach ($productos as $producto): ?>
                 <div class="col-md-4 mb-4">
                     <div class="card">
+                        <?php 
+                        $imagen = !empty($producto['imagen']) ? $producto['imagen'] : 
+                                 (!empty($producto['imagen2']) ? $producto['imagen2'] : 
+                                 (!empty($producto['imagen3']) ? $producto['imagen3'] : 
+                                 (!empty($producto['imagen4']) ? $producto['imagen4'] : 
+                                 (!empty($producto['imagen5']) ? $producto['imagen5'] : 'default-image.jpg'))));
+                        ?>
+                        <img src="<?= htmlspecialchars($imagen) ?>" class="card-img-top" alt="<?= htmlspecialchars($producto['nombre']) ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?= htmlspecialchars($producto['nombre']) ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($producto['descripcion']) ?></p>
+                        
                             <button class="btn btn-danger">Solicitar Chat</button>
                         </div>
                     </div>

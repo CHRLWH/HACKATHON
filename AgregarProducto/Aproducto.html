@@ -24,14 +24,14 @@
         </div>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form action="Aproducto.php" method="POST" class="p-4 border rounded shadow-sm bg-white">
+                <form action="Aproducto.php" method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-white">
                     <div class="mb-3">
                         <label for="nombreProducto" class="form-label fw-bold">Nombre del Producto</label>
                         <input type="text" id="nombreProducto" name="nombreProducto" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="descripcionProducto" class="form-label fw-bold">Descripción</label>
-                        <textarea id="descripcionProducto" name="descripcionProducto" rows="4" class="form-control" required></textarea>
+                        <label for="fotos" class="form-label fw-bold">Subir Imágenes (máximo 5)</label>
+                        <input type="file" id="fotos" name="fotos[]" class="form-control" multiple accept="image/*">
                     </div>
                     <button type="submit" class="btn btn-danger w-100">Agregar Producto</button>
                 </form>
