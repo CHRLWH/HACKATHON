@@ -1,4 +1,6 @@
 <?php
+
+require_once '../../phpessentials/sesioncheck.php';
 $servidor = 'localhost';
 $BBDD = 'hackaton';
 $usuario = 'root';
