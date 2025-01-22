@@ -12,17 +12,9 @@
 <body>
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Configuración de la base de datos
-    $host = 'localhost';
-    $db = 'hackaton';
-    $user = 'root';
-    $pass = '';
-
-    $conn = new mysqli($host, $user, $pass, $db);
-
-    if ($conn->connect_error) {
-        die("Error de conexión: " . $conn->connect_error);
-    }
+    
+    
+    require_once '../../phpessentials/conexion.php';
 
     $nombre = $_POST['product-name'];
     $categoria = $_POST['category'];

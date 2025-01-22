@@ -17,6 +17,6 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirigir al usuario a la página de inicio de sesión
-header("Location: ../../../Login/LoginHtml/Login.php");
+header("Location: http://localhost/HACKATHON/Login/LoginHtml/Login.php");
 exit();
 ?>
