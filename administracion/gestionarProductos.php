@@ -18,7 +18,7 @@ if ($validado === 'validados') {
     $sql .= " WHERE validado = 0"; // Solo productos no validados
 }
 
-$stmt = $conn->prepare($sql);
+$stmt = $conexion->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC); 
 

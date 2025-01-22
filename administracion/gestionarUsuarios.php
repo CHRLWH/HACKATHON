@@ -18,7 +18,7 @@ if ($estado === 'activo') {
     $sql .= " WHERE estado = 0"; // Solo usuarios inactivos
 }
 
-$stmt = $conn->prepare($sql);
+$stmt = $conexion->prepare($sql);
 $stmt->execute();
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -34,7 +34,7 @@ if (isset($_GET['accion']) && isset($_GET['id'])) {
         $sql = "UPDATE usuario SET estado = 1 WHERE id = :id"; // Desbloquear usuario (estado = 1)
     }
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $conexion->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 

@@ -1,18 +1,18 @@
 <?php
 session_start(); // Para manejar sesiones
-require_once 'funciones/conexionBD.php'; // Conexión a la base de datos
+require_once '../phpessentials/conexion.php'; // Conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['usuario']) && isset($_POST['password'])) {
-        $usuario = $_POST['usuario'];
+        $user = $_POST['usuario'];
         $password = $_POST['password'];
 
         $sql = "SELECT * FROM administradores WHERE usuario = ?";
 
-        if ($stmt = $conn->prepare($sql)) {
-            $stmt->bindParam(1, $usuario, PDO::PARAM_STR);
-            $stmt->execute();
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($statement = $conexion->prepare($sql)) {
+            $statement->bindParam(1, $user, PDO::PARAM_STR);
+            $statement->execute();
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
 
             if ($row && $password == $row['contrasena']) {
                 $_SESSION['admin_id'] = $row['id'];
@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Administrador</title>
-    <link rel="stylesheet" href="css/styleLoginAdmin.css"> 
+    <link rel="stylesheet" href="css/styleLoginAdmin.css">
 </head>
 <body>
     <div class="container">

@@ -1,6 +1,4 @@
 <?php
-
-require_once '../../phpessentials/sesioncheck.php';
 $servidor = 'localhost';
 $BBDD = 'hackaton';
 $usuario = 'root';
@@ -96,17 +94,12 @@ function getEstadoClass($tipo) {
                         <li class="nav-item"><a class="nav-link" href="#">Juguetes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
                     </ul>
-                    <button class="btn buttonBackground btn-link text-light dropdown-toggle" id="dropdownButton" title="boton">
-                        <i><img src="../../img/icons8-customer-32.png" alt="" width="24" height="24"></i>
-                    </button>
-                    <!-- Menú desplegable -->
-                    <div class="dropdown-menu-custom" id="dropdownMenu">
-                        <a href="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php">Perfil</a>
-                        <!-- Enlace para cerrar sesión -->
-                        <a href="../../phpessentials/logout.php" id="logoutButton" class="btn btn-danger btn-lg">
-                            Cerrar sesión
-                        </a>
-                    </div>
+                    <form class="d-flex" action="TiendaV2.php" method="GET">
+                        <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
+                        <button class="btn buttonBackground btn-link text-light" type="submit" title="Buscar">
+                            <img src="../../img/icons8-customer-32.png" alt="Buscar" width="24" height="24">
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>

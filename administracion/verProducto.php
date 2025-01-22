@@ -26,7 +26,7 @@ if (isset($_GET['id'])) {
                 o.id = :id_producto";
 
 
-    $stmt = $conn->prepare($sql);
+    $stmt = $conexion->prepare($sql);
     $stmt->bindParam(':id_producto', $producto_id, PDO::PARAM_INT);
     $stmt->execute();
 

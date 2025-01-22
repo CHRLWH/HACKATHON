@@ -15,7 +15,7 @@ if ($id === null || $estado === null) {
 try {
     // Preparar la consulta SQL
     $sql = "UPDATE objeto SET validado = :estado WHERE id = :id";
-    $stmt = $conn->prepare($sql);
+    $stmt = $conexion->prepare($sql);
     $stmt->bindParam(':estado', $estado, PDO::PARAM_BOOL);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 

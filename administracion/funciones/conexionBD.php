@@ -7,9 +7,9 @@ $dbname = "hakaton";
 
 try {
     // Usar PDO para manejar la base de datos
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conexion = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     // Configurar atributos de PDO
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $e) {
     die("Error en la conexión: " . $e->getMessage());
 }
