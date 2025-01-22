@@ -1,22 +1,18 @@
 <?php
 session_start();
 
-// Destruir todas las variables de sesión
 $_SESSION = array();
 
-// Si se desea destruir la sesión completamente, borre también la cookie de sesión.
 if (ini_get("session.use_cookies")) {
-    $params = session_get_cookie_params();
+    $parametro = session_get_cookie_params();
     setcookie(session_name(), '', time() - 100000,
-        $params["path"], $params["domain"],
-        $params["secure"], $params["httponly"]
+        $parametro["path"], $parametro["domain"],
+        $parametro["secure"], $parametro["httponly"]
     );
 }
 
-// Finalmente, destruir la sesión
 session_destroy();
 
-// Redirigir al usuario a la página de inicio de sesión
 header("Location: http://localhost/HACKATHON/Login/LoginHtml/Login.php");
 exit();
 ?>

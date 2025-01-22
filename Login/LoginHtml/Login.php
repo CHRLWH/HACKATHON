@@ -1,46 +1,39 @@
 <?php
-// Start the session
 require_once '../../phpessentials/sesion.php';
 
-// Determine action based on button click
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Handle login
-    if (isset($_POST['codigo_CAM']) && isset($_POST['correo'])) {
+
+  if (isset($_POST['codigo_CAM']) && isset($_POST['correo'])) {
         $codigo_CAM = trim($_POST['codigo_CAM']);
         $correo = trim($_POST['correo']);
 
         if (empty($codigo_CAM) || empty($correo)) {
-            $loginFailed = true;
+            $loginFallido = true;
         } else {
-            // Prepare SQL statement to prevent SQL injection
-            $stmt = $conn->prepare("SELECT * FROM usuario WHERE codigo_CAM = ? AND correo = ?");
-            $stmt->bind_param("is", $codigo_CAM, $correo);
+            $sentencia = $conexion->prepare("SELECT * FROM usuario WHERE codigo_CAM = ? AND correo = ?");
+            $sentencia->bind_param("is", $codigo_CAM, $correo);
 
-            // Execute query
-            $stmt->execute();
-            $result = $stmt->get_result();
+            $sentencia->execute();
+            $resultado = $sentencia->get_result();
 
-            if ($result->num_rows > 0) {
-                // User found
-                $user = $result->fetch_assoc();
+            if ($resultado->num_rows > 0) {
+
+                $usuario = $resultado->fetch_assoc();
                 
-                // Store user information in session
-                $_SESSION['user_id'] = $user['id'];
-                $_SESSION['user_name'] = $user['Nombre'];
+                $_SESSION['user_id'] = $usuario['id'];
+                $_SESSION['user_name'] = $usuario['Nombre'];
 
-                // Redirect to another page
                 header("Location: http://localhost/HACKATHON/ProductoTiendaIvan/PHP/TiendaV2.php");
                 exit;
             } else {
-                // Invalid login credentials
-                $loginFailed = true;
+                $loginFallido = true;
             }
 
-            // Close statement
-            $stmt->close();
+            $sentencia->close();
         }
     }
-    // Handle registration
+
+    /*
     else if (isset($_POST['action']) && $_POST['action'] === 'register') {
         $nombre = isset($_POST['nombre']) ? trim($_POST['nombre']) : '';
         $nie = isset($_POST['nie']) ? trim($_POST['nie']) : '';
@@ -48,24 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = isset($_POST['email']) ? trim($_POST['email']) : '';
 
         if (empty($nombre) || empty($nie) || empty($password) || empty($email)) {
-            echo "<p style='color:red;'>Please fill in all fields for registration.</p>";
+            echo "<p style='color:red;'>Rellene todos los campos del formulario de registro.</p>";
         } else {
-            // Simulate sending an email (for simplicity, we display a message)
-            $subject = "Registration Confirmation";
-            $message = "Hello $nombre,\n\nThank you for registering. Your NIE is: $nie.\n\nPlease keep this information safe.";
-            $headers = "From: no-reply@hilan.com";
+            $asunto = "Confirmacion de registro";
+            $mensaje = "Hola $nombre,\n\nGracias por registrarse. Nos pondremos en contacto con usted tras revisar su informacion";
+            $cabecera = "no-reply@hilan.com";
 
-            if (mail($email, $subject, $message, $headers)) {
-                echo "<p style='color:blue;'>Registration successful! A confirmation email has been sent to $email.</p>";
+            if (mail($email, $asunto, $mensaje, $cabecera)) {
+                echo "<p style='color:blue;'>Registro completado! Nos pondremos en contacto tras revisar sus datos a traves de: $email.</p>";
             } else {
-                echo "<p style='color:red;'>Failed to send the confirmation email. Please try again.</p>";
+                echo "<p style='color:red;'>Fallo en el envio de email! Vuelva a intentarlo.</p>";
             }
         }
     }
+    */
 }
 
 // Close the connection
-$conn->close();
+$conexion->close();
 ?>
 
 <!doctype html>

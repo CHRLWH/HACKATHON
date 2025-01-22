@@ -1,17 +1,14 @@
 <?php
-// Database connection parameters
-$servername = 'localhost';
-$username = 'root'; // Update with your database username
-$password = '';    // Update with your database password
-$dbname = 'hackaton'; // Update with your database name
+$nombreDeServidor = "localhost";
+$usuario = 'root';
+$password = '';
+$baseDeDatos = 'hackaton';
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conexion = new mysqli($nombreDeServidor, $usuario, $password, $baseDeDatos);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($conexion->connect_error) {
+    die("Connection failed: " . $conexion->connect_error);
 }
 
-$loginFailed = false;
+$loginFallido = false;
 ?>
