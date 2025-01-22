@@ -5,9 +5,9 @@
     background-color: #98514b;
   }
     :root {
-        --primary-dark: #2C2620;
-        --primary-gold: #9C8B7C;
-        --accent-orange: #FFA500;
+        --primary-dark: #b68758;
+        --primary-gold: #ffffff;
+        --accent-orange: #3700ff;
     }
 
     *{
