@@ -15,7 +15,8 @@
             --card-bg: #dbdad0; /* Dark brown */
             --primary-gold: #c39243; /* Gold */
             --light-bg: #fefaef; /* Light beige */
-            --dark-green: #5c640f; /* Dark green */
+            --dark-green: #5c640f;
+            --darker-green: #414704; /* Dark green */
             --dark-brown: #131105;
             --luz-difuminacion: #e2a56b; 
             --light-green: #bfd11a;
@@ -25,7 +26,7 @@
         body {
             font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
             background-color: var(--primary-bg);
-            color: var(--text-light);
+            color: var(--darker-green);
         }
 
         .navbar {
@@ -51,6 +52,7 @@
             padding: 8rem 0;
             position: relative;
             overflow: hidden;
+            background-color: var(--light-bg);
         }
 
         .hero-section::before {
@@ -60,7 +62,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(180deg, var(--luz-difuminacion) 0.3%, rgba(211, 182, 15, 0) 100%);
+            background: linear-gradient(360deg, var(--luz-difuminacion) 0.1%, rgba(255, 255, 255, 0) 50%);
             z-index: 1;
         }
 
@@ -70,7 +72,7 @@
         }
 
         .hero-video {
-            width: 100%;
+            width: 120%;
             height: 100%;
             object-fit: cover;
             border-radius: 12px;
@@ -202,9 +204,8 @@
     <!-- Process Section with Carousel -->
     <section class="py-5">
         <div class="container">
-    
             <section class="py-5">
-                <div class="container">
+                <div class="container text-light">
                     <h2 class="section-title">Nuestro proceso</h2>
                     <p class="section-subtitle">Así es como trabajamos juntos para crear una comunidad más fuerte</p>
                     
@@ -335,7 +336,7 @@
                 </div>
             </div>
             <div class="text-center">
-                <img src="https://via.placeholder.com/120x40/FFB800/1C1C1C?text=Hilan" alt="Hilan Logo" class="mb-3">
+                <img src="img/" alt="Hilan Logo" class="mb-3">
                 <p class="text-muted">&copy; 2024 Hilan. Todos los derechos reservados.</p>
             </div>
         </div>
