@@ -12,12 +12,14 @@
             --primary-bg: #95572e; /* Brown */
             --accent-color: #c39243; /* Gold */
             --text-light: #fefaef; /* Light beige */
-            --card-bg: #131105; /* Dark brown */
+            --card-bg: #dbdad0; /* Dark brown */
             --primary-gold: #c39243; /* Gold */
             --light-bg: #fefaef; /* Light beige */
             --dark-green: #5c640f; /* Dark green */
             --dark-brown: #131105;
-            --luz-difuminacion: #ffb169; 
+            --luz-difuminacion: #e2a56b; 
+            --light-green: #bfd11a;
+            
         }
 
         body {
@@ -29,19 +31,20 @@
         .navbar {
             background-color: var(--primary-bg);
             padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(195, 146, 67, 0.2);
         }
 
         .btn-primary {
-            background-color: var(--accent-color);
+            background-color: var(--dark-green);
             border: none;
-            color: var(--card-bg);
+            color: var(--light-bg);
             padding: 0.75rem 1.5rem;
             font-weight: 600;
         }
 
         .btn-primary:hover {
-            background-color: var(--hover-color);
-            color: var(--text-light);
+            background-color: var(--light-green);
+            color: var(--dark-brown);
         }
 
         .hero-section {
@@ -57,7 +60,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, var(--luz-difuminacion) 0.3%, rgba(211, 182, 15, 0) 100%);
+            background: linear-gradient(180deg, var(--luz-difuminacion) 0.3%, rgba(211, 182, 15, 0) 100%);
             z-index: 1;
         }
 
@@ -106,7 +109,7 @@
         }
 
         .card {
-            background-color: var(--card-bg);
+            background-color: var(--accent-color);
             border: none;
             border-radius: 12px;
             transition: transform 0.3s ease;
@@ -170,7 +173,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo">
+                <img src="img/4-removebg-preview (1).png" alt="Hilan Logo">
             </a>
             <div class="ms-auto">
                 <a href="#contact" class="btn btn-primary">Acceder</a>
@@ -188,7 +191,7 @@
                 </div>
                 <div class="col-lg-7">
                     <video class="hero-video" autoplay muted loop>
-                        <source src="../img/Teacher Stock Footage - Teachers Free Stock Videos - Teacher No Copyright Videos.mp4" type="video/mp4">
+                        <source src="img/Teacher Stock Footage - Teachers Free Stock Videos - Teacher No Copyright Videos.mp4" type="video/mp4">
                         Tu navegador no soporta el elemento de video.
                     </video>
                 </div>
@@ -311,9 +314,9 @@
     <!-- Contact Section -->
     <section class="py-5" style="background-color: var(--card-bg);" id="contact">
         <div class="container text-center">
-            <h2 class="section-title">¿Listo para unirte?</h2>
-            <p class="section-subtitle">Comienza a formar parte de nuestra comunidad hoy mismo</p>
-            <a href="http://localhost/HACKATHON/Login/LoginHtml/Login.php" class="btn btn-primary btn-lg">Crear cuenta</a>
+            <h2 class="section-title">Ayuda a los demás</h2>
+            <p class="section-subtitle">Comienza a formar parte del proyecto</p>
+            <a href="http://localhost/HACKATHON/Login/LoginHtml/Login.php" class="btn btn-primary btn-lg">Plataforma</a>
         </div>
     </section>
 
