@@ -13,8 +13,8 @@
                 // Configuración de la base de datos
                 $host = 'localhost';
                 $db = 'hackaton';
-                $user = 'root';
-                $pass = '';
+                $user = 'adminphp';
+                $pass = '2002';
 
                 $conn = new mysqli($host, $user, $pass, $db);
 
