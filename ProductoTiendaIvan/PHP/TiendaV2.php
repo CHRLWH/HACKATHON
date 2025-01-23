@@ -252,7 +252,7 @@ function getEstadoClass($tipo) {
             </div>
             <div class="d-flex justify-content-center">
                 <a class="navbar-brand" href="#">
-                    <img src="../../img/4-removebg-preview (1).png" alt="Logo" class="d-block" style="width: 100px; height: 50px; display: block;>
+                    <img src="../../img/4-removebg-preview (1).png" alt="Logo" class="d-block" style="width: 100px; height: 50px;" display: block;>
                 </a>
             </div>
         </div>
