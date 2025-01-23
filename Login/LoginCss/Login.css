@@ -1,139 +1,45 @@
-/*LOGIN*/
 :root {
-  --primary-bg: #1C1810;
-  --accent-color: #F5A623;
-  --text-light: #E5E5E5;
-  --card-bg: #2A241C;
-  --border-color: #CCC;
-  --placeholder-color: #CCC;
-  --hover-color: rgba(34, 34, 34, 0.85);
-  --button-hover-bg: #ffffff;
+  --primary-bg: #95572e;
+  --accent-color: #c39243;
+  --text-light: #fefaef;
+  --card-bg: #131105;
+  --border-color: #c39243;
+  --placeholder-color: #fefaef;
+  --hover-color: #5c640f;
+  --button-hover-bg: #5c640f;
 }
 
-.barraEspaciadora{
-  background-color: var(--primary-bg);
-  color: var(--accent-color);
-  margin: 0;
-}
-.invisible{
-  margin: 0;
-  border: none;
-}
-.fondoDiv{
-  display: flex; /* Activar Flexbox */
-  justify-content: center; /* Centrado horizontal */
-  padding-top: 90px;
-  padding-bottom:80px;
-  align-items: center; /* Centrado vertical */
-  background-color: var(--primary-bg); /* Opcional: fondo */
-}
-
-/**
- * General variables
- */
-/**
- * General configs
- */
 * {
   box-sizing: border-box;
   font-family: "Bahnschrift", sans-serif;
 }
 
 body {
-  height: 100%;
+  height: 100vh;
+  margin: 0;
   font-family: "Bahnschrift", sans-serif;
-  font-size: 12px;
-  line-height: 1em;
+  font-size: 16px;
+  line-height: 1.5;
   background-color: var(--primary-bg);
   color: var(--text-light);
 }
 
-
-button,
-input {
-  background-color: transparent;
-  padding: 0;
-  border: 0;
-  outline: 0;
-}
-
-button {
-  cursor: pointer;
-}
-
-input[type=submit] {
-  cursor: pointer;
-}
-
-input::-moz-placeholder {
-  font-size: 0.85rem;
-  font-family: "Bahnschrift", sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
-  color: var(--placeholder-color);
-}
-
-input::placeholder {
-  font-size: 0.85rem;
-  font-family: "Bahnschrift", sans-serif;
-  font-weight: 300;
-  letter-spacing: 0.1rem;
-  color: var(--placeholder-color);
-}
-
-/**
- * Animations
- */
-@keyframes bounceLeft {
-  0% {
-    transform: translate3d(100%, -50%, 0);
-  }
-  50% {
-    transform: translate3d(-30px, -50%, 0);
-  }
-  100% {
-    transform: translate3d(0, -50%, 0);
-  }
-}
-
-@keyframes bounceRight {
-  0% {
-    transform: translate3d(0, -50%, 0);
-  }
-  50% {
-    transform: translate3d(calc(100% + 30px), -50%, 0);
-  }
-  100% {
-    transform: translate3d(100%, -50%, 0);
-  }
-}
-
-@keyframes showSignUp {
-  100% {
-    opacity: 1;
-    visibility: visible;
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-/**
- * Page background
- */.user {
+.user {
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Alinea al inicio (parte superior) */
+  align-items: center;
   width: 100%;
   height: 100vh;
   background-color: var(--primary-bg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding-top: 300px; /* Añade un pequeño relleno superior */
 }
 
 .user_options-container {
   position: relative;
   width: 80%;
+  max-width: 1000px;
 }
 
 .user_options-text {
@@ -144,12 +50,9 @@ input::placeholder {
   border-radius: 3px;
 }
 
-/**
- * Registered and Unregistered user box and text
- */
 .user_options-registered,
 .user_options-unregistered {
-  width: 60%;
+  width: 50%;
   padding: 75px 45px;
   color: var(--text-light);
   font-weight: 300;
@@ -187,9 +90,6 @@ input::placeholder {
   background-color: var(--border-color);
 }
 
-/**
- * Login and signup forms
- */
 .user_options-forms {
   position: absolute;
   top: 50%;
@@ -202,39 +102,6 @@ input::placeholder {
   overflow: hidden;
   transform: translate3d(100%, -50%, 0);
   transition: transform 0.4s ease-in-out;
-}
-
-.user_options-forms .user_forms-login{
-  position: absolute;
-  top: 50px;
-  left: 50px;
-  width: calc(100% - 80px);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.user_options-forms .user_forms-signup {
-  position: absolute;
-  top: 20px;
-  left: 50px;
-  width: calc(100% - 80px);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
-}
-
-.user_options-forms .user_forms-login {
-  transform: translate3d(0, 0, 0);
-  opacity: 1;
-  visibility: visible;
-}
-
-.user_options-forms .user_forms-signup {
-  transform: translate3d(120px, 0, 0);
-  width: calc(100% - 60px); /* Aumenta el ancho total del formulario */
-  padding: 20px; /* Añade espacio interno para que se vea más grande */
-  font-size: 1.2rem; /* Haz que el texto sea más grande */
 }
 
 .user_options-forms .forms_title {
@@ -254,17 +121,13 @@ input::placeholder {
 .user_options-forms .forms_field-input {
   width: 100%;
   border-bottom: 1px solid var(--border-color);
-  padding: 1px 1px 10px 6px;
+  padding: 6px 20px 6px 6px;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 300;
   color: var(--text-light);
   letter-spacing: 0.1rem;
   transition: border-color 0.2s ease-in-out;
-}
-
-.user_options-forms .forms_field-input:focus {
-  border-color: var(--text-light);
 }
 
 .user_options-forms .forms_buttons {
@@ -280,10 +143,6 @@ input::placeholder {
   color: var(--placeholder-color);
   text-decoration: underline;
   transition: color 0.2s ease-in-out;
-}
-
-.user_options-forms .forms_buttons-forgot:hover {
-  color: var(--text-light);
 }
 
 .user_options-forms .forms_buttons-action {
@@ -303,27 +162,15 @@ input::placeholder {
   background-color: var(--button-hover-bg);
 }
 
-.user_options-forms.bounceLeft {
-  animation: bounceLeft 1s forwards;
+.footer-link {
+  color: var(--text-light);
+  text-decoration: none;
 }
 
-.user_options-forms.bounceLeft .user_forms-signup {
-  animation: showSignUp 1s forwards;
+.footer-link:hover {
+  color: var(--accent-color);
 }
 
-.user_options-forms.bounceLeft .user_forms-login {
-  opacity: 0;
-  visibility: hidden;
-  transform: translate3d(-120px, 0, 0);
-}
-
-.user_options-forms.bounceRight {
-  animation: bounceRight 1s forwards;
-}
-
-/**
- * Responsive 990px
- */
 @media screen and (max-width: 990px) {
   .user_options-forms {
     min-height: 350px;
@@ -334,28 +181,8 @@ input::placeholder {
   .user_options-forms .user_forms-login .forms_buttons-action {
     margin-top: 30px;
   }
-  .user_options-forms .user_forms-signup,
-  .user_options-forms .user_forms-login {
-    top: 40px;
-  }
   .user_options-registered,
   .user_options-unregistered {
     padding: 50px 45px;
   }
-} /*# sourceMappingURL=login.css.map */
-
-.footer-link {
-  color: var(--text-light);
-  text-decoration: none;
-}
-.fondoSeparador{
-  background-color: var(--accent-color);
-}
-
-.footer-link:hover {
-  color: var(--accent-color);
-}
-
-.footerhr{
-background-color: var(--primary-gold);
 }
