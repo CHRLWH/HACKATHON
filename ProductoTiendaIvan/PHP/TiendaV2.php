@@ -68,6 +68,7 @@ function getEstadoClass($tipo) {
 }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -94,12 +95,18 @@ function getEstadoClass($tipo) {
                         <li class="nav-item"><a class="nav-link" href="#">Juguetes</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
                     </ul>
-                    <form class="d-flex" action="TiendaV2.php" method="GET">
-                        <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
-                        <button class="btn buttonBackground btn-link text-light" type="submit" title="Buscar">
+                        <button onclick="abrirModal()" class="btn buttonBackground btn-link text-light" type="submit" title="Buscar">
                             <img src="../../img/icons8-customer-32.png" alt="Buscar" width="24" height="24">
                         </button>
-                    </form>
+                        <div id="modalOverlay">
+                            <div id="modalContent">
+                                <!-- Botón para cerrar -->
+                                <button id="closeModal" onclick="cerrarModal()">X</button>
+
+                                <!-- Contenido dentro del modal -->
+                                <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
+                            </div>
+                        </div>
                 </div>
             </div>
         </nav>
@@ -226,6 +233,38 @@ function getEstadoClass($tipo) {
         </div>
     </section>
 
+    <footer class="footer">
+        <div class="container">
+            <hr class="mb-5">
+            <div class="row g-4 mb-5 justify-content-center">
+                <div class="col-md-2 text-center">
+                    <a href="#" class="footer-link">Política de privacidad</a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#" class="footer-link">Términos y condiciones</a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="#" class="footer-link">Ayuda</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a class="navbar-brand" href="#">
+                    <img src="../../img/4-removebg-preview (1).png" alt="Logo" class="d-block" style="width: 100px; height: 50px; display: block;>
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script>
+         // Función para abrir el modal
+         function abrirModal() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+        }
+
+        // Función para cerrar el modal
+        function cerrarModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

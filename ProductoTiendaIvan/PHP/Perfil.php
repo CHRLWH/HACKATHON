@@ -73,34 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
-
-  <!-- Header -->
-  <header class="shop-header">
-    <nav class="navbar navbar-expand-lg navbar-dark py-3">
-        <div class="container">
-            <a class="navbar-brand" href="#">  <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 100px; height: 50px;"></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Muebles</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Juguetes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
-                </ul>
-                <div class="button d-flex align-items-center">
-                    <input type="search" class="form-control search-bar-headder me-2" placeholder="Search">
-                    <button class="btn buttonBackground me-2">Join</button>
-                    <button class="btn buttonBackground btn-link text-light" title="boton"><i><img src="../../img/icons8-customer-32.png" alt=""  width="24" height="24"></i></button>
-                </div>
-            </div>
-        </div>
-    </nav>
-  </header>
-  <body>
     <div class="profile-container">
         <h1>Perfil de Usuario</h1>
         <div class="content">
@@ -277,28 +249,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </section>
         </div>
     </div>
-  <footer class="py-5">
-    <nav class="navbar"></nav>
-    <hr class="invisible">
-    <div class="container text-center"> <!-- Clase 'text-center' para centrar el contenido -->
-        <div class="row g-4 mb-5 justify-content-center"> <!-- Añadido 'justify-content-center' -->
-            <div class="col-md-2">
-                <a href="#" class="footer-link">Política de privacidad</a>
-            </div>
-            <div class="col-md-2">
-                <a href="#" class="footer-link">Términos y condiciones</a>
-            </div>
-            <div class="col-md-2">
-                <a href="#" class="footer-link">Ayuda</a>
-            </div>
-        </div>
-        <div class="d-flex justify-content-center"> <!-- Añadido 'd-flex' y 'justify-content-center' -->
-            <a class="navbar-brand" href="#">
-                <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 100px; height: 50px; display: block;">
-            </a>
-        </div>
-    </div>
-</footer>
 <script src="../js/js.js"></script>
 
 </body>
