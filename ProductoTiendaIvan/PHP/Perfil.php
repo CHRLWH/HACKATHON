@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil de Usuario</title>
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     </head>
@@ -235,111 +235,6 @@
         </div>
     </div>
 </div>
-<style>
-    .accordion {
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .accordion-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 15px;
-        background-color: #f8f9fa;
-        cursor: pointer;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    .accordion-header .avatar {
-        margin-right: 10px;
-        font-size: 24px;
-    }
-
-    .accordion-header .toggle-icon {
-        font-size: 18px;
-        transition: transform 0.3s ease;
-    }
-
-    .accordion-content {
-        display: none;
-        padding: 15px;
-        background-color: #ffffff;
-        border-top: 1px solid #ddd;
-    }
-
-    .chatbox {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .middle {
-        height: 150px;
-        overflow-y: auto;
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-
-    .bottom-bar {
-        display: flex;
-        gap: 5px;
-    }
-
-    .bottom-bar input {
-        flex-grow: 1;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 20px;
-        background-color: #95572e;
-        color: #ffffff;
-        outline: none;
-    }
-
-    .bottom-bar input::placeholder {
-        color: #f0e3dc;
-    }
-
-    .bottom-bar button {
-        padding: 8px 15px;
-        background-color: #5c640f;
-        color: #ffffff;
-        border: none;
-        border-radius: 20px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.3s ease;
-    }
-
-    .bottom-bar button:hover {
-        background-color: #a8ba16;
-    }
-
-    .accordion-header.active .toggle-icon {
-        transform: rotate(45deg);
-    }
-</style>
-
-<script>
-    function toggleAccordion(header) {
-        const content = header.nextElementSibling; // Obtén el contenido del acordeón
-        const icon = header.querySelector(".toggle-icon"); // Obtén el icono del acordeón
-
-        if (content.style.display === "block") {
-            content.style.display = "none"; // Oculta el contenido
-            icon.textContent = "+"; // Cambia el icono
-        } else {
-            content.style.display = "block"; // Muestra el contenido
-            icon.textContent = "−"; // Cambia el icono
-        }
-    }
-</script>
-
                     <!-- ------------------ -->
                     <!-- ------------------ -->
                     <!-- Cambiar Contraseña -->
@@ -365,6 +260,7 @@
                 </section>
             </div>
         </div>
-        <script src="script.js"></script>
+        
+        <script src="../js/script.js"></script>
     </body>
 </html>

@@ -144,3 +144,16 @@ setTimeout(function() {
         setTimeout(() => alert.remove(), 500);
     }
 }, 5000);
+
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling; // Obtén el contenido del acordeón
+        const icon = header.querySelector(".toggle-icon"); // Obtén el icono del acordeón
+
+        if (content.style.display === "block") {
+            content.style.display = "none"; // Oculta el contenido
+            icon.textContent = "+"; // Cambia el icono
+        } else {
+            content.style.display = "block"; // Muestra el contenido
+            icon.textContent = "−"; // Cambia el icono
+        }
+    }
