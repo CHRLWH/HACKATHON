@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones</title>
+    <style>
+        /**************************/
+        /* Estilo para el acordeón */
+        /**************************/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h1 {
+            background-color: #95572e;
+            color: #fefaef;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .accordion {
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .accordion-header {
+            background-color: #ffdab9;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #95572e;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e6c2a6;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background-color: #fefaef;
+            border-top: 1px solid #ddd;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Términos y Condiciones</h1>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">1. Aceptación de los Términos</div>
+                <div class="accordion-content">
+                    <p>Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos términos y condiciones de uso, todas las leyes y regulaciones aplicables, y acepta que es responsable del cumplimiento de las leyes locales aplicables.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">2. Uso del Sitio</div>
+                <div class="accordion-content">
+                    <p>Este sitio web se proporciona "tal cual" y puede contener errores técnicos o errores tipográficos. Nos reservamos el derecho de realizar cambios y actualizaciones en cualquier momento sin previo aviso.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">3. Propiedad Intelectual</div>
+                <div class="accordion-content">
+                    <p>El contenido de este sitio web, incluidos los textos, gráficos, logotipos, imágenes y software, está protegido por derechos de autor y otras leyes de propiedad intelectual.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">4. Limitación de Responsabilidad</div>
+                <div class="accordion-content">
+                    <p>No seremos responsables de ningún daño directo, indirecto, incidental, consecuente o punitivo que surja del uso de este sitio web.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">5. Ley Aplicable</div>
+                <div class="accordion-content">
+                    <p>Estos términos y condiciones se rigen por las leyes del Estado de [Tu Estado] sin tener en cuenta sus conflictos de disposiciones legales.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

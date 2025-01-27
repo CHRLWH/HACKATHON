@@ -107,7 +107,7 @@ function getEstadoClass($tipo) {
                                 <button id="closeModal" onclick="cerrarModal()">X</button>
 
                                 <!-- Contenido dentro del modal -->
-                                <iframe src="http://localhost/HACKATHON2/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
+                                <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
                             </div>
                         </div>
                 </div>
@@ -239,15 +239,15 @@ function getEstadoClass($tipo) {
     <footer class="footer">
         <div class="container">
             <hr class="mb-5">
-            <div class="row g-4 mb-5 justify-content-center">
-                <div class="col-md-2 text-center">
-                    <a href="#" class="footer-link">Política de privacidad</a>
+            <div class="row g-4 justify-content-center text-light text-center mb-5">
+                <div class="col-md-4">
+                    <a href="../../privacidad.html" class="footer-link">Política de privacidad</a>
                 </div>
-                <div class="col-md-2 text-center">
-                    <a href="#" class="footer-link">Términos y condiciones</a>
+                <div class="col-md-4">
+                    <a href="../../Terminos.html" class="footer-link">Términos y condiciones</a>
                 </div>
-                <div class="col-md-2 text-center">
-                    <a href="#" class="footer-link">Ayuda</a>
+                <div class="col-md-4">
+                    <a href="../../QyA.html" class="footer-link">QyA</a>
                 </div>
             </div>
             <div class="d-flex justify-content-around align-items-center">

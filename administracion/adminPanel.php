@@ -32,6 +32,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>Panel de Administración</title>
     <link rel="stylesheet" href="css/styleAdminPanel.css"> <!-- Enlace al CSS para mejorar el diseño -->
     <link rel="stylesheet" href="css/styleProductos.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../ProductoTiendaIvan/css/csst.css">
 </head>
 <body>
     <!-- Header -->
@@ -97,13 +99,26 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
     <!-- Footer -->
     <footer class="footer">
-        <div class="container text-center">
-            <!-- Logo centrado -->
-            <a href="#" class="navbar-brand d-block">
-                <img src="../img/4-removebg-preview (1).png" alt="Logo" class="logo">
-            </a>
-            <!-- Texto debajo del logo -->
-            <p class="footer-text">&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+        <div class="container">
+            <hr class="mb-5">
+            <div class="row g-4 justify-content-center text-light text-center mb-5">
+                <div class="col-md-4">
+                    <a href="../privacidad.html" class="footer-link">Política de privacidad</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="../Terminos.html" class="footer-link">Términos y condiciones</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="../QyA.html" class="footer-link">QyA</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around align-items-center">
+            <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
+            
+            <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
+            
+            <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+        </div>
         </div>
     </footer>
 </body>

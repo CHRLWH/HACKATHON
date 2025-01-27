@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad</title>
+    <style>
+        /**************************/
+        /* Estilo para el acordeón */
+        /**************************/
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        h1 {
+            background-color: #95572e;
+            color: #fefaef;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+
+        .accordion {
+            width: 100%;
+            border-top: 1px solid #ddd;
+        }
+
+        .accordion-item {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .accordion-header {
+            background-color: #ffdab9;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #95572e;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e6c2a6;
+        }
+
+        .accordion-content {
+            display: none;
+            padding: 15px;
+            background-color: #fefaef;
+            border-top: 1px solid #ddd;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .accordion-content.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Política de Privacidad</h1>
+        <div class="accordion">
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">1. Información que Recopilamos</div>
+                <div class="accordion-content">
+                    <p>Recopilamos información personal como nombre, correo electrónico, número de teléfono y otra información relevante cuando se registra en nuestro sitio o utiliza nuestros servicios.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">2. Cómo Usamos Su Información</div>
+                <div class="accordion-content">
+                    <p>Utilizamos su información para proporcionar y mejorar nuestros servicios, procesar transacciones, enviar comunicaciones importantes y personalizar su experiencia en nuestro sitio web.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">3. Compartir Su Información</div>
+                <div class="accordion-content">
+                    <p>No compartimos su información personal con terceros, excepto cuando sea necesario para cumplir con la ley, proteger nuestros derechos o facilitar servicios esenciales como el procesamiento de pagos.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">4. Seguridad de Su Información</div>
+                <div class="accordion-content">
+                    <p>Implementamos medidas de seguridad adecuadas para proteger su información contra accesos no autorizados, alteraciones, divulgaciones o destrucción.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" onclick="toggleAccordion(this)">5. Sus Derechos</div>
+                <div class="accordion-content">
+                    <p>Usted tiene derecho a acceder, corregir o eliminar su información personal. Puede contactarnos en cualquier momento para ejercer estos derechos.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            content.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>

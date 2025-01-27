@@ -1,7 +1,7 @@
 <?php
 $nombreDeServidor = "localhost";
-$usuario = 'adminphp';
-$password = '2002';
+$usuario = 'root';
+$password = '';
 $baseDeDatos = 'hackaton';
 
 $conexion = new mysqli($nombreDeServidor, $usuario, $password, $baseDeDatos);

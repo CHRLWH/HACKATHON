@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil de Usuario</title>
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     </head>
 
     <body>
@@ -13,8 +15,8 @@
                 // Configuración de la base de datos
                 $host = 'localhost';
                 $db = 'hackaton';
-                $user = 'adminphp';
-                $pass = '2002';
+                $user = 'root';
+                $pass = '';
 
                 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -78,23 +80,22 @@
             }
         ?>
 
-        <div class="profile-container">
-            <h1>Perfil de Usuario</h1>
-            <div class="content">
-                <nav class="sidebar">
-                        <li class="nav-item" onclick="showSection('chats')">
-                            Chats Activos
-                        </li>
-
-                        <li class="nav-item" onclick="showSection('especificaciones')">
-                            Especificaciones del Usuario
-                        </li>
-
-                        <li class="nav-item" onclick="showSection('aniadir-objeto')">
-                            Añadir Objeto
-                        </li>
-                    </ul>
-                </nav>
+    <div class="profile-container" style="max-width: 900px; margin: 30px auto; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
+        <h1 style="background-color: #95572e; color: #fefaef; padding: 20px; margin: 0; text-align: center;">Perfil de Usuario</h1>
+        <div class="content">
+            <nav class="sidebar" style="background-color: #ffdab9; width: 30%; padding: 20px;">
+                <ul style="list-style-type: none; padding: 0;">
+                    <li class="nav-item" onclick="showSection('chats')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                        <i class="fas fa-comments" style="min-width: 20px; text-align: center;"></i> Chats Activos
+                    </li>
+                    <li class="nav-item" onclick="showSection('especificaciones')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                        <i class="fas fa-user-cog" style="min-width: 20px; text-align: center;"></i> Especificaciones del Usuario
+                    </li>
+                    <li class="nav-item" onclick="showSection('aniadir-objeto')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                        <i class="fas fa-plus-circle" style="min-width: 20px; text-align: center;"></i> Añadir Objeto
+                    </li>
+                </ul>
+            </nav>
 
                 <section class="main-section" id="main-section">
                     
@@ -105,7 +106,7 @@
                     <!-- --------------- -->
 
                     <div id="aniadir-objeto" class="section-content">
-                        <h2>Añadir un nuevo producto</h2>
+                        
 
                         <div class="container my-5">
                             <div class="row justify-content-center">
@@ -177,56 +178,163 @@
                     <!-- CHAT DE USUARIOS -->
                     <!-- ---------------- -->
                     <!-- ---------------- -->
-
                     <div id="chats" class="section-content">
-                        <h2>Chats Activos</h2>
-                        <div class="chat-container">
-                            <div class="chatbox">
-                                <div class="top-bar">
-                                    <div class="avatar">
-                                        <p>👜</p>
-                                    </div>
-                                    <div class="product-name">
-                                        Bolso de Cuero
-                                    </div>
-                                </div>
-                                <div class="middle" id="chat-messages">
-                                    <!-- Los mensajes se cargarán aquí dinámicamente -->
-                                </div>
-                                <div class="bottom-bar">
-                                    <form id="chat-form" method="POST" action="chat.php">
-                                        <input type="text" name="message" id="message-input" placeholder="Escribe un mensaje..." required>
-                                        <button type="submit">
-                                            Enviar
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Chat 1 -->
+    <div class="chat-container">
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="avatar">
+                    <p>👜</p>
+                </div>
+                <div class="product-name">
+                    Bolso de Cuero
+                </div>
+                <div class="toggle-icon">+</div>
+            </div>
+            <div class="accordion-content">
+                <div class="chatbox">
+                    <div class="middle" id="chat-messages-1">
+                        <!-- Los mensajes del chat se cargarán aquí dinámicamente -->
                     </div>
-                    
-                    <script>
-                        async function loadMessages() {
-                            const response = await fetch('chat.php');
-                            const messages = await response.text();
-                            document.getElementById('chat-messages').innerHTML = messages;
-                        }
+                    <div class="bottom-bar">
+                        <form id="chat-form-1" method="POST" action="chat.php">
+                            <input type="text" name="message" id="message-input-1" placeholder="Escribe un mensaje..." required>
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="avatar">
+                    <p>👜</p>
+                </div>
+                <div class="product-name">
+                    Bolso de Cuero
+                </div>
+                <div class="toggle-icon">+</div>
+            </div>
+            <div class="accordion-content">
+                <div class="chatbox">
+                    <div class="middle" id="chat-messages-1">
+                        <!-- Los mensajes del chat se cargarán aquí dinámicamente -->
+                    </div>
+                    <div class="bottom-bar">
+                        <form id="chat-form-1" method="POST" action="chat.php">
+                            <input type="text" name="message" id="message-input-1" placeholder="Escribe un mensaje..." required>
+                            <button type="submit">Enviar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<style>
+    .accordion {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
 
-                        document.getElementById('chat-form').addEventListener('submit', async (e) => {
-                            e.preventDefault();
-                            const formData = new FormData(e.target);
-                            await fetch('chat.php', {
-                                method: 'POST',
-                                body: formData
-                            });
-                            e.target.reset();
-                            loadMessages();
-                        });
+    .accordion-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 15px;
+        background-color: #f8f9fa;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+    }
 
-                        setInterval(loadMessages, 3000); // Actualiza cada 3 segundos
+    .accordion-header .avatar {
+        margin-right: 10px;
+        font-size: 24px;
+    }
 
-                        window.onload = loadMessages;
-                    </script>
+    .accordion-header .toggle-icon {
+        font-size: 18px;
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-content {
+        display: none;
+        padding: 15px;
+        background-color: #ffffff;
+        border-top: 1px solid #ddd;
+    }
+
+    .chatbox {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .middle {
+        height: 150px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .bottom-bar {
+        display: flex;
+        gap: 5px;
+    }
+
+    .bottom-bar input {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        background-color: #95572e;
+        color: #ffffff;
+        outline: none;
+    }
+
+    .bottom-bar input::placeholder {
+        color: #f0e3dc;
+    }
+
+    .bottom-bar button {
+        padding: 8px 15px;
+        background-color: #5c640f;
+        color: #ffffff;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .bottom-bar button:hover {
+        background-color: #a8ba16;
+    }
+
+    .accordion-header.active .toggle-icon {
+        transform: rotate(45deg);
+    }
+</style>
+
+<script>
+    function toggleAccordion(header) {
+        const content = header.nextElementSibling; // Obtén el contenido del acordeón
+        const icon = header.querySelector(".toggle-icon"); // Obtén el icono del acordeón
+
+        if (content.style.display === "block") {
+            content.style.display = "none"; // Oculta el contenido
+            icon.textContent = "+"; // Cambia el icono
+        } else {
+            content.style.display = "block"; // Muestra el contenido
+            icon.textContent = "−"; // Cambia el icono
+        }
+    }
+</script>
 
                     <!-- ------------------ -->
                     <!-- ------------------ -->
@@ -235,7 +343,7 @@
                     <!-- ------------------ -->
 
                     <div id="especificaciones" class="section-content">
-                        <h2>Especificaciones del Usuario</h2>
+                        
                         <div class="user-details">
                             <div class="field">
                                 <label for="name">Nombre:</label>
@@ -247,10 +355,7 @@
                                 <input type="email" id="email" value="juan.perez@example.com">
                             </div>
                         
-                            <button id="recover-password" onclick="sendRecoveryEmail()">Recuperar Contraseña</button>
-                            <p id="recovery-message" class="hidden">
-                                Se ha enviado un mensaje de recuperación a tu correo.
-                            </p>
+
                         </div>
                     </div>
                 </section>
