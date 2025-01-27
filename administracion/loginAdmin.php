@@ -1,6 +1,6 @@
 <?php
 session_start(); // Para manejar sesiones
-require_once '../phpessentials/conexion.php'; // Conexión a la base de datos
+require_once 'funciones/conexionBD.php'; // Conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['usuario']) && isset($_POST['password'])) {

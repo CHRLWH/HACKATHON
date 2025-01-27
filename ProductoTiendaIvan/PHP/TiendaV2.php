@@ -107,7 +107,7 @@ function getEstadoClass($tipo) {
                                 <button id="closeModal" onclick="cerrarModal()">X</button>
 
                                 <!-- Contenido dentro del modal -->
-                                <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
+                                <iframe src="http://localhost/HACKATHON2/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
                             </div>
                         </div>
                 </div>
@@ -225,7 +225,7 @@ function getEstadoClass($tipo) {
                                         <?php echo htmlspecialchars($producto['estado_tipo']); ?>
                                     </span>
                                 </p>
-                                <button class="btn btn-warning">Ver producto</button>
+                                <button class="btn btn-warning"> <a href="verProducto.php">Ver producto</a> </button>
                             </div>
                         </div>
                     </div>
@@ -250,11 +250,13 @@ function getEstadoClass($tipo) {
                     <a href="#" class="footer-link">Ayuda</a>
                 </div>
             </div>
-            <div class="d-flex justify-content-center">
-                <a class="navbar-brand" href="#">
-                    <img src="../../img/4-removebg-preview (1).png" alt="Logo" class="d-block" style="width: 100px; height: 50px;" display: block;>
-                </a>
-            </div>
+            <div class="d-flex justify-content-around align-items-center">
+            <img src="../../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
+            
+            <img src="../../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
+            
+            <img src="../../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+        </div>
         </div>
     </footer>
     <script>

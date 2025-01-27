@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin_id'])) {
     exit();
 }
 
-require_once 'funciones/conexionBD.php'; // Conexión a la base de datos
+require_once '../administracion/funciones/conexionBD.php'; // Conexión a la base de datos
 
 // Obtener el filtro de estado si existe
 $estado = isset($_GET['estado']) ? $_GET['estado'] : 'todos'; // 'todos', 'activo', 'inactivo'
@@ -50,9 +50,26 @@ if (isset($_GET['accion']) && isset($_GET['id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestionar Usuarios</title>
+    <link rel="stylesheet" href="css/styleAdminPanel.css">
     <link rel="stylesheet" href="css/styleUsuarios.css">
 </head>
 <body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container d-flex align-items-center justify-content-between">
+            <!-- Logo a la izquierda -->
+            <a href="#" class="navbar-brand">
+                <img src="../img/4-removebg-preview (1).png" alt="Logo" class="logo">
+            </a>
+            <!-- Botones centrados -->
+            <div class="header-buttons d-flex justify-content-center">
+                <a href = "adminPanel.php" class = "btn btn-primary"> Gestionar productos </a>
+                <a href = "gestionarUsuarios.php" class = "btn btn-primary" > Gestionar chat </a>
+            </div>
+            <!-- Botón a la derecha -->
+            <a href="funciones/logout.php" class="btn btn-secondary">Cerrar sesión</a>
+        </div>
+    </header>
     <div class="container">
         <h1>Gestionar Usuarios</h1>
 
@@ -93,5 +110,16 @@ if (isset($_GET['accion']) && isset($_GET['id'])) {
             ?>
         </div>
     </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <!-- Logo centrado -->
+            <a href="#" class="navbar-brand d-block">
+                <img src="../img/4-removebg-preview (1).png" alt="Logo" class="logo">
+            </a>
+            <!-- Texto debajo del logo -->
+            <p class="footer-text">&copy; 2024 Tu Empresa. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>

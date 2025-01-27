@@ -13,8 +13,8 @@
                 // Configuración de la base de datos
                 $host = 'localhost';
                 $db = 'hackaton';
-                $user = 'root';
-                $pass = '';
+                $user = 'adminphp';
+                $pass = '2002';
 
                 $conn = new mysqli($host, $user, $pass, $db);
 
@@ -23,6 +23,8 @@
                 }
 
                 $nombre = $_POST['product-name'];
+                $categoria = $_POST['category'];
+                $estado = $_POST['condition'];
                 $imagenes = []; // Arreglo para almacenar las rutas de las imágenes
 
                 $uploadDir = 'uploads/';
@@ -53,6 +55,8 @@
 
                 // Sanitización de datos para evitar inyecciones SQL
                 $nombre = $conn->real_escape_string($nombre);
+                $categoria = $conn->real_escape_string($categoria);
+                $estado = $conn->real_escape_string($estado);
                 $imagen1 = $conn->real_escape_string($imagen1);
                 $imagen2 = $conn->real_escape_string($imagen2);
                 $imagen3 = $conn->real_escape_string($imagen3);
@@ -61,7 +65,7 @@
 
                 // Crear la consulta SQL sin bind_param
                 $sql = "INSERT INTO objeto (id, nombre, id_usuario, id_estado, id_categoria, imagen, imagen2, imagen3, imagen4, imagen5, validado)
-                        VALUES (NULL, '$nombre', 1, 1, 1, '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', 0)";
+                        VALUES (NULL, '$nombre', 1, '$estado', '$categoria', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', 0)";
 
                 // Ejecutar la consulta
                 if ($conn->query($sql) === TRUE) {
@@ -113,6 +117,36 @@
                                             </label>
 
                                             <input type="text" id="product-name" name="product-name" class="form-control" required>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="category" class="form-label fw-bold">
+                                                Categoría
+                                            </label>
+
+                                            <select id="category" name="category" class="form-select" required>
+                                                <option value="1">Prendas</option>
+                                                <option value="2">Muebles</option>
+                                                <option value="3">Electrónica</option>
+                                                <option value="4">Juguetes</option>
+                                                <option value="5">Deportes</option>
+                                                <option value="6">Hogar</option>
+                                                <option value="7">Herramientas</option>
+                                                <option value="8">Libros</option>
+                                                <option value="9">Juguete</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="condition" class="form-label fw-bold">
+                                                Estado
+                                            </label>
+
+                                            <select id="condition" name="condition" class="form-select" required>
+                                                <option value="1">Excelente</option>
+                                                <option value="2">Bien</option>
+                                                <option value="3">Defectuoso</option>
+                                            </select>
                                         </div>
 
                                         <div class="mb-3">

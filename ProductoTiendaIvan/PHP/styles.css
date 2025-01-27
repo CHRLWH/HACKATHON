@@ -342,3 +342,55 @@ button[type="submit"]:hover {
     background-color: #c39243;
     align-self: flex-start;
 }
+
+/* Estilo para los selects */
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.mb-3 label {
+    font-weight: bold;
+    color: #95572e;
+}
+
+.mb-3 select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #fefaef;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Efecto hover y focus para select */
+.mb-3 select:hover {
+    border-color: #95572e;
+}
+
+.mb-3 select:focus {
+    border-color: #95572e;
+    box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
+    outline: none;
+}
+
+/* Opciones del select */
+.mb-3 select option {
+    background-color: #fff;
+    color: #333;
+    padding: 10px;
+}
+
+/* Estilo cuando un select tiene un error */
+.mb-3 select:invalid {
+    border-color: #e74c3c;
+    background-color: #fef1f0;
+}
+
+.mb-3 select:invalid:focus {
+    box-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+}

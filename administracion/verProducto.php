@@ -42,9 +42,11 @@ if (isset($_GET['id'])) {
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Detalles del Producto</title>
+            
             <link href="css/styleVerProducto.css" rel="stylesheet">
         </head>
         <body>
+            
             <div class="container">
                 <!-- Información del producto -->
                 <div class="product-info">
@@ -93,8 +95,9 @@ if (isset($_GET['id'])) {
 
 
                 <!-- Botón para regresar a la gestión de productos -->
-                <a href="gestionarProductos.php" class="back-button">Volver a la gestión de productos</a>
+                <a href="adminPanel.php" class="back-button">Volver a la gestión de productos</a>
             </div>
+        
 
             <script src="javascript/scriptVerProducto.js"></script> 
         </body>
@@ -109,8 +112,3 @@ if (isset($_GET['id'])) {
     echo "<p>Producto no especificado.</p>";
 }
 ?>
-
-
-
-
-

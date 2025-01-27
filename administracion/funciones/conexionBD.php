@@ -1,9 +1,9 @@
 <?php
 // Configuración de la conexión a la base de datos
 $servername = "localhost";
-$username = "usuariophpdam";
-$password = "1234qwerty..";
-$dbname = "hakaton";
+$username = "root";
+$password = "";
+$dbname = "hackaton";
 
 try {
     // Usar PDO para manejar la base de datos

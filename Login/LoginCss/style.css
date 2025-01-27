@@ -359,3 +359,33 @@ input::placeholder {
 .footerhr{
   background-color: var(--primary-gold);
 }
+
+.user_forms-login,
+.user_forms-signup,
+.user_forms-admin {
+  position: absolute;
+  top: 70px;
+  left: 40px;
+  width: calc(100% - 80px);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.user_forms-signup {
+  transform: translate3d(120px, 0, 0);
+}
+
+.user_forms-login {
+  transform: translate3d(0, 0, 0);
+}
+
+.user_forms-admin {
+  transform: translate3d(0, 0, 0);
+}
+
+#admin-login-button,
+#user-login-button {
+  margin-top: 20px;
+  width: 100%;
+}
