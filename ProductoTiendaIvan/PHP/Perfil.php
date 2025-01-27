@@ -204,31 +204,35 @@
                     </div>
                 </div>
             </div>
-            
         </div>
+    </div>
+
+    <!-- Chat 2 (ejemplo para múltiples chats) -->
+    <div class="chat-container">
         <div class="accordion">
             <div class="accordion-header" onclick="toggleAccordion(this)">
                 <div class="avatar">
-                    <p>👜</p>
+                    <p>👟</p>
                 </div>
                 <div class="product-name">
-                    Bolso de Cuero
+                    Zapatillas Deportivas
                 </div>
                 <div class="toggle-icon">+</div>
             </div>
             <div class="accordion-content">
                 <div class="chatbox">
-                    <div class="middle" id="chat-messages-1">
+                    <div class="middle" id="chat-messages-2">
                         <!-- Los mensajes del chat se cargarán aquí dinámicamente -->
                     </div>
                     <div class="bottom-bar">
-                        <form id="chat-form-1" method="POST" action="chat.php">
-                            <input type="text" name="message" id="message-input-1" placeholder="Escribe un mensaje..." required>
+                        <form id="chat-form-2" method="POST" action="chat.php">
+                            <input type="text" name="message" id="message-input-2" placeholder="Escribe un mensaje..." required>
                             <button type="submit">Enviar</button>
                         </form>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
 </div>
 <style>
