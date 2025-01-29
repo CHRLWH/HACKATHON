@@ -1,22 +1,25 @@
 <?php
-$servidor = 'localhost';
-$BBDD = 'hackaton';
-$usuario = 'root';
-$contra = '';
+session_start();
 
+if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+    header("location: http://localhost/HACKATHON/Login/LoginHtml/Login.php");
+    exit;
+}
+
+
+// Your page code here
 try {
-    $pdo = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+    $db = $sessionManager->getDatabase(); // Assuming we add this method to SessionManager
+    
     // Obtener todas las categorías desde la base de datos
     $sql_categorias = "SELECT id, nombre FROM categorias_objetos";
-    $stmt_categorias = $pdo->prepare($sql_categorias);
+    $stmt_categorias = $db->prepare($sql_categorias);
     $stmt_categorias->execute();
     $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
     // Obtener la cantidad total de categorías
     $sql_total_categorias = "SELECT COUNT(*) FROM categorias_objetos";
-    $stmt_total_categorias = $pdo->prepare($sql_total_categorias);
+    $stmt_total_categorias = $db->prepare($sql_total_categorias);
     $stmt_total_categorias->execute();
     $total_categorias = $stmt_total_categorias->fetchColumn();
 
@@ -46,25 +49,11 @@ try {
 
     $sql .= " ORDER BY o.id";
 
-    $stmt = $pdo->prepare($sql);
+    $stmt = $db->prepare($sql);
     $stmt->execute($params);
     $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Error en la BBDD: " . $e->getMessage());
-}
-
-// Función para obtener la clase de estado
-function getEstadoClass($tipo) {
-    switch(strtolower($tipo)) {
-        case 'excelente':
-            return 'text-success fw-bold';
-        case 'bien':
-            return 'text-primary fw-bold';
-        case 'defectuoso':
-            return 'text-danger fw-bold';
-        default:
-            return 'text-muted';
-    }
 }
 ?>
 
@@ -76,8 +65,7 @@ function getEstadoClass($tipo) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hilan-Tienda</title>
     <link href="../LoginCss/Login.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico">
-
+    <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico"> n
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/cssT.css">
 </head>
@@ -175,64 +163,72 @@ function getEstadoClass($tipo) {
         </div>
 
         <!-- Grid de Productos -->
-        <div class="row g-4">
-            <?php if (count($productos) > 0): ?>
-                <?php foreach ($productos as $producto): ?>
-                    <div class="col-md-4">
-                        <div class="card h-100">
-                            <!-- Carrusel de Imágenes -->
-                            <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    <?php 
-                                    // Generar imágenes dinámicamente
-                                    $imagenes = [
-                                        $producto['imagen'],
-                                        $producto['imagen2'],
-                                        $producto['imagen3'],
-                                        $producto['imagen4'],
-                                        $producto['imagen5']
-                                    ];
-                                    foreach ($imagenes as $index => $ruta_imagen): 
-                                        if (!empty($ruta_imagen)): // Solo agregar imágenes válidas
-                                    ?>
-                                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                                            <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>">
-                                        </div>
-                                    <?php 
-                                        endif;
-                                    endforeach; 
-                                    ?>
+        <div class="container mt-4">
+            <h1 class="mb-4">Listado de Productos</h1>
+            <div class="row g-4">
+                <?php if (count($productos) > 0): ?>
+                    <?php foreach ($productos as $producto): ?>
+                        <div class="col-md-4">
+                            <div class="card h-100">
+                                <!-- Carrusel de Imágenes -->
+                                <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        <?php 
+                                        $imagenes = [
+                                            $producto['imagen'],
+                                            $producto['imagen2'],
+                                            $producto['imagen3'],
+                                            $producto['imagen4'],
+                                            $producto['imagen5']
+                                        ];
+                                        foreach ($imagenes as $index => $ruta_imagen): 
+                                            if (!empty($ruta_imagen)):
+                                        ?>
+                                            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                                                <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>">
+                                            </div>
+                                        <?php 
+                                            endif;
+                                        endforeach; 
+                                        ?>
+                                    </div>
+                                    <?php if (count(array_filter($imagenes)) > 1): ?>
+                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Anterior</span>
+                                        </button>
+                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="visually-hidden">Siguiente</span>
+                                        </button>
+                                    <?php endif; ?>
                                 </div>
-                                <?php if (count(array_filter($imagenes)) > 1): ?>
-                                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Anterior</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="visually-hidden">Siguiente</span>
-                                    </button>
-                                <?php endif; ?>
-                            </div>
 
-                            <!-- Detalles del Producto -->
-                            <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
-                                <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
-                                <p class="card-text">
-                                    Estado: 
-                                    <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
-                                        <?php echo htmlspecialchars($producto['estado_tipo']); ?>
-                                    </span>
-                                </p>
-                                <button class="btn btn-warning"> <a href="verProducto.php">Ver producto</a> </button>
+                                <!-- Detalles del Producto -->
+                                <div class="card-body">
+                                    <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
+                                    <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
+                                    <p class="card-text">
+                                        Estado: 
+                                        <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
+                                            <?php echo htmlspecialchars($producto['estado_tipo']); ?>
+                                        </span>
+                                    </p>
+                                    <button onclick="abrirModalProducto(<?php echo $producto['id']; ?>)" class="btn btn-warning">Ver producto</button>                                
+                                </div>
+                                <div id="modalOverlay" class="modal-overlay">
+                                <div id="modalContent" class="modal-content">
+                                    <button id="closeModal" onclick="cerrarModalProducto()" class="close-modal">X</button>
+                                    <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php" id="modalIframe" src="" title="Detalles del Producto"></iframe>
+                                </div>
+                            </div>
                             </div>
                         </div>
-                    </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="text-center">No se encontraron productos que coincidan con tu búsqueda.</p>
-            <?php endif; ?>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="text-center">No se encontraron productos.</p>
+                <?php endif; ?>
+            </div>
         </div>
     </section>
 
@@ -268,6 +264,18 @@ function getEstadoClass($tipo) {
         // Función para cerrar el modal
         function cerrarModal() {
             document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        function abrirModalProducto(productoId) {
+            document.getElementById('modalOverlay').style.display = 'flex';
+            document.getElementById('modalIframe').src = `verProducto.php?id=${productoId}`;
+        }
+
+        function cerrarModalProducto() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.getElementById('modalIframe').src = 'http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

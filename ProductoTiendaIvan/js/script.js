@@ -157,3 +157,57 @@ setTimeout(function() {
             icon.textContent = "−"; // Cambia el icono
         }
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const chatList = document.querySelector(".chat-list")
+        const chatWindow = document.querySelector(".chat-window")
+        const backButton = document.querySelector(".back-button")
+        const chatItems = document.querySelectorAll(".chat-item")
+      
+        chatItems.forEach((item) => {
+          item.addEventListener("click", () => {
+            const chatId = item.getAttribute("data-chat-id")
+            openChat(chatId)
+          })
+        })
+      
+        backButton.addEventListener("click", closeChat)
+      
+        function openChat(chatId) {
+          // Here you would typically load the chat messages for the selected chat
+          // For this example, we'll just show a placeholder message
+          const chatMessages = document.querySelector(".chat-messages")
+          chatMessages.innerHTML = `<p>Chat messages for chat ${chatId}</p>`
+      
+          // Update chat header
+          const chatHeader = document.querySelector(".chat-header h2")
+          chatHeader.textContent = `Chat ${chatId}`
+      
+          // Show the chat window with a slide animation
+          chatWindow.classList.add("active")
+      
+          // On mobile, hide the chat list
+          if (window.innerWidth <= 600) {
+            chatList.style.display = "none"
+          }
+        }
+      
+        function closeChat() {
+          // Hide the chat window with a slide animation
+          chatWindow.classList.remove("active")
+      
+          // On mobile, show the chat list
+          if (window.innerWidth <= 600) {
+            chatList.style.display = "block"
+          }
+        }
+      
+        // Handle window resize
+        window.addEventListener("resize", () => {
+          if (window.innerWidth > 600) {
+            chatList.style.display = "block"
+          }
+        })
+      })
+      
+      

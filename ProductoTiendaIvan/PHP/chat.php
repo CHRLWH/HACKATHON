@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once '../../phpessentials/sesion.php';
 // Ruta al archivo donde se almacenan los mensajes
 $file = 'messages.txt';
 

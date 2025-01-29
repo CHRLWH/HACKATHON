@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_SESSION['user_id'] = $usuario['id'];
                     $_SESSION['user_name'] = htmlspecialchars($usuario['Nombre'], ENT_QUOTES, 'UTF-8');
 
-                    header("Location: http://localhost/HACKATHON/ProductoTiendaIvan/PHP/TiendaV2.php");
+                    header("Location: http://localhost/HACKATHON/Login/LoginHtml/Login.phps");
                     exit;
                 } else {
                     $loginFallido = true;
@@ -107,7 +107,6 @@ if (isset($conexion)) {
 }
 ?>
 
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -171,14 +170,14 @@ if (isset($conexion)) {
               <div class="forms_buttons">
                 <button type="button" class="forms_buttons-forgot">Contraseña olvidada?</button>
                 <button type="button" class="forms_buttons-forgot">Codigo de acceso olvidado?</button>
-                <input type="submit" value="Log In" class="forms_buttons-action">
+                <input type="submit" value="Login Admin" class="forms_buttons-action">
               </div>
               <?php if ($loginFallido): ?>
                 <p id="failMessageLogin" class="failMessage">¡El código o correo están incorrectos!</p>
               <?php endif; ?>
 
             </form>
-            <button id="admin-login-button" class="forms_buttons-action">Login Admin</button>
+            <button id="admin-login-button" value= "Log In" class="forms_buttons-action"> Log In</button>
           </div>
 
           <div class="user_forms-admin" style="display: none;">
@@ -198,7 +197,7 @@ if (isset($conexion)) {
                 <input type="submit" value="Login Admin" class="forms_buttons-action">
               </div>
             </form>
-            <button id="user-login-button" class="forms_buttons-action">Login Usuario</button>
+            <button id="user-login-button" class="forms_buttons-action">Login</button>
             <?php if ($adminLoginFallido): ?>
                 <p id="failMessageAdmin" class="failMessage">¡Usuario o contraseña de administrador incorrectos!</p>
             <?php endif; ?>
@@ -239,13 +238,13 @@ if (isset($conexion)) {
       <div class="container text-center">
         <div class="row g-4 mb-5 justify-content-center">
           <div class="col-md-2">
-              <a href="#" class="footer-link">Política de privacidad</a>
+              <a href="../../privacidad.html" class="footer-link">Política de privacidad</a>
           </div>
           <div class="col-md-2">
-              <a href="#" class="footer-link">Términos y condiciones</a>
+              <a href="../../Terminos.html" class="footer-link">Términos y condiciones</a>
           </div>
           <div class="col-md-2">
-              <a href="#" class="footer-link">Ayuda</a>
+              <a href="../../QyA.html" class="footer-link">QyA</a>
           </div>
         </div>
         <div class="d-flex justify-content-around align-items-center">

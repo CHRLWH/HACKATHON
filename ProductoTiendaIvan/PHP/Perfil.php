@@ -6,6 +6,7 @@
         <title>Perfil de Usuario</title>
         <link rel="stylesheet" href="../css/styles.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        
 
     </head>
 
@@ -164,7 +165,7 @@
                                             <div class="preview-container" id="preview-container"></div>
                                         </div>
 
-                                        <button type="submit" class="btn per    danger w-100">
+                                        <button type="submit" class="btn per  danger w-100">
                                             Agregar Producto
                                         </button>
                                     </form>
@@ -217,7 +218,7 @@
                 <div class="product-name">
                     Zapatillas Deportivas
                 </div>
-                <div class="toggle-icon">+</div>
+                <div class="toggle-icon"></div>
             </div>
             <div class="accordion-content">
                 <div class="chatbox">
@@ -260,7 +261,8 @@
                 </section>
             </div>
         </div>
-        
+        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
         <script src="../js/script.js"></script>
     </body>
 </html>

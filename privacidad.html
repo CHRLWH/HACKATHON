@@ -3,73 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidad</title>
-    <style>
-        /**************************/
-        /* Estilo para el acordeón */
-        /**************************/
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
+    <title>Política de Privacidad</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"> 
+   <style>
+    :root {
+        --primary-bg: #95572e; /* Marrón */
+        --accent-color: #c39243; /* Dorado */
+        --text-light: #fefaef; /* Beige claro */
+        --card-bg: #dbdad0; /* Marrón oscuro */
+        --dark-green: #5c640f;
+        --darker-green: #414704; /* Verde oscuro */
+        --dark-brown: #131105;
+        --luz-difuminacion: #e2a56b; 
+        --light-green: #bfd11a;
+        --light-bg: #fefaef; /* Fondo claro */
+    }
 
-        .profile-container {
-            max-width: 900px;
-            margin: 30px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    /* General */
+    body {
+        font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        background-color: var(--light-bg); /* Fondo claro */
+        color: var(--darker-green);
+        margin: 0;
+        padding: 0;
+    }
 
-        h1 {
-            background-color: #95572e;
-            color: #fefaef;
-            padding: 20px;
-            margin: 0;
-            text-align: center;
-        }
+    /* Navbar y Footer */
+    .navbar, footer {
+        background-color: var(--primary-bg);
+        padding: 1.5rem 0;
+        box-shadow: 0 4px 20px rgba(195, 146, 67, 0.2);
+        color: var(--text-light);
+    }
 
-        .accordion {
-            width: 100%;
-            border-top: 1px solid #ddd;
-        }
+    footer {
+        padding: 4rem 0;
+    }
 
-        .accordion-item {
-            border-bottom: 1px solid #ddd;
-        }
+    .footer-link {
+        color: var(--text-light);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
 
-        .accordion-header {
-            background-color: #ffdab9;
-            padding: 15px;
-            cursor: pointer;
-            font-weight: bold;
-            color: #95572e;
-            transition: background-color 0.3s;
-        }
+    .footer-link:hover {
+        color: var(--accent-color);
+    }
 
-        .accordion-header:hover {
-            background-color: #e6c2a6;
-        }
+    /* Botón */
+    .btn-primary {
+        background-color: var(--dark-green);
+        border: none;
+        color: var(--text-light);
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
 
-        .accordion-content {
-            display: none;
-            padding: 15px;
-            background-color: #fefaef;
-            border-top: 1px solid #ddd;
-            font-size: 1rem;
-            color: #333;
-        }
+    .btn-primary:hover {
+        background-color: var(--light-green);
+        color: var(--dark-brown);
+    }
 
-        .accordion-content.active {
-            display: block;
-        }
-    </style>
+    /* Perfil */
+    .profile-container {
+        max-width: 900px;
+        margin: 30px auto;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    h1 {
+        background-color: var(--primary-bg);
+        color: var(--text-light);
+        padding: 20px;
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Acordeón */
+    .accordion {
+        width: 100%;
+        border-top: 1px solid #ddd;
+    }
+
+    .accordion-item {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .accordion-header {
+        background-color: #ffdab9;
+        padding: 15px;
+        cursor: pointer;
+        font-weight: bold;
+        color: var(--primary-bg);
+        transition: background-color 0.3s;
+    }
+
+    .accordion-header:hover {
+        background-color: #e6c2a6;
+    }
+
+    .accordion-content {
+        display: none;
+        padding: 15px;
+        background-color: var(--text-light);
+        border-top: 1px solid #ddd;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .accordion-content.active {
+        display: block;
+    }
+
+    /* Secciones */
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+    }
+
+    .text-warning {
+        color: var(--accent-color) !important;
+    }
+</style>
+
+
+
+
 </head>
 <body>
+        <header class="shop-header">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="img/4-removebg-preview (1).png" alt="Hilan Logo">
+            </a>
+            <div class="ms-auto">
+                <a href="index (4).html" class="btn btn-primary">Volver</a>
+            </div>
+        </div>
+    </nav>
+
+    </header>
     <div class="profile-container">
         <h1>Política de Privacidad</h1>
         <div class="accordion">
@@ -105,12 +184,35 @@
             </div>
         </div>
     </div>
-
+<footer>
+        <div class="container">
+            <div class="row g-4 justify-content-center text-light text-center mb-5">
+                <div class="col-md-4">
+                    <a href="privacidad.html" class="footer-link">Política de privacidad</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="Terminos.html" class="footer-link">Términos y condiciones</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="QyA.html" class="footer-link">QyA</a>
+                </div>
+            </div>
+            <div class="d-flex justify-content-around align-items-center">
+                <img src="img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
+                <img src="img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
+                <img src="img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+            </div>
+            <div class="text-center mt-3">
+                <p class="text-light">&copy; 2024 Hilan. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
     <script>
         function toggleAccordion(element) {
             const content = element.nextElementSibling;
             content.classList.toggle('active');
         }
     </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
