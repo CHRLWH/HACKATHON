@@ -1,25 +1,22 @@
 <?php
-session_start();
+$servidor = 'localhost';
+$BBDD = 'hackaton';
+$usuario = 'root';
+$contra = '';
 
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: http://localhost/HACKATHON/Login/LoginHtml/Login.php");
-    exit;
-}
-
-
-// Your page code here
 try {
-    $db = $sessionManager->getDatabase(); // Assuming we add this method to SessionManager
-    
+    $pdo = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     // Obtener todas las categorías desde la base de datos
     $sql_categorias = "SELECT id, nombre FROM categorias_objetos";
-    $stmt_categorias = $db->prepare($sql_categorias);
+    $stmt_categorias = $pdo->prepare($sql_categorias);
     $stmt_categorias->execute();
     $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
 
     // Obtener la cantidad total de categorías
     $sql_total_categorias = "SELECT COUNT(*) FROM categorias_objetos";
-    $stmt_total_categorias = $db->prepare($sql_total_categorias);
+    $stmt_total_categorias = $pdo->prepare($sql_total_categorias);
     $stmt_total_categorias->execute();
     $total_categorias = $stmt_total_categorias->fetchColumn();
 
@@ -49,11 +46,25 @@ try {
 
     $sql .= " ORDER BY o.id";
 
-    $stmt = $db->prepare($sql);
+    $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
     $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Error en la BBDD: " . $e->getMessage());
+}
+
+// Función para obtener la clase de estado
+function getEstadoClass($tipo) {
+    switch(strtolower($tipo)) {
+        case 'excelente':
+            return 'text-success fw-bold';
+        case 'bien':
+            return 'text-primary fw-bold';
+        case 'defectuoso':
+            return 'text-danger fw-bold';
+        default:
+            return 'text-muted';
+    }
 }
 ?>
 
@@ -65,7 +76,7 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hilan-Tienda</title>
     <link href="../LoginCss/Login.css" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico"> n
+    <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/cssT.css">
 </head>

@@ -4,10 +4,105 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Perfil de Usuario</title>
-        <link rel="stylesheet" href="../css/styles.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        
+        <link rel="stylesheet" href="styles.css">
+        <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fefaef;
+        }
+        .section-content {
+            padding: 20px;
+        }
+        .chat-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #95572e;
+            color: #fefaef;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .chat-item:hover {
+            background-color: #5c640f;
+        }
+        .avatar {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .chat-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: white;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out;
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-container.active {
+            transform: translateX(0);
+        }
+        .chatbox {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .top-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            background-color: #95572e;
+            color: #fefaef;
+        }
+        .back-button {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            color: #fefaef;
+        }
+        .middle {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        .bottom-bar {
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+        .chat-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in-out;
+        display: flex;
+        flex-direction: column;
+        }
 
+        .chat-container.active {
+            transform: translateX(0);
+        }
+    </style>
     </head>
 
     <body>
@@ -26,8 +121,6 @@
                 }
 
                 $nombre = $_POST['product-name'];
-                $categoria = $_POST['category'];
-                $estado = $_POST['condition'];
                 $imagenes = []; // Arreglo para almacenar las rutas de las imágenes
 
                 $uploadDir = 'uploads/';
@@ -58,8 +151,6 @@
 
                 // Sanitización de datos para evitar inyecciones SQL
                 $nombre = $conn->real_escape_string($nombre);
-                $categoria = $conn->real_escape_string($categoria);
-                $estado = $conn->real_escape_string($estado);
                 $imagen1 = $conn->real_escape_string($imagen1);
                 $imagen2 = $conn->real_escape_string($imagen2);
                 $imagen3 = $conn->real_escape_string($imagen3);
@@ -68,7 +159,7 @@
 
                 // Crear la consulta SQL sin bind_param
                 $sql = "INSERT INTO objeto (id, nombre, id_usuario, id_estado, id_categoria, imagen, imagen2, imagen3, imagen4, imagen5, validado)
-                        VALUES (NULL, '$nombre', 1, '$estado', '$categoria', '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', 0)";
+                        VALUES (NULL, '$nombre', 1, 1, 1, '$imagen1', '$imagen2', '$imagen3', '$imagen4', '$imagen5', 0)";
 
                 // Ejecutar la consulta
                 if ($conn->query($sql) === TRUE) {
@@ -81,22 +172,23 @@
             }
         ?>
 
-    <div class="profile-container" style="max-width: 900px; margin: 30px auto; background-color: #fff; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-        <h1 style="background-color: #95572e; color: #fefaef; padding: 20px; margin: 0; text-align: center;">Perfil de Usuario</h1>
-        <div class="content">
-            <nav class="sidebar" style="background-color: #ffdab9; width: 30%; padding: 20px;">
-                <ul style="list-style-type: none; padding: 0;">
-                    <li class="nav-item" onclick="showSection('chats')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
-                        <i class="fas fa-comments" style="min-width: 20px; text-align: center;"></i> Chats Activos
-                    </li>
-                    <li class="nav-item" onclick="showSection('especificaciones')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
-                        <i class="fas fa-user-cog" style="min-width: 20px; text-align: center;"></i> Especificaciones del Usuario
-                    </li>
-                    <li class="nav-item" onclick="showSection('aniadir-objeto')" style="display: flex; align-items: center; justify-content: flex-start; gap: 10px; padding: 10px; background-color: #95572e; color: #fefaef; margin-bottom: 10px; text-align: left; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
-                        <i class="fas fa-plus-circle" style="min-width: 20px; text-align: center;"></i> Añadir Objeto
-                    </li>
-                </ul>
-            </nav>
+        <div class="profile-container">
+            <h1>Perfil de Usuario</h1>
+            <div class="content">
+                <nav class="sidebar">
+                        <li class="nav-item" onclick="showSection('chats')">
+                            Chats Activos
+                        </li>
+
+                        <li class="nav-item" onclick="showSection('especificaciones')">
+                            Especificaciones del Usuario
+                        </li>
+
+                        <li class="nav-item" onclick="showSection('aniadir-objeto')">
+                            Añadir Objeto
+                        </li>
+                    </ul>
+                </nav>
 
                 <section class="main-section" id="main-section">
                     
@@ -107,7 +199,7 @@
                     <!-- --------------- -->
 
                     <div id="aniadir-objeto" class="section-content">
-                        
+                        <h2>Añadir un nuevo producto</h2>
 
                         <div class="container my-5">
                             <div class="row justify-content-center">
@@ -119,36 +211,6 @@
                                             </label>
 
                                             <input type="text" id="product-name" name="product-name" class="form-control" required>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="category" class="form-label fw-bold">
-                                                Categoría
-                                            </label>
-
-                                            <select id="category" name="category" class="form-select" required>
-                                                <option value="1">Prendas</option>
-                                                <option value="2">Muebles</option>
-                                                <option value="3">Electrónica</option>
-                                                <option value="4">Juguetes</option>
-                                                <option value="5">Deportes</option>
-                                                <option value="6">Hogar</option>
-                                                <option value="7">Herramientas</option>
-                                                <option value="8">Libros</option>
-                                                <option value="9">Juguete</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="condition" class="form-label fw-bold">
-                                                Estado
-                                            </label>
-
-                                            <select id="condition" name="condition" class="form-select" required>
-                                                <option value="1">Excelente</option>
-                                                <option value="2">Bien</option>
-                                                <option value="3">Defectuoso</option>
-                                            </select>
                                         </div>
 
                                         <div class="mb-3">
@@ -165,7 +227,7 @@
                                             <div class="preview-container" id="preview-container"></div>
                                         </div>
 
-                                        <button type="submit" class="btn per  danger w-100">
+                                        <button type="submit" class="btn per    danger w-100">
                                             Agregar Producto
                                         </button>
                                     </form>
@@ -180,62 +242,120 @@
                     <!-- ---------------- -->
                     <!-- ---------------- -->
                     <div id="chats" class="section-content">
-    <!-- Chat 1 -->
-    <div class="chat-container">
-        <div class="accordion">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <div class="avatar">
-                    <p>👜</p>
-                </div>
-                <div class="product-name">
-                    Bolso de Cuero
-                </div>
-                <div class="toggle-icon">+</div>
-            </div>
-            <div class="accordion-content">
-                <div class="chatbox">
-                    <div class="middle" id="chat-messages-1">
-                        <!-- Los mensajes del chat se cargarán aquí dinámicamente -->
-                    </div>
-                    <div class="bottom-bar">
-                        <form id="chat-form-1" method="POST" action="chat.php">
-                            <input type="text" name="message" id="message-input-1" placeholder="Escribe un mensaje..." required>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+    <h2>Chats Activos</h2>
+    <div class="chat-list">
+        <div class="chat-item" onclick="openChat('chat1')">
+            <div class="avatar">👜</div>
+            <div class="chat-preview">Bolso de Cuero</div>
         </div>
-    </div>
-
-    <!-- Chat 2 (ejemplo para múltiples chats) -->
-    <div class="chat-container">
-        <div class="accordion">
-            <div class="accordion-header" onclick="toggleAccordion(this)">
-                <div class="avatar">
-                    <p>👟</p>
-                </div>
-                <div class="product-name">
-                    Zapatillas Deportivas
-                </div>
-                <div class="toggle-icon"></div>
-            </div>
-            <div class="accordion-content">
-                <div class="chatbox">
-                    <div class="middle" id="chat-messages-2">
-                        <!-- Los mensajes del chat se cargarán aquí dinámicamente -->
-                    </div>
-                    <div class="bottom-bar">
-                        <form id="chat-form-2" method="POST" action="chat.php">
-                            <input type="text" name="message" id="message-input-2" placeholder="Escribe un mensaje..." required>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+        <div class="chat-item" onclick="openChat('chat2')">
+            <div class="avatar">👕</div>
+            <div class="chat-preview">Camiseta Negra</div>
+        </div>
+        <div class="chat-item" onclick="openChat('chat3')">
+            <div class="avatar">👟</div>
+            <div class="chat-preview">Zapatillas Deportivas</div>
         </div>
     </div>
 </div>
+
+<!-- Chat Window -->
+<div class="chat-container" id="chat-window">
+    <div class="chatbox">
+        <div class="top-bar">
+            <button class="back-button" onclick="closeChat()">⬅</button>
+            <div class="avatar" id="chat-avatar">👜</div>
+            <div class="product-name" id="chat-title">Bolso de Cuero</div>
+        </div>
+        <div class="middle" id="chat-messages">
+            <!-- Messages will be dynamically added here -->
+        </div>
+        <div class="bottom-bar">
+            <form id="chat-form" onsubmit="sendMessage(event)">
+                <input type="text" id="message-input" placeholder="Escribe un mensaje..." required>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    // Function to open the chat window
+    function openChat(chatId) {
+        let chatData = {
+            "chat1": { avatar: "👜", title: "Bolso de Cuero" },
+            "chat2": { avatar: "👕", title: "Camiseta Negra" },
+            "chat3": { avatar: "👟", title: "Zapatillas Deportivas" }
+        };
+
+        // Update the chat window content
+        document.getElementById('chat-avatar').textContent = chatData[chatId].avatar;
+        document.getElementById('chat-title').textContent = chatData[chatId].title;
+
+        // Show the chat window
+        document.getElementById('chat-window').classList.add('active');
+    }
+
+    // Function to close the chat window
+    function closeChat() {
+        // Hide the chat window
+        document.getElementById('chat-window').classList.remove('active');
+    }
+
+    // Function to send a message
+    function sendMessage(event) {
+        event.preventDefault(); // Prevent form submission
+        const messageInput = document.getElementById('message-input');
+        const message = messageInput.value.trim();
+
+        if (message) {
+            const chatMessages = document.getElementById('chat-messages');
+
+            // Create a new message element
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', 'styles.css'); // Add 'outgoing' class for styling
+            messageElement.textContent = message;
+
+            // Append the message to the chat messages container
+            chatMessages.appendChild(messageElement);
+
+            // Scroll to the bottom of the chat
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Clear the input field
+            messageInput.value = '';
+        }
+    }
+
+    // Ensure the chat window is closed by default when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        closeChat(); // Close the chat window on page load
+    });
+</script>
+
+                    
+                    <script>
+                        async function loadMessages() {
+                            const response = await fetch('chat.php');
+                            const messages = await response.text();
+                            document.getElementById('chat-messages').innerHTML = messages;
+                        }
+
+                        document.getElementById('chat-form').addEventListener('submit', async (e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            await fetch('chat.php', {
+                                method: 'POST',
+                                body: formData
+                            });
+                            e.target.reset();
+                            loadMessages();
+                        });
+
+                        setInterval(loadMessages, 3000); // Actualiza cada 3 segundos
+
+                        window.onload = loadMessages;
+                    </script>
+
                     <!-- ------------------ -->
                     <!-- ------------------ -->
                     <!-- Cambiar Contraseña -->
@@ -243,7 +363,7 @@
                     <!-- ------------------ -->
 
                     <div id="especificaciones" class="section-content">
-                        
+                        <h2>Especificaciones del Usuario</h2>
                         <div class="user-details">
                             <div class="field">
                                 <label for="name">Nombre:</label>
@@ -255,14 +375,15 @@
                                 <input type="email" id="email" value="juan.perez@example.com">
                             </div>
                         
-
+                            <button id="recover-password" onclick="sendRecoveryEmail()">Recuperar Contraseña</button>
+                            <p id="recovery-message" class="hidden">
+                                Se ha enviado un mensaje de recuperación a tu correo.
+                            </p>
                         </div>
                     </div>
                 </section>
             </div>
         </div>
-        <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
-
-        <script src="../js/script.js"></script>
+        <script src="script.js"></script>
     </body>
 </html>

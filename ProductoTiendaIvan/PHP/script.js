@@ -1,25 +1,3 @@
-// Seleccionar elementos del DOM
-const perfilButton = document.getElementById('perfilButton');
-const modalOverlay = document.getElementById('modalOverlay');
-const closeModalButton = document.getElementById('closeModalButton');
-
-// Mostrar el modal al hacer clic en el botón "Perfil"
-perfilButton.addEventListener('click', () => {
-    modalOverlay.style.display = 'block';
-});
-
-// Cerrar el modal al hacer clic en el botón de cerrar
-closeModalButton.addEventListener('click', () => {
-    modalOverlay.style.display = 'none';
-});
-
-// Cerrar el modal si se hace clic fuera del contenido
-modalOverlay.addEventListener('click', (event) => {
-    if (event.target === modalOverlay) {
-        modalOverlay.style.display = 'none';
-    }
-});
-
 function mostrarImagen(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $_SESSION['user_id'] = $usuario['id'];
                     $_SESSION['user_name'] = htmlspecialchars($usuario['Nombre'], ENT_QUOTES, 'UTF-8');
 
-                    header("Location: http://localhost/HACKATHON/Login/LoginHtml/Login.phps");
+                    header("Location: http://localhost/HACKATHON/ProductoTiendaIvan/PHP/TiendaV2.php");
                     exit;
                 } else {
                     $loginFallido = true;
