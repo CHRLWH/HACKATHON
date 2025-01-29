@@ -226,7 +226,14 @@ function getEstadoClass($tipo) {
                                             <?php echo htmlspecialchars($producto['estado_tipo']); ?>
                                         </span>
                                     </p>
-                                    <a href="verProducto.php?id=<?php echo $producto['id']; ?>" class="btn btn-warning">Ver producto</a>                                </div>
+                                    <button onclick="abrirModalProducto(<?php echo $producto['id']; ?>)" class="btn btn-warning">Ver producto</button>                                
+                                </div>
+                                <div id="modalOverlay" class="modal-overlay">
+                                <div id="modalContent" class="modal-content">
+                                    <button id="closeModal" onclick="cerrarModalProducto()" class="close-modal">X</button>
+                                    <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php" id="modalIframe" src="" title="Detalles del Producto"></iframe>
+                                </div>
+                            </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -269,6 +276,18 @@ function getEstadoClass($tipo) {
         // Función para cerrar el modal
         function cerrarModal() {
             document.getElementById('modalOverlay').style.display = 'none';
+        }
+    </script>
+
+    <script>
+        function abrirModalProducto(productoId) {
+            document.getElementById('modalOverlay').style.display = 'flex';
+            document.getElementById('modalIframe').src = `verProducto.php?id=${productoId}`;
+        }
+
+        function cerrarModalProducto() {
+            document.getElementById('modalOverlay').style.display = 'none';
+            document.getElementById('modalIframe').src = 'http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
