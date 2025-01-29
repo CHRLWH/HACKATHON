@@ -78,41 +78,48 @@ function getEstadoClass($tipo) {
     <link href="../LoginCss/Login.css" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="../css/cssT.css">
 </head>
 <body>
     <!-- El header permanece igual -->
     <header class="shop-header">
-        <nav class="navbar navbar-expand-lg navbar-dark py-3">
-            <div class="container">
-                <a class="navbar-brand" href="#">  <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 100px; height: 50px;"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 100px; height: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Muebles</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Juguetes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
+                </ul>
+                <!-- Botón de usuario -->
+                <button onclick="abrirModal()" class="btn buttonBackground btn-link text-light" type="submit" title="Perfil">
+                    <img src="../../img/icons8-customer-32.png" alt="Perfil" width="24" height="24">
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Inicio</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Tienda</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Muebles</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Juguetes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Ropa</a></li>
-                    </ul>
-                        <button onclick="abrirModal()" class="btn buttonBackground btn-link text-light" type="submit" title="Buscar">
-                            <img src="../../img/icons8-customer-32.png" alt="Buscar" width="24" height="24">
-                        </button>
-                        <div id="modalOverlay">
-                            <div id="modalContent">
-                                <!-- Botón para cerrar -->
-                                <button id="closeModal" onclick="cerrarModal()">X</button>
-
-                                <!-- Contenido dentro del modal -->
-                                <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
-                            </div>
-                        </div>
+                <!-- Botón de salir -->
+                <button onclick="cerrarSesion()" class="btn buttonBackground btn-link text-light" type="submit" title="CerrarSesion" style="margin-left: 10px">
+                    <i class="fa-solid fa-right-to-bracket"></i>                
+                </button>
+                <!-- Modal para el perfil -->
+                <div id="modalOverlay">
+                    <div id="modalContent">
+                        <button id="closeModal" onclick="cerrarModal()">X</button>
+                        <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/Perfil.php" title="Contenido"></iframe>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
 
     <!-- El carrusel permanece igual -->
     <section class="hero-carousel mb-5">
@@ -289,6 +296,14 @@ function getEstadoClass($tipo) {
             document.getElementById('modalIframe').src = 'http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php';
         }
     </script>
+
+    <script>
+        function cerrarSesion() {
+        fetch('../../phpessentials/logout.php', { method: 'POST' }) 
+        .then(() => window.location.href = "http://localhost/HACKATHON/Login/LoginHtml/Login.php") 
+        .catch(error => console.error('Error:', error));
+        }
+     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
