@@ -180,6 +180,7 @@ function getEstadoClass($tipo) {
             <?php endforeach; ?>
         </div>
 
+ \
         <!-- Grid de Productos -->
         <div class="container mt-4">
             <h1 class="mb-4">Listado de Productos</h1>
@@ -232,14 +233,7 @@ function getEstadoClass($tipo) {
                                             <?php echo htmlspecialchars($producto['estado_tipo']); ?>
                                         </span>
                                     </p>
-                                    <button onclick="abrirModalProducto(<?php echo $producto['id']; ?>)" class="btn btn-warning">Ver producto</button>                                
-                                </div>
-                                <div id="modalOverlay" class="modal-overlay">
-                                <div id="modalContent" class="modal-content">
-                                    <button id="closeModal" onclick="cerrarModalProducto()" class="close-modal">X</button>
-                                    <iframe src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php" id="modalIframe" src="" title="Detalles del Producto"></iframe>
-                                </div>
-                            </div>
+                                    <a href="verProducto.php?id=<?php echo $producto['id']; ?>" class="btn btn-warning">Ver producto</a>                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
