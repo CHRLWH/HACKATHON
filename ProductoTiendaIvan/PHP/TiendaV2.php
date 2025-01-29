@@ -181,6 +181,36 @@ function getEstadoClass($tipo) {
         </div>
         <!-- Grid de Productos -->
         <div class="container mt-4">
+            <!-- Modal de consentimiento de cookies -->
+        <div id="cookieModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p>Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies?</p>
+            <button id="acceptCookiesBtn">Aceptar</button>
+            <button id="declineCookiesBtn">Rechazar</button>
+        </div>
+        </div>
+
+        <style>
+        /* Estilos básicos para el modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        </style>
+
     <h1 class="mb-4">Listado de Productos</h1>
     <div class="row g-4">
         <?php if (count($productos) > 0): ?>
@@ -276,6 +306,30 @@ function getEstadoClass($tipo) {
         </div>
         </div>
     </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        // Verificar si ya se ha aceptado las cookies
+        if (!localStorage.getItem('cookiesAccepted')) {
+            // Si no, mostrar el modal de cookies
+            document.getElementById('cookieModal').style.display = 'block';
+        }
+
+        // Manejar la acción de aceptar cookies
+        document.getElementById('acceptCookiesBtn').addEventListener('click', function () {
+            // Almacenar que el usuario aceptó las cookies
+            localStorage.setItem('cookiesAccepted', 'true');
+            // Cerrar el modal
+            document.getElementById('cookieModal').style.display = 'none';
+        });
+
+        // Manejar la acción de rechazar cookies
+        document.getElementById('declineCookiesBtn').addEventListener('click', function () {
+            // Puedes hacer que si el usuario rechaza las cookies, no hagas nada o muestres un mensaje
+            // Aquí no almacenamos nada, por lo que el popup aparecerá nuevamente si el usuario recarga la página
+            document.getElementById('cookieModal').style.display = 'none';
+        });
+        });
+    </script>
     <script>
          // Función para abrir el modal
          function abrirModal() {
