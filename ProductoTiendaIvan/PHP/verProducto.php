@@ -58,103 +58,119 @@ if ($producto) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Detalles del Producto</title>
         <style>
-            :root {
-                --primary-bg: #95572e;
-                --accent-color: #c39243;
-                --text-light: #fefaef;
-                --card-bg: #131105;
-                --primary-gold: #c39243;
-                --light-bg: #fefaef;
-                --dark-green: #5c640f;
-                --dark-brown: #131105;
-            }
+    :root {
+        --primary-bg: #95572e;
+        --accent-color: #c39243;
+        --text-light: #fefaef;
+        --card-bg: #131105;
+        --primary-gold: #c39243;
+        --light-bg: #fefaef;
+        --dark-green: #5c640f;
+        --dark-brown: #131105;
+    }
 
-            body {
-                background-color: var(--light-bg);
-                color: var(--dark-brown);
-                font-family: Bahnschrift, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-            }
+    body {
+        background-color: var(--light-bg);
+        color: var(--dark-brown);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-            .container {
-                max-width: 1200px;
-                margin: 0 auto;
-                padding: 20px;
-            }
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-            .product-info {
-                background-color: var(--light-bg);
-                border: 1px solid var(--primary-gold);
-                border-radius: 8px;
-                padding: 20px;
-                margin-bottom: 20px;
-            }
+    .product-info {
+        background-color: var(--light-bg);
+        border: 1px solid var(--primary-gold);
+        border-radius: 8px;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
 
-            .product-info h1 {
-                color: var(--primary-bg);
-            }
+    .product-info h1 {
+        color: var(--primary-bg);
+        margin: 0 0 10px 0;
+    }
 
-            .carousel {
-                position: relative;
-                overflow: hidden;
-                border-radius: 8px;
-                border: 1px solid var(--primary-gold);
-            }
+    .product-info p {
+        margin: 5px 0;
+    }
 
-            .carousel-inner {
-                display: flex;
-                transition: transform 0.5s ease;
-            }
+    .carousel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        border: 1px solid var(--primary-gold);
+    }
 
-            .carousel-item {
-                flex: 0 0 100%;
-            }
+    .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+    }
 
-            .carousel-item img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
+    .carousel-item {
+        flex: 0 0 100%;
+    }
 
-            .carousel-control {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-                background-color: var(--primary-gold);
-                color: var(--text-light);
-                border: none;
-                padding: 10px;
-                cursor: pointer;
-            }
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
 
-            .carousel-control.prev {
-                left: 10px;
-            }
+    .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: var(--primary-gold);
+        color: var(--text-light);
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+    }
 
-            .carousel-control.next {
-                right: 10px;
-            }
+    .carousel-control.prev {
+        left: 10px;
+    }
 
-            .carousel-indicators {
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                display: flex;
-                gap: 5px;
-            }
+    .carousel-control.next {
+        right: 10px;
+    }
 
-            .indicator {
-                width: 10px;
-                height: 10px;
-                background-color: var(--accent-color);
-                border-radius: 50%;
-                cursor: pointer;
-            }
+    .carousel-indicators {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 5px;
+    }
 
-            .indicator.active {
-                background-color: var(--primary-bg);
-            }
-        </style>
+    .indicator {
+        width: 10px;
+        height: 10px;
+        background-color: var(--accent-color);
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .indicator.active {
+        background-color: var(--primary-bg);
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            margin: 0;
+            padding: 10px;
+        }
+    }
+</style>
     </head>
     <body>
         <div class="container">
@@ -220,3 +236,4 @@ if ($producto) {
 // Cerrar la conexión
 $conn->close();
 ?>
+

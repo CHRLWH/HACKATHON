@@ -179,69 +179,78 @@ function getEstadoClass($tipo) {
                 </a>
             <?php endforeach; ?>
         </div>
-
- \
         <!-- Grid de Productos -->
         <div class="container mt-4">
-            <h1 class="mb-4">Listado de Productos</h1>
-            <div class="row g-4">
-                <?php if (count($productos) > 0): ?>
-                    <?php foreach ($productos as $producto): ?>
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <!-- Carrusel de Imágenes -->
-                                <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <?php 
-                                        $imagenes = [
-                                            $producto['imagen'],
-                                            $producto['imagen2'],
-                                            $producto['imagen3'],
-                                            $producto['imagen4'],
-                                            $producto['imagen5']
-                                        ];
-                                        foreach ($imagenes as $index => $ruta_imagen): 
-                                            if (!empty($ruta_imagen)):
-                                        ?>
-                                            <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                                                <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>">
-                                            </div>
-                                        <?php 
-                                            endif;
-                                        endforeach; 
-                                        ?>
+    <h1 class="mb-4">Listado de Productos</h1>
+    <div class="row g-4">
+        <?php if (count($productos) > 0): ?>
+            <?php foreach ($productos as $producto): ?>
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <!-- Carrusel de Imágenes -->
+                        <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php 
+                                $imagenes = [
+                                    $producto['imagen'],
+                                    $producto['imagen2'],
+                                    $producto['imagen3'],
+                                    $producto['imagen4'],
+                                    $producto['imagen5']
+                                ];
+                                foreach ($imagenes as $index => $ruta_imagen): 
+                                    if (!empty($ruta_imagen)):
+                                ?>
+                                    <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                                        <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>">
                                     </div>
-                                    <?php if (count(array_filter($imagenes)) > 1): ?>
-                                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Anterior</span>
-                                        </button>
-                                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                            <span class="visually-hidden">Siguiente</span>
-                                        </button>
-                                    <?php endif; ?>
-                                </div>
-
-                                <!-- Detalles del Producto -->
-                                <div class="card-body">
-                                    <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
-                                    <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
-                                    <p class="card-text">
-                                        Estado: 
-                                        <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
-                                            <?php echo htmlspecialchars($producto['estado_tipo']); ?>
-                                        </span>
-                                    </p>
-                                    <a href="verProducto.php?id=<?php echo $producto['id']; ?>" class="btn btn-warning">Ver producto</a>                                </div>
+                                <?php 
+                                    endif;
+                                endforeach; 
+                                ?>
                             </div>
+                            <?php if (count(array_filter($imagenes)) > 1): ?>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            <?php endif; ?>
                         </div>
-                    <?php endforeach; ?>
-                <?php else: ?>
-                    <p class="text-center">No se encontraron productos.</p>
-                <?php endif; ?>
-            </div>
-        </div>
+
+                        <!-- Detalles del Producto -->
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
+                            <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
+                            <p class="card-text">
+                                Estado: 
+                                <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
+                                    <?php echo htmlspecialchars($producto['estado_tipo']); ?>
+                                </span>
+                            </p>
+                            <button class="btn btn-warning" onclick="abrirModalProducto(<?php echo $producto['id']; ?>)">Ver producto</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="text-center">No se encontraron productos.</p>
+        <?php endif; ?>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="modalOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center;">
+    <div id="modalContent" style="background: white; padding: 20px; width: 80%; height: 80%; position: relative;">
+        <button id="closeModal" onclick="cerrarModalProducto()" style="position: absolute; top: 10px; right: 10px;">X</button>
+        <iframe id="modalIframe" src="http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php" title="Contenido" style="width: 100%; height: 100%; border: none;"></iframe>
+    </div>
+</div>
+
+
     </section>
 
     <footer class="footer">
@@ -279,17 +288,22 @@ function getEstadoClass($tipo) {
         }
     </script>
 
-    <script>
-        function abrirModalProducto(productoId) {
-            document.getElementById('modalOverlay').style.display = 'flex';
-            document.getElementById('modalIframe').src = `verProducto.php?id=${productoId}`;
-        }
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+                    closeChat(); // Close the chat window on page load
+                    });
+    function abrirModalProducto(productoId) {
+        
+        document.getElementById('modalOverlay').style.display = 'flex';
+        document.getElementById('modalIframe').src = `http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php?id=${productoId}`;
+    }
 
-        function cerrarModalProducto() {
-            document.getElementById('modalOverlay').style.display = 'none';
-            document.getElementById('modalIframe').src = 'http://localhost/HACKATHON/ProductoTiendaIvan/PHP/verProducto.php';
-        }
-    </script>
+    function cerrarModalProducto() {
+        document.getElementById('modalOverlay').style.display = 'none';
+        document.getElementById('modalIframe').src = '';
+    }
+</script>
+
 
     <script>
         function cerrarSesion() {

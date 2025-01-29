@@ -259,7 +259,6 @@
     </div>
 </div>
 
-<!-- Chat Window -->
 <div class="chat-container" id="chat-window">
     <div class="chatbox">
         <div class="top-bar">
@@ -268,7 +267,7 @@
             <div class="product-name" id="chat-title">Bolso de Cuero</div>
         </div>
         <div class="middle" id="chat-messages">
-            <!-- Messages will be dynamically added here -->
+            <!-- Mensajes dinámicos -->
         </div>
         <div class="bottom-bar">
             <form id="chat-form" onsubmit="sendMessage(event)">
@@ -312,7 +311,7 @@
 
             // Create a new message element
             const messageElement = document.createElement('div');
-            messageElement.classList.add('message', 'styles.css'); // Add 'outgoing' class for styling
+            messageElement.classList.add('message', 'outgoing'); // Add 'outgoing' class for styling
             messageElement.textContent = message;
 
             // Append the message to the chat messages container
