@@ -1,11 +1,17 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: loginAdmin.php");
-    exit();
+$servidor = 'localhost';
+$BBDD = 'hackaton';
+$usuario = 'root';
+$contra = '';
+include '../../phpessentials/sesioncheck.php';
+try {
+    // Conexión a la base de datos con PDO
+    $conexion = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
+    $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
 }
-
-require_once 'funciones/conexionBD.php'; // Conexión a la base de datos
+// Conexión a la base de datos
 
 // Obtener el filtro de validación si existe
 $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
@@ -33,6 +39,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <link rel="stylesheet" href="css/styleProductos.css">
 </head>
 <body>
+    
     <div class="container">
         <h1>Gestionar Productos</h1>
 

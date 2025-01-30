@@ -302,6 +302,8 @@ iframe {
 
 .modal-content {
   animation: fadeIn 0.3s ease-out;
+  width: 100%;
+  height: 100%;
 }
 
 .btn-custom {

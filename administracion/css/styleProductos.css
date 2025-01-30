@@ -87,7 +87,7 @@ form {
 }
 
 .ver-detalles:hover {
-    background-color: var(--primary-gold); /* Dorado */
+    background-color: #cee314; /* Dorado */
     color: var(--dark-brown); /* Marrón oscuro */
 }
 

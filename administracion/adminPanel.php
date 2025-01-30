@@ -1,17 +1,24 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: loginAdmin.php");
-        exit();
+    // Parámetros de conexión
+    $servidor = 'localhost';
+    $BBDD = 'hackaton';
+    $usuario = 'root';
+    $contra = '';
+    include '../../phpessentials/sesioncheck.php';
+    try {
+        // Conexión a la base de datos con PDO
+        $conexion = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
+        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        die("Error de conexión: " . $e->getMessage());
     }
 
-    require_once 'funciones/conexionBD.php';
-    include '../../phpessentials/sesioncheck.php'; // Conexión a la base de datos
+    // Incluir el archivo de sesión (verifica si este archivo es necesario aquí)
 
     // Obtener el filtro de validación si existe
     $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
 
-    // Consulta SQL con filtrado por validación
+    // Construcción de la consulta SQL con filtro
     $sql = "SELECT * FROM objeto";
     if ($validado === 'validados') {
         $sql .= " WHERE validado = 1"; // Solo productos validados
@@ -19,10 +26,19 @@
         $sql .= " WHERE validado = 0"; // Solo productos no validados
     }
 
-    $stmt = $conexion->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Preparar y ejecutar la consulta
+    try {
+        $stmt = $conexion->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error en la consulta: " . $e->getMessage());
+    }
+
+    // Opcional: Cerrar la conexión (PDO lo hace automáticamente al final del script)
+    // $conexion = null;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -45,11 +61,11 @@
                 </a>
                 <!-- Botones centrados -->
                 <div class="header-buttons d-flex justify-content-center">
-                    <a href = "gestionarUsuarios.php" class = "btn btn-primary"> Gestionar usuarios </a>
-                    <a href = "gestionarUsuarios.php" class = "btn btn-primary" > Gestionar chat </a>
+                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#5c640f;"> Gestionar usuarios </a>
+                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#5c640f;"> Gestionar chat </a>
                 </div>
                 <!-- Botón a la derecha -->
-                <a href="funciones/logout.php" class="btn btn-secondary">Cerrar sesión</a>
+                <a href="funciones/logout.php" class="btn" style="background:#5c640f;">Cerrar sesión</a>
             </div>
         </header>
 
@@ -60,7 +76,7 @@
 
             <!-- Filtro de validación -->
             <form method="GET" action="">
-                <select name="validado" onchange="this.form.submit()">
+                <select  style="background:#5c640f; color: white" name="validado" onchange="this.form.submit()">
                     <option value="todos" <?php echo $validado == 'todos' ? 'selected' : ''; ?>>Todos</option>
                     <option value="validados" <?php echo $validado == 'validados' ? 'selected' : ''; ?>>Validados</option>
                     <option value="no_validados" <?php echo $validado == 'no_validados' ? 'selected' : ''; ?>>No validados</option>

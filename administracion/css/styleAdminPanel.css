@@ -214,6 +214,10 @@ body {
     text-decoration: none;
     border-radius: 5px;
 }
+.ver-detalles:hover {
+    background-color: #cee314; /* Dorado */
+    color: var(--dark-brown); /* Marrón oscuro */
+}
 
 /* Footer */
 .footer {

@@ -1,37 +1,44 @@
 <?php
-    session_start();
-    if (!isset($_SESSION['admin_id'])) {
-        header("Location: ../Login/Login.php");
-        exit();
-    }
 
-    require_once '../administracion/funciones/conexionBD.php'; // Conexión a la base de datos
+   $servidor = 'localhost';
+   $BBDD = 'hackaton';
+   $usuario = 'root';
+   $contra = '';
+   include '../../phpessentials/sesioncheck.php';
+   try {
+       // Conexión a la base de datos con PDO
+       $conexion = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
+       $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+   } catch (PDOException $e) {
+       die("Error de conexión: " . $e->getMessage());
+   }
 
-    // Obtener el filtro de estado si existe
+
+    // Obtener el filtro de validación si existe
     $estado = isset($_GET['estado']) ? $_GET['estado'] : 'todos'; // 'todos', 'activo', 'inactivo'
 
-    // Consulta SQL con filtrado por estado
+    // Consulta SQL con filtrado por validación
     $sql = "SELECT * FROM usuario"; 
     if ($estado === 'activo') {
-        $sql .= " WHERE estado = 1"; // Solo usuarios activos
+        $sql .= " WHERE usu_validado = 1"; // Solo usuarios validados
     } elseif ($estado === 'inactivo') {
-        $sql .= " WHERE estado = 0"; // Solo usuarios inactivos
+        $sql .= " WHERE usu_validado = 0"; // Solo usuarios no validados
     }
 
     $stmt = $conexion->prepare($sql);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Verificar si se ha hecho clic en los botones de bloqueo/desbloqueo
+    // Verificar si se ha hecho clic en los botones de bloquear/desbloquear
     if (isset($_GET['accion']) && isset($_GET['id'])) {
         $accion = $_GET['accion'];  // 'bloquear' o 'desbloquear'
         $id = $_GET['id'];
 
         // Actualizar el estado del usuario en la base de datos
         if ($accion == 'bloquear') {
-            $sql = "UPDATE usuario SET estado = 0 WHERE id = :id"; // Bloquear usuario (estado = 0)
+            $sql = "UPDATE usuario SET usu_validado = 0 WHERE id = :id"; // Bloquear usuario (usu_validado = 0)
         } elseif ($accion == 'desbloquear') {
-            $sql = "UPDATE usuario SET estado = 1 WHERE id = :id"; // Desbloquear usuario (estado = 1)
+            $sql = "UPDATE usuario SET usu_validado = 1 WHERE id = :id"; // Desbloquear usuario (usu_validado = 1)
         }
 
         $stmt = $conexion->prepare($sql);
@@ -56,33 +63,18 @@
 
     <body>
         <!-- Header -->
-        <header class="header">
-            <div class="container d-flex align-items-center justify-content-between">
-                <!-- Logo a la izquierda -->
-                <a href="#" class="navbar-brand">
-                    <img src="../img/4-removebg-preview (1).png" alt="Logo" class="logo">
-                </a>
-                <!-- Botones centrados -->
-                <div class="header-buttons d-flex justify-content-center">
-                    <a href = "adminPanel.php" class = "btn btn-primary"> Gestionar productos </a>
-                    <a href = "gestionarUsuarios.php" class = "btn btn-primary" > Gestionar chat </a>
-                </div>
-                <!-- Botón a la derecha -->
-                <a href="funciones/logout.php" class="btn btn-secondary">Cerrar sesión</a>
-            </div>
-        </header>
 
         <div class="container">
             <br><br><br><br><br>
             <br><br><br><br><br>
             <h1>Gestionar Usuarios</h1>
 
-            <!-- Filtro de estado -->
+            <!-- Filtro de validación -->
             <form method="GET" action="">
                 <select name="estado" onchange="this.form.submit()">
                     <option value="todos" <?php echo $estado == 'todos' ? 'selected' : ''; ?>>Todos</option>
-                    <option value="activo" <?php echo $estado == 'activo' ? 'selected' : ''; ?>>Activos</option>
-                    <option value="inactivo" <?php echo $estado == 'inactivo' ? 'selected' : ''; ?>>Inactivos</option>
+                    <option value="activo" <?php echo $estado == 'activo' ? 'selected' : ''; ?>>Validados</option>
+                    <option value="inactivo" <?php echo $estado == 'inactivo' ? 'selected' : ''; ?>>No validados</option>
                 </select>
             </form>
 
@@ -97,10 +89,10 @@
                             <p>Codigo CAM: <?php echo $row['codigo_CAM']; ?> </p>
                             <p>Fecha de Inscripción: <?php echo $row['fecha_inscripcion']; ?></p>
                             <p>Correo: <?php echo $row['correo']; ?></p>
-                            <p>Estado: <?php echo $row['estado'] == 1 ? 'Activo' : 'Inactivo'; ?></p>
+                            <p>Estado: <?php echo $row['usu_validado'] == 1 ? 'Validado' : 'No Validado'; ?></p>
 
                             <!-- Botones para bloquear y desbloquear -->
-                            <?php if ($row['estado'] == 1): ?>
+                            <?php if ($row['usu_validado'] == 1): ?>
                                 <a href="?accion=bloquear&id=<?php echo $row['id']; ?>" class="btn-bloquear">Bloquear</a>
                             <?php else: ?>
                                 <a href="?accion=desbloquear&id=<?php echo $row['id']; ?>" class="btn-desbloquear">Activar</a>
