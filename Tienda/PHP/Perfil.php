@@ -6,6 +6,7 @@
         <title>Perfil de Usuario</title>
         <link rel="stylesheet" href="styles.css">
         <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </head>
 
     <body>
@@ -79,21 +80,21 @@
             <h1>Perfil de Usuario</h1>
             <div class="content">
                 <nav class="sidebar">
+                    <ul style="justify-content:left;">
                         <li class="nav-item" onclick="showSection('chats')">
-                            Chats Activos
+                        <i class="fas fa-comments" style="min-width: 20px; text-align: center;"></i> Chats Activos
                         </li>
 
                         <li class="nav-item" onclick="showSection('especificaciones')">
-                            Especificaciones del Usuario
+                        <i class="fas fa-user-cog" style="min-width: 20px; text-align: center;"></i> Especificaciones del Usuario
                         </li>
 
                         <li class="nav-item" onclick="showSection('aniadir-objeto')">
-                            Añadir Objeto
+                        <i class="fas fa-plus-circle" style="min-width: 20px; text-align: center;"></i> Añadir Objeto
                         </li>
                     </ul>
                 </nav>
 
-                    
                 <!-- --------------- -->
                 <!-- --------------- -->
                 <!-- Subir Productos -->
@@ -102,7 +103,7 @@
 
                 <section class="main-section" id="main-section">
                     <div id="aniadir-objeto" class="section-content">
-                       <div class="container my-5">
+                        <div class="container my-5">
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <form action="#" method="POST" enctype="multipart/form-data" class="p-4 border rounded shadow-sm bg-white">
