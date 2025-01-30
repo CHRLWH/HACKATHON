@@ -91,7 +91,8 @@
 
                 /* 🏷️ Título del producto */
                 .product-info h1 {
-                    color: var(--primary-bg);
+                    background: var(--primary-bg);
+                    color: var(--text-light);
                     font-size: 28px;
                     text-align: center;
                     border-bottom: 2px solid var(--primary-gold);
@@ -211,10 +212,22 @@
                 <!-- Información del producto -->
                 <div class="product-info">
                     <h1><?php echo htmlspecialchars($producto['nombre']); ?></h1>
-                    <p><strong>ID de Usuario:</strong> <?php echo htmlspecialchars($producto['id_usuario']); ?></p>
-                    <p><strong>ID de Estado:</strong> <?php echo htmlspecialchars($producto['id_estado']); ?></p>
-                    <p><strong>ID de Categoría:</strong> <?php echo htmlspecialchars($producto['id_categoria']); ?></p>
-                </div>
+                    <nav class="sidebar">
+                    <ul style="justify-content:left;">
+                        <li>
+                        <p><strong>ID de Usuario:</strong> <?php echo htmlspecialchars($producto['id_usuario']); ?></p>
+                        </li>
+
+                        <li>
+                        <p><strong>ID de Estado:</strong> <?php echo htmlspecialchars($producto['id_estado']); ?></p>
+                        </li>
+                        <li>
+                        <p><strong>ID de Categoría:</strong> <?php echo htmlspecialchars($producto['id_categoria']); ?></p>
+                        </li>
+                    </ul>
+                    <ul style="justify-content:right;">
+
+                   
 
                 <!-- Carrusel de imágenes -->
                 <div class="carousel">
@@ -252,8 +265,10 @@
                         ?>
                     </div>
                 </div>
+                </ul>
+                </nav>
             </div>
-
+                    </div>
             <script src="../js/js.js"></script> 
         </body>
         </html>
