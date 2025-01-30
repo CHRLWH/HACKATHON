@@ -51,227 +51,156 @@
     // Si se encontró el producto, mostrar el HTML
     if ($producto) {
         ?>
-        <!DOCTYPE html>
-        <html lang="es">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Detalles del Producto</title>
-            <style>
-                :root {
-                    --primary-bg: #95572e; /* Marrón base */
-                    --accent-color: #c39243; /* Dorado */
-                    --text-light: #fefaef; /* Beige claro */
-                    --card-bg: #131105; /* Marrón oscuro */
-                    --primary-gold: #c39243; /* Dorado */
-                    --light-bg:rgb(248, 225, 163); /* Beige claro */
-                    --dark-green: #5c640f; /* Verde oscuro */
-                    --dark-brown: #131105; /* Marrón oscuro */
-                }
+       <html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Producto</title>
+    <style>
+        :root {
+            --primary-bg: #95572e;
+            --accent-color: #c39243;
+            --text-light: #fefaef;
+            --card-bg: #131105;
+            --primary-gold: #c39243;
+            --light-bg: rgb(248, 225, 163);
+            --dark-green: #5c640f;
+            --dark-brown: #131105;
+        }
 
-                body {
-                    background-color: var(--light-bg);
-                    color: var(--dark-brown);
-                    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-                    line-height: 1.6;
-                    margin: 0;
-                    padding: 0;
-                }
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-brown);
+            font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
 
-                .container {
-                    max-width: 100%;
-                    width: 100%;
-                    margin: 40px auto;
-                    padding: 20px;
-                    background: var(--text-light);
-                    border-radius: 12px;
-                    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
-                    border: 2px solid var(--primary-gold);
-                }
+        .container {
+            display: flex;
+            max-width: 90%;
+            margin: 40px auto;
+            padding: 20px;
+            background: var(--text-light);
+            border-radius: 12px;
+            box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+            border: 2px solid var(--primary-gold);
+        }
 
-                /* 🏷️ Título del producto */
-                .product-info h1 {
-                    background: var(--primary-bg);
-                    color: var(--text-light);
-                    font-size: 28px;
-                    text-align: center;
-                    border-bottom: 2px solid var(--primary-gold);
-                    padding-bottom: 10px;
-                    margin-bottom: 20px;
-                }
+        .carousel {
+            flex: 1;
+            max-width: 50%;
+            border-radius: 12px;
+            border: 2px solid var(--primary-gold);
+            overflow: hidden;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
 
-                /* ℹ️ Información del producto */
-                .product-info p {
-                    font-size: 18px;
-                    margin-bottom: 8px;
-                    color: var(--dark-green);
-                }
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
 
-                /* 🎠 Carrusel */
-                .carousel {
-                    position: relative;
-                    overflow: hidden;
-                    border-radius: 12px;
-                    border: 2px solid var(--primary-gold);
-                    margin-top: 20px;
-                    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
-                }
+        .carousel-item {
+            flex: 0 0 100%;
+        }
 
-                .carousel-inner {
-                    display: flex;
-                    transition: transform 0.5s ease-in-out;
-                }
+        .carousel-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
 
-                .carousel-item {
-                    flex: 0 0 100%;
-                }
+        .product-info {
+            flex: 1;
+            padding-left: 20px;
+        }
 
-                .carousel-item img {
-                    width: 100%;
-                    height: 400px;
-                    object-fit: cover;
-                    border-radius: 10px;
-                }
+        .product-info h1 {
+            background: var(--primary-bg);
+            color: var(--text-light);
+            font-size: 28px;
+            text-align: center;
+            padding: 10px;
+            border-radius: 10px;
+        }
 
-                /* 🚀 Controles del carrusel */
-                .carousel-control {
-                    position: absolute;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    background-color: rgba(149, 87, 46, 0.9);
-                    color: var(--text-light);
-                    border: none;
-                    padding: 12px;
-                    cursor: pointer;
-                    font-size: 20px;
-                    border-radius: 50%;
-                    transition: all 0.3s ease;
-                }
+        .product-info h2 {
+            color: var(--dark-green);
+            font-size: 20px;
+            margin-top: 10px;
+        }
 
-                .carousel-control:hover {
-                    background-color: var(--primary-gold);
-                }
+        .buttons {
+            margin-top: 20px;
+        }
 
-                .carousel-control.prev {
-                    left: 10px;
-                }
+        .buttons button {
+            background-color: var(--primary-gold);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-right: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
 
-                .carousel-control.next {
-                    right: 10px;
-                }
-
-                /* 🔘 Indicadores */
-                .carousel-indicators {
-                    position: absolute;
-                    bottom: 10px;
-                    left: 50%;
-                    transform: translateX(-50%);
-                    display: flex;
-                    gap: 6px;
-                }
-
-                .indicator {
-                    width: 12px;
-                    height: 12px;
-                    background-color: var(--primary-gold);
-                    border-radius: 50%;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                }
-
-                .indicator.active {
-                    background-color: var(--primary-bg);
-                    transform: scale(1.2);
-                }
-
-                /* 📱 Diseño responsivo */
-                @media (max-width: 768px) {
-                    .container {
-                        width: 100%;
-                        padding: 15px;
-                    }
-
-                    .product-info h1 {
-                        font-size: 24px;
-                    }
-
-                    .carousel-item img {
-                        height: 300px;
-                    }
-
-                    .carousel-control {
-                        padding: 8px;
-                        font-size: 16px;
+        .buttons button:hover {
+            background-color: var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <?php 
+                $imagenes = [
+                    $producto['imagen'],
+                    $producto['imagen2'],
+                    $producto['imagen3'],
+                    $producto['imagen4'],
+                    $producto['imagen5']
+                ];
+                foreach ($imagenes as $key => $imagen) {
+                    if (!empty($imagen)) {
+                        echo "<div class='carousel-item " . ($key === 0 ? 'active' : '') . "'>";
+                        echo "<img src='" . htmlspecialchars($imagen) . "' alt='Imagen del producto'>";
+                        echo "</div>";
                     }
                 }
-            </style>
-        </head>
-
-        <body>
-            <div class="container">
-                <!-- Información del producto -->
-                <div class="product-info">
-                    <h1><?php echo htmlspecialchars($producto['nombre']); ?></h1>
-                    <nav class="sidebar">
-                    <ul style="justify-content:left;">
-                        <li>
-                        <p><strong>ID de Usuario:</strong> <?php echo htmlspecialchars($producto['id_usuario']); ?></p>
-                        </li>
-
-                        <li>
-                        <p><strong>ID de Estado:</strong> <?php echo htmlspecialchars($producto['id_estado']); ?></p>
-                        </li>
-                        <li>
-                        <p><strong>ID de Categoría:</strong> <?php echo htmlspecialchars($producto['id_categoria']); ?></p>
-                        </li>
-                    </ul>
-                    <ul style="justify-content:right;">
-
-                   
-
-                <!-- Carrusel de imágenes -->
-                <div class="carousel">
-                    <div class="carousel-inner">
-                        <?php 
-                        $imagenes = [
-                            $producto['imagen'],
-                            $producto['imagen2'],
-                            $producto['imagen3'],
-                            $producto['imagen4'],
-                            $producto['imagen5']
-                        ];
-
-                        foreach ($imagenes as $key => $imagen) {
-                            if (!empty($imagen)) {
-                                echo "<div class='carousel-item " . ($key === 0 ? 'active' : '') . "'>";
-                                echo "<img src='" . htmlspecialchars($imagen) . "' alt='Imagen del producto'>";
-                                echo "</div>";
-                            }
-                        }
-                        ?>
-                    </div>
-
-                    <!-- Controles del carrusel -->
-                    <button class="carousel-control prev" onclick="moveSlide(-1)">&#10094;</button>
-                    <button class="carousel-control next" onclick="moveSlide(1)">&#10095;</button>
-
-                    <div class="carousel-indicators">
-                        <?php
-                        foreach ($imagenes as $key => $imagen) {
-                            if (!empty($imagen)) {
-                                echo "<span class='indicator " . ($key === 0 ? 'active' : '') . "' onclick='moveToSlide($key)'></span>";
-                            }
-                        }
-                        ?>
-                    </div>
-                </div>
-                </ul>
-                </nav>
+                ?>
             </div>
-                    </div>
-            <script src="../js/js.js"></script> 
-        </body>
-        </html>
+        </div>
+
+        <div class="product-info">
+            <h1><?php echo htmlspecialchars($producto['nombre']); ?></h1>
+            <h2>ID de Usuario: <?php echo htmlspecialchars($producto['id_usuario']); ?></h2>
+            <h2>ID de Estado: <?php echo htmlspecialchars($producto['id_estado']); ?></h2>
+            <h2>ID de Categoría: <?php echo htmlspecialchars($producto['id_categoria']); ?></h2>
+            
+            <div class="buttons">
+                <button onclick="reportProduct()">Reportar</button>
+                <button onclick="requestChat()">Solicitar Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function reportProduct() {
+            alert("Producto reportado.");
+        }
+        function requestChat() {
+            alert("Chat solicitado.");
+        }
+    </script>
+</body>
+</html>
+
 <?php
     } else {
         // Si no se encuentra el producto o hay un error
