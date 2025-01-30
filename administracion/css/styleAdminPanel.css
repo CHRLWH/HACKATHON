@@ -1,0 +1,231 @@
+/* Variables de colores */
+:root {
+    --primary-bg: #95572e; /* Marrón */
+    --accent-color: #c39243; /* Dorado */
+    --text-light: #fefaef; /* Beige claro */
+    --card-bg: #131105; /* Marrón oscuro */
+    --primary-gold: #c39243; /* Dorado */
+    --light-bg: #fefaef; /* Beige claro */
+    --dark-green: #5c640f; /* Verde oscuro */
+    --dark-brown: #131105; /* Marrón oscuro */
+}
+
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+}
+
+.content {
+    flex: 1;
+    padding: 80px 15px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--accent-color);
+}
+
+/* Header */
+.header {
+    background-color: var(--primary-bg);
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.header .container {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .navbar-brand img {
+    width: 100px;
+    height: 50px;
+    margin-left: 20px;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.header .btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: var(--text-light);
+}
+
+.header .btn-primary {
+    background-color: var(--primary-gold);
+}
+
+.header .btn-secondary {
+    background-color: var(--dark-green);
+    margin-right: 20px;
+}
+
+/* Footer */
+.footer {
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer .logo {
+    width: 100px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.footer-text {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Contenido Principal */
+.admin-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.admin-actions .button {
+    display: inline-block;
+    margin: 0;
+    padding: 10px 20px;
+    background-color: var(--primary-gold);
+    color: var(--text-light);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.admin-actions .button:hover {
+    background-color: var(--accent-color);
+}
+
+.logout-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: var(--dark-brown);
+    color: var(--text-light);
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.logout-button:hover {
+    background-color: var(--dark-green);
+}
+
+/* General */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #fefaef;
+    color: #131105;
+}
+
+.container {
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    background-color: #95572e;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.header .navbar-brand img {
+    width: 100px;
+    height: 50px;
+}
+
+.header-buttons .btn {
+    background-color: #c39243;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    margin: 0 10px;
+}
+
+.header .btn-secondary {
+    background-color: #5c640f;
+}
+
+/* Productos */
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 80px;
+}
+
+.producto-card {
+    background-color: #131105;
+    color: #fefaef;
+    padding: 15px;
+    border-radius: 8px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.producto-imagen img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+.ver-detalles {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 5px 10px;
+    background-color: #c39243;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+/* Footer */
+.footer {
+    background-color: #95572e;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-link {
+    color: #fefaef;
+    text-decoration: none;
+    margin: 0 10px;
+}

@@ -1,0 +1,133 @@
+/* Variables de colores */
+:root {
+    --primary-bg: #95572e; /* Marrón */
+    --accent-color: #c39243; /* Dorado */
+    --text-light: #fefaef; /* Beige claro */
+    --card-bg: #131105; /* Marrón oscuro */
+    --primary-gold: #c39243; /* Dorado */
+    --light-bg: #fefaef; /* Beige claro */
+    --dark-green: #5c640f; /* Verde oscuro */
+    --dark-brown: #131105; /* Marrón oscuro */
+}
+
+/* Estilos generales */
+body {
+    font-family: Bahnschrift, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    background-color: var(--light-bg);
+    margin: 0;
+    padding: 0;
+    color: var(--dark-brown);
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* Títulos */
+h1 {
+    text-align: center;
+    color: var(--primary-bg); /* Marrón principal */
+    margin-bottom: 20px;
+}
+
+/* Formulario */
+form {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Contenedor de productos */
+.productos-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Tarjeta de producto */
+.producto-card {
+    width: 280px;
+    background-color: var(--accent-color); /* Marrón oscuro */
+    border-radius: 10px;
+    border: 2px solid var(--primary-gold);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    color: var(--text-light); /* Beige claro */
+}
+
+.producto-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Imagen del producto */
+.producto-imagen img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    border: 2px solid var(--primary-gold);
+}
+
+/* Enlace de detalles */
+.ver-detalles {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: var(--dark-green); /* Verde oscuro */
+    color: var(--text-light);
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid var(--primary-gold);
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.ver-detalles:hover {
+    background-color: var(--primary-gold); /* Dorado */
+    color: var(--dark-brown); /* Marrón oscuro */
+}
+
+/* Estado del producto */
+p {
+    font-size: 14px;
+    color: var(--text-light);
+}
+
+/* Filtro */
+select {
+    margin-top: 10px;
+    padding: 8px;
+    font-size: 16px;
+    background-color: var(--primary-gold); /* Dorado */
+    color: var(--dark-brown);
+    border: 2px solid var(--dark-green);
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-bg);
+}
+
+/* Estilo de las opciones */
+option {
+    background-color: var(--light-bg);
+    color: var(--dark-brown);
+    padding: 10px;
+}
+
+option:hover {
+    background-color: var(--primary-gold);
+}
+
+option:checked {
+    background-color: var(--dark-green);
+    color: var(--text-light);
+}

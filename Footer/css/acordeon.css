@@ -1,0 +1,123 @@
+:root {
+    --primary-bg: #95572e; /* Marrón */
+    --accent-color: #c39243; /* Dorado */
+    --text-light: #fefaef; /* Beige claro */
+    --card-bg: #dbdad0; /* Marrón oscuro */
+    --dark-green: #5c640f;
+    --darker-green: #414704; /* Verde oscuro */
+    --dark-brown: #131105;
+    --luz-difuminacion: #e2a56b; 
+    --light-green: #bfd11a;
+    --light-bg: #fefaef; /* Fondo claro */
+}
+
+/* General */
+body {
+    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    background-color: var(--light-bg); /* Fondo claro */
+    color: var(--darker-green);
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar y Footer */
+.navbar, footer {
+    background-color: var(--primary-bg);
+    padding: 1.5rem 0;
+    box-shadow: 0 4px 20px rgba(195, 146, 67, 0.2);
+    color: var(--text-light);
+}
+
+footer {
+    padding: 4rem 0;
+}
+
+.footer-link {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--accent-color);
+}
+
+/* Botón */
+.btn-primary {
+    background-color: var(--dark-green);
+    border: none;
+    color: var(--text-light);
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--light-green);
+    color: var(--dark-brown);
+}
+
+/* Perfil */
+.profile-container {
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+h1 {
+    background-color: var(--primary-bg);
+    color: var(--text-light);
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+}
+
+/* Acordeón */
+.accordion {
+    width: 100%;
+    border-top: 1px solid #ddd;
+}
+
+.accordion-item {
+    border-bottom: 1px solid #ddd;
+}
+
+.accordion-header {
+    background-color: #ffdab9;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--primary-bg);
+    transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+    background-color: #e6c2a6;
+}
+
+.accordion-content {
+    display: none;
+    padding: 15px;
+    background-color: var(--text-light);
+    border-top: 1px solid #ddd;
+    font-size: 1rem;
+    color: #333;
+}
+
+.accordion-content.active {
+    display: block;
+}
+
+/* Secciones */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.text-warning {
+    color: var(--accent-color) !important;
+}
