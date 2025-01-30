@@ -5,7 +5,8 @@
         exit();
     }
 
-    require_once 'funciones/conexionBD.php'; // Conexión a la base de datos
+    require_once 'funciones/conexionBD.php';
+    include '../../phpessentials/sesioncheck.php'; // Conexión a la base de datos
 
     // Obtener el filtro de validación si existe
     $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'

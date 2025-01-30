@@ -4,7 +4,7 @@
     $db = 'hackaton';
     $user = 'root';
     $pass = '';
-
+    include '../../phpessentials/sesioncheck.php';
     $conn = new mysqli($host, $user, $pass, $db);
 
     if ($conn->connect_error) {
