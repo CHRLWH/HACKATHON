@@ -72,14 +72,15 @@
                 body {
                     background-color: var(--light-bg);
                     color: var(--dark-brown);
-                    font-family: "Merriweather", serif;
+                    font-family: Bahnschrift, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
                     line-height: 1.6;
                     margin: 0;
                     padding: 0;
                 }
 
                 .container {
-                    max-width: 1000px;
+                    max-width: 100%;
+                    width: 100%;
                     margin: 40px auto;
                     padding: 20px;
                     background: var(--text-light);
@@ -185,7 +186,7 @@
                 /* 📱 Diseño responsivo */
                 @media (max-width: 768px) {
                     .container {
-                        width: 90%;
+                        width: 100%;
                         padding: 15px;
                     }
 

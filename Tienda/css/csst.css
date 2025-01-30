@@ -151,8 +151,8 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  height: fit-content;
   background: rgba(19, 17, 5, 0.7); /* Dark brown with opacity */
   justify-content: center;
   align-items: center;
@@ -220,92 +220,57 @@ iframe {
 /*Modal Producto*/
 /****************/
 
-/* 🔲 Fondo oscuro detrás del modal */
-.modal-overlay {
+
+#modalOverlayPerfil {
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7); /* Fondo más oscuro para más contraste */
-  display: none;
+  height: 100%;
+  background: rgba(19, 17, 5, 0.7); /* Dark brown with opacity */
   justify-content: center;
   align-items: center;
-  z-index: 1000;
-  backdrop-filter: blur(5px); /* Efecto de desenfoque elegante */
+  z-index: 9999;
 }
 
-/* 📌 Contenedor del modal */
-.modal-content {
-  background: var(--card-bg); /* Fondo oscuro */
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.5);
-  width: 85%;
-  max-width: 650px;
+#modalContentPerfil {
+  background: var(--light-bg);
+  padding: 20px;
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(19, 17, 5, 0.3);
   position: relative;
+  overflow: hidden;
+  z-index: 10000;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border: 2px solid var(--primary-gold); /* Borde dorado elegante */
 }
 
-/* 🖼️ Título dentro del modal */
-.modal-title {
-  font-size: 22px;
-  color: var(--primary-gold); /* Color dorado para destacar */
-  margin-bottom: 15px;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* ❌ Botón de cierre */
-.close-modal {
+#closeModalPerfil {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--primary-bg); /* Marrón oscuro */
-  color: var(--text-light);
-  border: 2px solid var(--primary-gold);
-  padding: 8px 14px;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.close-modal:hover {
-  background: var(--dark-brown); /* Oscurece más */
-  transform: scale(1.1); /* Pequeño efecto de zoom */
-}
-
-/* 🖼️ Estilos para el iframe */
-#modalIframe {
-  width: 100%;
-  height: 420px;
+  top: 10px;
+  right: 10px;
+  background: none;
   border: none;
-  border-radius: 8px;
-  background: var(--light-bg); /* Fondo claro */
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--dark-brown);
 }
 
-/* ✨ Detalles extra: Efecto sutil al abrir */
-@keyframes fadeIn {
-  from {
-      opacity: 0;
-      transform: scale(0.9);
-  }
-  to {
-      opacity: 1;
-      transform: scale(1);
-  }
-}
-
-.modal-content {
-  animation: fadeIn 0.3s ease-out;
+.iframePerfil {
   width: 100%;
   height: 100%;
+  border: none;
 }
 
+.content {
+  height: 2000px;
+  background: linear-gradient(to bottom, var(--light-bg), var(--primary-gold));
+  padding: 20px;
+}
 .btn-custom {
   background-color: var(--dark-green); /* Verde oscuro */
   color: var(--text-light); /* Beige claro */
@@ -322,4 +287,50 @@ iframe {
   background-color: var(--primary-gold); /* Dorado al pasar el ratón */
   color: var(--dark-brown); /* Marrón oscuro */
   border-color: var(--dark-green); /* Verde oscuro */
+}
+
+/*MODAL DEL PRODUCTO*/
+
+
+#modalOverlayProducto {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#modalContentProducto {
+  background: #784d31;
+  padding: 10px;
+  width: 90%;
+  height: 90%;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+}
+
+#closeModalProducto {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  color: var(--dark-brown);
+}
+
+.iframeProducto {
+  width: 100%;
+  height: 100%;
+  border: none;
 }

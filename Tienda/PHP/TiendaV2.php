@@ -79,7 +79,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="../css/cssT.css">
+        <link rel="stylesheet" href="../css/csst.css">
     </head>
 
 
@@ -150,10 +150,10 @@
                         </button>
 
                         <!-- Modal para el perfil -->
-                        <div id="modalOverlay">
-                            <div id="modalContent">
+                        <div id="modalOverlayPerfil">
+                            <div id="modalContentPerfil">
                                 <button id="closeModal" onclick="cerrarModal()">X</button>
-                                <iframe src="http://localhost/HACKATHON/Tienda/PHP/Perfil.php" title="Contenido"></iframe>
+                                <iframe class="iframePerfil" src="http://localhost/HACKATHON/Tienda/PHP/Perfil.php" title="Contenido"></iframe>
                             </div>
                         </div>
                     </div>
@@ -218,6 +218,7 @@
                 <a href="TiendaV2.php?filtro=todos<?php echo !empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''; ?>" class="btn btn-outline-secondary <?php echo $filtro === 'todos' ? 'active' : ''; ?>">
                     Todos
                 </a>
+
                 <?php foreach ($categorias as $categoria): ?>
                     <a href="TiendaV2.php?filtro=<?php echo $categoria['id'] . (!empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''); ?>" 
                     class="btn btn-outline-secondary <?php echo $filtro == $categoria['id'] ? 'active' : ''; ?>">
@@ -233,10 +234,10 @@
                 <div class="row g-4">
                     <?php if (count($productos) > 0): ?>
                         <!-- Modal global (debe estar FUERA del foreach) -->
-                        <div id="modalOverlay2" class="modal-overlay">
-                            <div id="modalContent" class="modal-content">
-                                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modal">X</button>
-                                <iframe id="modalIframe" title="Detalles del Producto"></iframe>
+                        <div id="modalOverlayProducto" class="modal-overlayProducto">
+                            <div id="modalContentProducto" class="modal-contentProducto">
+                                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modalProducto">X</button>
+                                <iframe id="modalIframeProducto" title="Detalles del Producto"></iframe>
                             </div>
                         </div>
 
@@ -362,18 +363,18 @@
         <script>
             // Función para abrir el modal
             function abrirModal() {
-                document.getElementById('modalOverlay').style.display = 'flex';
+                document.getElementById('modalOverlayPerfil').style.display = 'flex';
             }
 
             // Función para cerrar el modal
             function cerrarModal() {
-                document.getElementById('modalOverlay').style.display = 'none';
+                document.getElementById('modalOverlayPerfil').style.display = 'none';
             }
 
             // Función para abrir el modal del producto
             function abrirModalProducto(productoId) {
-                let modal = document.getElementById('modalOverlay2');  // Selecciona el único modal
-                let iframe = document.getElementById('modalIframe');
+                let modal = document.getElementById('modalOverlayProducto');  // Selecciona el único modal
+                let iframe = document.getElementById('modalIframeProducto');
 
                 modal.style.display = 'flex';
                 iframe.src = `verProducto.php?id=${productoId}`;  // Carga el producto seleccionado
@@ -381,8 +382,8 @@
 
             // Función para cerrar el modal del producto
             function cerrarModalProducto() {
-                let modal = document.getElementById('modalOverlay2');
-                let iframe = document.getElementById('modalIframe');
+                let modal = document.getElementById('modalOverlayProducto');
+                let iframe = document.getElementById('modalIframeProducto');
 
                 modal.style.display = 'none';
                 iframe.src = '';  // Limpia el iframe para evitar recargas innecesarias
