@@ -10,7 +10,16 @@
     </head>
 
     <body>
-        <?php
+    <?php
+// perfil.php
+
+// Incluir archivo de sesión para verificar que el usuario está autenticado
+require '../../phpessentials/sesion.php';
+
+// Incluir archivo de conexión para acceder a la base de datos
+require '../../phpessentials/conexion.php';
+
+            session_start();
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Configuración de la base de datos
                 $host = 'localhost';
@@ -43,7 +52,7 @@
 
                 // Asegurar que tengamos al menos 5 valores definidos en el arreglo
                 for ($i = count($imagenes); $i < 5; $i++) {
-                    $imagenes[] = null; // Rellenar con `null` si faltan imágenes
+                    $imagenes[] = null; // Rellenar con null si faltan imágenes
                 }
 
                 // Asignar imágenes a variables individuales
@@ -74,7 +83,10 @@
                 // Cerrar la conexión
                 $conn->close();
             }
-        ?>
+
+
+?>
+
 
         <div class="profile-container">
             <h1>Perfil de Usuario</h1>

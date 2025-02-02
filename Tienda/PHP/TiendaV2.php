@@ -1,73 +1,10 @@
 <?php
-    $servidor = 'localhost';
-    $BBDD = 'hackaton';
-    $usuario = 'root';
-    $contra = '';
-    
-    include '../../phpessentials/sesioncheck.php';
-    try {
-        $pdo = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        // Obtener todas las categorías desde la base de datos
-        $sql_categorias = "SELECT id, nombre FROM categorias_objetos";
-        $stmt_categorias = $pdo->prepare($sql_categorias);
-        $stmt_categorias->execute();
-        $categorias = $stmt_categorias->fetchAll(PDO::FETCH_ASSOC);
-
-        // Obtener la cantidad total de categorías
-        $sql_total_categorias = "SELECT COUNT(*) FROM categorias_objetos";
-        $stmt_total_categorias = $pdo->prepare($sql_total_categorias);
-        $stmt_total_categorias->execute();
-        $total_categorias = $stmt_total_categorias->fetchColumn();
-
-        // Obtener el filtro desde la URL (por defecto "todos")
-        $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : 'todos';
-
-        // Obtener el término de búsqueda
-        $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
-
-        // Consultar productos según el filtro y la búsqueda
-        $sql = "SELECT o.*, c.nombre as categoria_nombre, e.tipo as estado_tipo 
-                FROM objeto o 
-                LEFT JOIN categorias_objetos c ON o.id_categoria = c.id 
-                LEFT JOIN estado e ON o.id_estado = e.id 
-                WHERE 1=1";
-        $params = array();
-
-        if ($filtro !== 'todos') {
-            $sql .= " AND o.id_categoria = :filtro";
-            $params[':filtro'] = $filtro;
-        }
-
-        if (!empty($busqueda)) {
-            $sql .= " AND o.nombre LIKE :busqueda";
-            $params[':busqueda'] = "%$busqueda%";
-        }
-
-        $sql .= " ORDER BY o.id";
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute($params);
-        $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error en la BBDD: " . $e->getMessage());
-    }
-
-    // Función para obtener la clase de estado
-    function getEstadoClass($tipo) {
-        switch(strtolower($tipo)) {
-            case 'excelente':
-                return 'text-success fw-bold';
-            case 'bien':
-                return 'text-primary fw-bold';
-            case 'defectuoso':
-                return 'text-danger fw-bold';
-            default:
-                return 'text-muted';
-        }
-    }
+include '../../phpessentials/sesioncheck.php';
+include '../../phpessentials/obtener_categorias.php';
+include '../../phpessentials/obtener_productos.php';
+include '../../phpessentials/funciones.php';
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -85,44 +22,7 @@
 
 
     <body>
-
     <!-- Modal de consentimiento de cookies -->
-    <div id="cookieModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
-            <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
-            </p>
-            <button id="acceptCookiesBtn">Aceptar</button>
-            <button id="declineCookiesBtn">Rechazar</button>
-        </div>
-        </div>
-
-        <style>
- /* Estilos para el modal */
-
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  margin-top: 20%;
-}
-
-/* Contenido del modal */
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
-
-        </style>
         <header class="shop-header">
             <nav class="navbar navbar-expand-lg navbar-dark py-3">
                 <div class="container">
@@ -146,7 +46,7 @@
 
                         <!-- Botón de salir -->
                         <button onclick="cerrarSesion()" class="btn buttonBackground btn-link text-light" type="submit" title="CerrarSesion" style="margin-left: 10px">
-                            <i class="fa-solid fa-right-to-bracket"></i>                
+                            <i class="fa-solid fa-right-to-bracket"></i>
                         </button>
 
                         <!-- Modal para el perfil -->
@@ -222,12 +122,11 @@
                 <?php foreach ($categorias as $categoria): ?>
                     <a href="TiendaV2.php?filtro=<?php echo $categoria['id'] . (!empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''); ?>" 
                     class="btn btn-outline-secondary <?php echo $filtro == $categoria['id'] ? 'active' : ''; ?>">
-                        <?php echo htmlspecialchars($categoria['nombre']); ?>
+                      <i class="fa-solid fa-filter"></i>  <?php echo htmlspecialchars($categoria['nombre']); ?>
                     </a>
                 <?php endforeach; ?>
             </div>
             <div class="container mt-4">
-            <!-- Modal de consentimiento de cookies -->
             <!-- Grid de Productos -->
             <div class="container mt-4">
                 <h1 class="mb-4">Listado de Productos</h1>
@@ -236,7 +135,7 @@
                         <!-- Modal global (debe estar FUERA del foreach) -->
                         <div id="modalOverlayProducto" class="modal-overlayProducto">
                             <div id="modalContentProducto" class="modal-contentProducto">
-                                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modalProducto">X</button>
+                                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modalProducto"><i class="fa-solid fa-xmark"></i></button>
                                 <iframe id="modalIframeProducto" title="Detalles del Producto"></iframe>
                             </div>
                         </div>
@@ -292,7 +191,7 @@
                                             </span>
                                         </p>
                                         <button onclick="abrirModalProducto(<?php echo $producto['id']; ?>)" class="btn-custom">
-                                            Ver producto
+                                        <i class="fa-solid fa-magnifying-glass"></i> Ver producto
                                         </button>
                                     </div>
                                 </div>
@@ -331,33 +230,6 @@
                 </div>
             </div>
         </footer>
-
-        
-        
-        <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        // Verificar si ya se ha aceptado las cookies
-        if (!localStorage.getItem('cookiesAccepted')) {
-            // Si no, mostrar el modal de cookies
-            document.getElementById('cookieModal').style.display = 'block';
-        }
-
-        // Manejar la acción de aceptar cookies
-        document.getElementById('acceptCookiesBtn').addEventListener('click', function () {
-            // Almacenar que el usuario aceptó las cookies
-            localStorage.setItem('cookiesAccepted', 'true');
-            // Cerrar el modal
-            document.getElementById('cookieModal').style.display = 'none';
-        });
-
-        // Manejar la acción de rechazar cookies
-        document.getElementById('declineCookiesBtn').addEventListener('click', function () {
-            // Puedes hacer que si el usuario rechaza las cookies, no hagas nada o muestres un mensaje
-            // Aquí no almacenamos nada, por lo que el popup aparecerá nuevamente si el usuario recarga la página
-            document.getElementById('cookieModal').style.display = 'none';
-        });
-        });
-    </script>
 
 
         <script>

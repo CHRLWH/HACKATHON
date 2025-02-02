@@ -1,44 +1,34 @@
 <?php
-    // Parámetros de conexión
-    $servidor = 'localhost';
-    $BBDD = 'hackaton';
-    $usuario = 'root';
-    $contra = '';
-    include '../../phpessentials/sesioncheck.php';
-    try {
-        // Conexión a la base de datos con PDO
-        $conexion = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
-        $conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    } catch (PDOException $e) {
-        die("Error de conexión: " . $e->getMessage());
-    }
+// Incluir la conexión a la base de datos y la verificación de sesión
 
-    // Incluir el archivo de sesión (verifica si este archivo es necesario aquí)
+require_once '../phpessentials/conexion.php';// Conexión a la base de datos
+require_once '../phpessentials/sesioncheck.php'; // Verifica o inicia la sesión
 
-    // Obtener el filtro de validación si existe
-    $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
+// Inicializar la variable de validación
+$validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
 
-    // Construcción de la consulta SQL con filtro
-    $sql = "SELECT * FROM objeto";
-    if ($validado === 'validados') {
-        $sql .= " WHERE validado = 1"; // Solo productos validados
-    } elseif ($validado === 'no_validados') {
-        $sql .= " WHERE validado = 0"; // Solo productos no validados
-    }
+// Crear la consulta SQL con el filtro de validación
+$sql = "SELECT * FROM objeto";
 
-    // Preparar y ejecutar la consulta
-    try {
-        $stmt = $conexion->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        die("Error en la consulta: " . $e->getMessage());
-    }
+// Modificar la consulta según el filtro de validación
+if ($validado === 'validados') {
+    $sql .= " WHERE validado = 1"; // Solo productos validados
+} elseif ($validado === 'no_validados') {
+    $sql .= " WHERE validado = 0"; // Solo productos no validados
+}
 
-    // Opcional: Cerrar la conexión (PDO lo hace automáticamente al final del script)
-    // $conexion = null;
+try {
+    // Preparar y ejecutar la consulta usando PDO
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error en la consulta: " . $e->getMessage());
+}
+
+// Opcional: Cerrar la conexión (PDO lo hace automáticamente al final del script)
+// $pdo = null; // No es necesario si usas PDO y la conexión se cierra automáticamente al final del script
 ?>
-
 
 <!DOCTYPE html>
 <html lang="es">

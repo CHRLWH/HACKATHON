@@ -1,0 +1,77 @@
+<section class="container mb-5">
+    <h2 class="mb-4">Productos</h2>
+    <form class="d-flex" action="TiendaV2.php" method="GET">
+        <input type="search" name="busqueda" class="form-control search-bar-headder me-2" placeholder="Buscar productos" value="<?php echo htmlspecialchars($busqueda); ?>">
+        <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
+    </form>
+    <hr>
+
+    <div class="btn-group mb-3" role="group">
+        <a href="TiendaV2.php?filtro=todos<?php echo !empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''; ?>" class="btn btn-outline-secondary <?php echo $filtro === 'todos' ? 'active' : ''; ?>">Todos</a>
+        <?php foreach ($categorias as $categoria): ?>
+            <a href="TiendaV2.php?filtro=<?php echo $categoria['id'] . (!empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''); ?>" 
+               class="btn btn-outline-secondary <?php echo $filtro == $categoria['id'] ? 'active' : ''; ?>">
+                <?php echo htmlspecialchars($categoria['nombre']); ?>
+            </a>
+        <?php endforeach; ?>
+    </div>
+
+    <div class="row g-4">
+        <?php if (!empty($productos)): ?>
+            <?php foreach ($productos as $producto): ?> 
+                <div class="col-md-4">
+                    <div class="card h-100">
+                        <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <?php 
+                                $imagenes = [$producto['imagen'], $producto['imagen2'], $producto['imagen3'], $producto['imagen4'], $producto['imagen5']];
+                                foreach ($imagenes as $index => $ruta_imagen): 
+                                    if (!empty($ruta_imagen)): ?>
+                                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                                            <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100">
+                                        </div>
+                                    <?php endif; 
+                                endforeach; ?>
+                            </div>
+                            <?php if (count(array_filter($imagenes)) > 1): ?>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="card-body">
+                            <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
+                            <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
+                            <p class="card-text">
+                                Estado: 
+                                <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
+                                    <?php echo htmlspecialchars($producto['estado_tipo']); ?>
+                                </span>
+                            </p>
+                            <a href="verProducto.php?id=<?php echo $producto['id']; ?>" class="btn btn-warning">Ver producto</a>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php else: ?>
+            <p class="text-center">No hay productos disponibles.</p>
+        <?php endif; ?>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container">
+        <hr class="mb-5">
+        <div class="d-flex justify-content-center">
+            <a class="navbar-brand" href="#">
+                <img src="../../img/4-removebg-preview (1).png" alt="Logo" class="d-block" style="width: 100px; height: 50px;">
+            </a>
+        </div>
+    </div>
+</footer>

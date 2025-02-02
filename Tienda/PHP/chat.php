@@ -1,6 +1,4 @@
 <?php
-    require_once '../../phpessentials/sesion.php';
-    include '../../phpessentials/sesioncheck.php';
     // Ruta al archivo donde se almacenan los mensajes
     $file = __DIR__ . '/messages.txt';
 

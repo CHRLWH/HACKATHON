@@ -1,14 +1,13 @@
 <?php
-$nombreDeServidor = "localhost";
+$servidor = 'localhost';
+$BBDD = 'hackaton';
 $usuario = 'root';
-$password = '';
-$baseDeDatos = 'hackaton';
+$contra = '';
 
-$conexion = new mysqli($nombreDeServidor, $usuario, $password, $baseDeDatos);
-
-if ($conexion->connect_error) {
-    die("Connection failed: " . $conexion->connect_error);
+try {
+    $pdo = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error en la BBDD: " . $e->getMessage());
 }
-
-$loginFallido = false;
 ?>

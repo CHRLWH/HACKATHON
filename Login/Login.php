@@ -1,106 +1,12 @@
 <?php
-    require_once '../phpessentials/sesion.php';
-    // Inicializar variables para evitar advertencias
-    $loginFallido = false;
-    $adminLoginFallido = false;
-    $registroExitoso = false;
-
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-      // Login de usuarios normales
-        if (isset($_POST['codigo_CAM'], $_POST['correo'])) {
-            $codigo_CAM = filter_var(trim($_POST['codigo_CAM']), FILTER_SANITIZE_NUMBER_INT);
-            $correo = filter_var(trim($_POST['correo']), FILTER_SANITIZE_EMAIL);
-
-            if (empty($codigo_CAM) || empty($correo)) {
-                $loginFallido = true;
-            } else {
-                $sentencia = $conexion->prepare("SELECT * FROM usuario WHERE codigo_CAM = ? AND correo = ?");
-                $sentencia->bind_param("is", $codigo_CAM, $correo);
-
-                if ($sentencia->execute()) {
-                    $resultado = $sentencia->get_result();
-
-                    if ($resultado->num_rows > 0) {
-                        $usuario = $resultado->fetch_assoc();
-                        $_SESSION['user_id'] = $usuario['id'];
-                        $_SESSION['user_name'] = htmlspecialchars($usuario['Nombre'], ENT_QUOTES, 'UTF-8');
-
-                        header("Location: http://localhost/HACKATHON/Tienda/PHP/TiendaV2.php");
-                        exit;
-                    } else {
-                        $loginFallido = true;
-                    }
-                    $resultado->close();
-                } else {
-                    echo "<p style='color:red;'>Error al ejecutar la consulta de usuario.</p>";
-                }
-                $sentencia->close();
-            }
-        } elseif (isset($_POST['admin_username'], $_POST['admin_password'])) {
-            // Obtén y limpia los datos del formulario
-            $admin_username = filter_var(trim($_POST['admin_username']), FILTER_SANITIZE_STRING);
-            $admin_password = trim($_POST['admin_password']);
-        
-            if (empty($admin_username) || empty($admin_password)) {
-                $adminLoginFallido = true; // Marca el login como fallido si los campos están vacíos
-            } else {
-                // Consulta SQL para verificar el usuario y la contraseña en la tabla `administradores`
-                $sentencia = $conexion->prepare("SELECT * FROM administradores WHERE nombre = ? AND contrasena = ?");
-                $sentencia->bind_param("ss", $admin_username, $admin_password);
-        
-                if ($sentencia->execute()) {
-                    $resultado = $sentencia->get_result();
-        
-                    if ($resultado->num_rows > 0) {
-                        // El administrador existe, iniciar sesión
-                        $admin = $resultado->fetch_assoc();
-                        $_SESSION['admin_id'] = $admin['id'];
-                        $_SESSION['admin_name'] = htmlspecialchars($admin['nombre'], ENT_QUOTES, 'UTF-8');
-        
-                        // Redirige al dashboard de administrador
-                        header("Location: http://localhost/HACKATHON/administracion/adminPanel.php");
-                        exit;
-                    } else {
-                        $adminLoginFallido = true; // Usuario o contraseña incorrectos
-                    }
-                    $resultado->close();
-                } else {
-                    echo "<p style='color:red;'>Error al ejecutar la consulta de administrador.</p>";
-                }
-                $sentencia->close();
-            }
-        } elseif (isset($_POST['action']) && $_POST['action'] === 'register') {
-            $nombre = filter_var(trim($_POST['nombre']), FILTER_SANITIZE_STRING);
-            $nie = filter_var(trim($_POST['nie']), FILTER_SANITIZE_STRING);
-            $password = trim($_POST['password']);
-            $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
-
-            if (empty($nombre) || empty($nie) || empty($password) || empty($email)) {
-                echo "<p style='color:red;'>Rellene todos los campos del formulario de registro.</p>";
-            } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo "<p style='color:red;'>El formato del correo no es válido.</p>";
-            } else {
-                $asunto = "Confirmación de registro";
-                $mensaje = "Hola $nombre,\n\nGracias por registrarse. Nos pondremos en contacto con usted tras revisar su información.";
-                $cabecera = "From: no-reply@hilan.com\r\nContent-Type: text/plain; charset=UTF-8";
-
-                if (mail($email, $asunto, $mensaje, $cabecera)) {
-                    echo "<p style='color:blue;'>Registro completado! Nos pondremos en contacto tras revisar sus datos a través de: $email.</p>";
-                    $registroExitoso = true;
-                } else {
-                    echo "<p style='color:red;'>Fallo en el envío de email! Vuelva a intentarlo.</p>";
-                }
-            }
-        }
-    }
-
-    // Cerrar conexión
-    if (isset($conexion)) {
-        $conexion->close();
-    }
+include '../phpessentials/sesion.php';
+include '../phpessentials/login_usuario.php';
+include '../phpessentials/login_admin.php';
+include '../phpessentials/registro_usuario.php';
 ?>
 
-<!doctype html>
+
+<!Doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -110,7 +16,41 @@
         <link href="LoginCss/style.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
+    <div id="cookieModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
+            <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
+            </p>
+            <button id="acceptCookiesBtn">Aceptar</button>
+            <button id="declineCookiesBtn">Rechazar</button>
+        </div>
+        </div>
 
+        <style>
+            
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  margin-top: 20%;
+}
+
+/* Contenido del modal */
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+        </style>
     <body>
         <header class="fondoDiv">
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -164,9 +104,12 @@
 
                                 <input type="submit" value="Login" class="forms_buttons-action">
                             </div>
+                            <?php if ($usuarioNoValidado): ?>
+                                <p id="failMessage" class="failMessage">¡Usuario no validado! Por favor, contacte con el administrador.</p>
+                            <?php endif; ?>
 
                             <?php if ($loginFallido): ?>
-                                <p id="failMessageLogin" class="failMessage">¡El código o correo están incorrectos!</p>
+                                <p id="failMessageLogin" class="failMessage">¡El código o correo son incorrectos!</p>
                             <?php endif; ?>
                         </form>
                         <button id="admin-login-button" value= "Log In" class="forms_buttons-action"> administración</button>
@@ -177,7 +120,7 @@
                         <form class="forms_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" target="_self">
                             <fieldset class="forms_fieldset">
                                 <div class="forms_field">
-                                    <label for="admin_username" >Usuario Admin</label>
+                                    <label for="admin_username">Usuario Admin</label>
                                     <input type="text" placeholder="Usuario Admin" class="forms_field-input" name="admin_username" id="admin_username" required />
                                 </div>
 
@@ -191,14 +134,14 @@
                                 <input type="submit" value="Login Admin" class="forms_buttons-action">
                             </div>
                         </form>
-                        
+
                         <button id="user-login-button" class="forms_buttons-action">Usuarios</button>
 
                         <?php if ($adminLoginFallido): ?>
                             <p id="failMessageAdmin" class="failMessage">¡Usuario o contraseña de administrador incorrectos!</p>
                         <?php endif; ?>
                     </div>
-                    
+
                     <div class="user_forms-signup">
                         <h2 class="forms_title">Registro</h2>
 
@@ -259,7 +202,31 @@
                 </div>
             </div>
         </footer>
+  
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            // Verificar si ya se ha aceptado las cookies
+            if (!localStorage.getItem('cookiesAccepted')) {
+                // Si no, mostrar el modal de cookies
+                document.getElementById('cookieModal').style.display = 'block';
+            }
 
+            // Manejar la acción de aceptar cookies
+            document.getElementById('acceptCookiesBtn').addEventListener('click', function () {
+                // Almacenar que el usuario aceptó las cookies
+                localStorage.setItem('cookiesAccepted', 'true');
+                // Cerrar el modal
+                document.getElementById('cookieModal').style.display = 'none';
+            });
+
+            // Manejar la acción de rechazar cookies
+            document.getElementById('declineCookiesBtn').addEventListener('click', function () {
+                // Puedes hacer que si el usuario rechaza las cookies, no hagas nada o muestres un mensaje
+                // Aquí no almacenamos nada, por lo que el popup aparecerá nuevamente si el usuario recarga la página
+                document.getElementById('cookieModal').style.display = 'none';
+            });
+            });
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 

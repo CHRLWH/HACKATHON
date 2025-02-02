@@ -1,9 +1,8 @@
 <?php
-$servidor = 'localhost';
-$BBDD = 'hackaton';
-$usuario = 'root';
-$contra = '';
-include '../../phpessentials/sesioncheck.php';
+
+include '../phpessentials/sesioncheck.php';
+include '../phpessentials/conexion.php';
+
 try {
     // Conexión a la base de datos con PDO
     $conexion = new PDO("mysql:host=$servidor;dbname=$BBDD;charset=utf8", $usuario, $contra);
