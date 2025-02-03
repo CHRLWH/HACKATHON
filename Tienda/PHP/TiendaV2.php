@@ -52,7 +52,7 @@ include '../../phpessentials/funciones.php';
                         <!-- Modal para el perfil -->
                         <div id="modalOverlayPerfil">
                             <div id="modalContentPerfil">
-                                <button id="closeModal" onclick="cerrarModal()">X</button>
+                                <button id="closeModal" onclick="cerrarModal()"><i class="fa-solid fa-xmark"></i></button>
                                 <iframe class="iframePerfil" src="http://localhost/HACKATHON/Tienda/PHP/Perfil.php" title="Contenido"></iframe>
                             </div>
                         </div>
@@ -209,24 +209,22 @@ include '../../phpessentials/funciones.php';
                 <hr class="mb-5">
                 <div class="row g-4 justify-content-center text-light text-center mb-5">
                     <div class="col-md-4">
-                        <a href="../../privacidad.html" class="footer-link">Política de privacidad</a>
+                        <a href="http://localhost/HACKATHON/Footer/privacidad.html" class="footer-link text-light">Política de privacidad</a>
                     </div>
 
                     <div class="col-md-4">
-                        <a href="../../Terminos.html" class="footer-link">Términos y condiciones</a>
+                        <a href="http://localhost/HACKATHON/Footer/Terminos.html" class="footer-link text-light">Términos y condiciones</a>
                     </div>
 
                     <div class="col-md-4">
-                        <a href="../../QyA.html" class="footer-link">QyA</a>
+                        <a href="http://localhost/HACKATHON/Footer/QyA.html" class="footer-link text-light">QyA</a>
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-around align-items-center">
-                    <img src="../../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
-                    
+                    <img src="../../img/Imagen de WhatsApp 2025-02-03 a las 00.35.34_f954b894.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
                     <img src="../../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
-                    
-                    <img src="../../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+                    <img src="../../img/Imagen de WhatsApp 2025-02-03 a las 00.35.34_66f17eaf.jpg" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
                 </div>
             </div>
         </footer>

@@ -301,18 +301,19 @@ iframe {
   height: 100%;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
+  z-index: 1050; /* Asegúrate de que el modal esté por encima de otros elementos */
+
 }
 
 #modalContentProducto {
-  background: #784d31;
+  background: var(--light-bg);
   padding: 10px;
   width: 90%;
   height: 90%;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
-  z-index: 10000;
+  z-index: 1050; /* Asegúrate de que el modal esté por encima de otros elementos */
   display: flex;
   flex-direction: column;
 }
@@ -326,11 +327,11 @@ iframe {
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
-  color: var(--dark-brown);
+  color: var(--light-bg);;
 }
 
 .iframeProducto {
   width: 100%;
-  height: 100%;
+  height: 10px;
   border: none;
 }

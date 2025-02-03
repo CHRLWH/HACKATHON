@@ -1,8 +1,8 @@
 <?php
-include '../phpessentials/sesion.php';
-include '../phpessentials/login_usuario.php';
-include '../phpessentials/login_admin.php';
-include '../phpessentials/registro_usuario.php';
+    include '../phpessentials/sesion.php';
+    include '../phpessentials/login_usuario.php';
+    include '../phpessentials/login_admin.php';
+    include '../phpessentials/registro_usuario.php';
 ?>
 
 
@@ -15,42 +15,42 @@ include '../phpessentials/registro_usuario.php';
         <link rel="icon" type="image/x-icon" href="../img/1-2feccb09.ico">
         <link href="LoginCss/style.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    </head>
-    <div id="cookieModal" class="modal" style="display:none;">
-        <div class="modal-content">
-            <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
-            <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
-            </p>
-            <button id="acceptCookiesBtn">Aceptar</button>
-            <button id="declineCookiesBtn">Rechazar</button>
-        </div>
+    
+        <div id="cookieModal" class="modal" style="display:none;">
+            <div class="modal-content">
+                <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
+                <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
+                </p>
+                <button id="acceptCookiesBtn">Aceptar</button>
+                <button id="declineCookiesBtn">Rechazar</button>
+            </div>
         </div>
 
         <style>
-            
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 400px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  margin-top: 20%;
-}
+            .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            margin-top: 20%;
+            }
 
-/* Contenido del modal */
-.modal-content {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-}
-
+            /* Contenido del modal */
+            .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            }
         </style>
+    </head>
+
     <body>
         <header class="fondoDiv">
             <nav class="navbar navbar-expand-lg navbar-dark">
@@ -104,9 +104,6 @@ include '../phpessentials/registro_usuario.php';
 
                                 <input type="submit" value="Login" class="forms_buttons-action">
                             </div>
-                            <?php if ($usuarioNoValidado): ?>
-                                <p id="failMessage" class="failMessage">¡Usuario no validado! Por favor, contacte con el administrador.</p>
-                            <?php endif; ?>
 
                             <?php if ($loginFallido): ?>
                                 <p id="failMessageLogin" class="failMessage">¡El código o correo son incorrectos!</p>

@@ -2,7 +2,12 @@
 // Incluir la conexión a la base de datos y la verificación de sesión
 
 require_once '../phpessentials/conexion.php';// Conexión a la base de datos
-require_once '../phpessentials/sesioncheck.php'; // Verifica o inicia la sesión
+session_start();
+if (!isset($_SESSION['admin_id'])) {
+
+    header("Location: http://localhost/HACKATHON/Login/Login.php");
+    exit;
+}// Verifica o inicia la sesión
 
 // Inicializar la variable de validación
 $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
@@ -11,7 +16,7 @@ $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 
 $sql = "SELECT * FROM objeto";
 
 // Modificar la consulta según el filtro de validación
-if ($validado === 'validados') {
+// if ($validado === 'validados') {
     $sql .= " WHERE validado = 1"; // Solo productos validados
 } elseif ($validado === 'no_validados') {
     $sql .= " WHERE validado = 0"; // Solo productos no validados
