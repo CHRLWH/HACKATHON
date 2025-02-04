@@ -15,7 +15,8 @@
         <link rel="icon" type="image/x-icon" href="../img/1-2feccb09.ico">
         <link href="LoginCss/style.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <div id="cookieModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
@@ -140,7 +141,7 @@
                     </div>
 
                     <div class="user_forms-signup">
-                        <h2 class="forms_title">Registro</h2>
+                        <h2 class="forms_title">Registro </h2>
 
                         <form method="post" action="">
                             <input type="hidden" name="action" value="register">
@@ -191,11 +192,9 @@
                 </div>
 
                 <div class="d-flex justify-content-around align-items-center">
-                    <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
-                    
+                    <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
                     <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
-                    
-                    <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+                    <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
                 </div>
             </div>
         </footer>

@@ -1,35 +1,29 @@
 <?php
-// Incluir la conexión a la base de datos y la verificación de sesión
+    // Incluir la conexión a la base de datos y la verificación de sesión
+    include '../phpessentials/conexion.php'; // Conexión a la base de datos
+    include '../phpessentials/sessioncheckAdmin.php';
 
-require_once '../phpessentials/conexion.php';// Conexión a la base de datos
-session_start();
-if (!isset($_SESSION['admin_id'])) {
+    // Inicializar la variable de validación
+    $validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
 
-    header("Location: http://localhost/HACKATHON/Login/Login.php");
-    exit;
-}// Verifica o inicia la sesión
+    // Crear la consulta SQL con el filtro de validación
+    $sql = "SELECT * FROM objeto";
 
-// Inicializar la variable de validación
-$validado = isset($_GET['validado']) ? $_GET['validado'] : 'todos'; // 'todos', 'validados', 'no_validados'
+    // Modificar la consulta según el filtro de validación
+    if ($validado === 'validados') {
+        $sql .= " WHERE validado = 1"; // Solo productos validados
+    } elseif ($validado === 'no_validados') {
+        $sql .= " WHERE validado = 0"; // Solo productos no validados
+    }
 
-// Crear la consulta SQL con el filtro de validación
-$sql = "SELECT * FROM objeto";
-
-// Modificar la consulta según el filtro de validación
-// if ($validado === 'validados') {
-    $sql .= " WHERE validado = 1"; // Solo productos validados
-} elseif ($validado === 'no_validados') {
-    $sql .= " WHERE validado = 0"; // Solo productos no validados
-}
-
-try {
-    // Preparar y ejecutar la consulta usando PDO
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Error en la consulta: " . $e->getMessage());
-}
+    try {
+        // Preparar y ejecutar la consulta usando PDO
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        die("Error en la consulta: " . $e->getMessage());
+    }
 
 // Opcional: Cerrar la conexión (PDO lo hace automáticamente al final del script)
 // $pdo = null; // No es necesario si usas PDO y la conexión se cierra automáticamente al final del script
