@@ -8,6 +8,11 @@ $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
 $busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
 $filtroTitulo = isset($_GET['filtroTitulo']) ? $_GET['filtroTitulo'] : null;
 $headingText = 'Listado de Productos';
+// Obtener los estados desde la base de datos
+$queryEstados = "SELECT * FROM estado";
+$stmtEstados = $pdo->prepare($queryEstados);
+$stmtEstados->execute();
+$estados = $stmtEstados->fetchAll(PDO::FETCH_ASSOC);
 
 // Variables for new filters
 $estadoFilter = isset($_GET['estado']) ? $_GET['estado'] : null; // Estado filter
@@ -24,34 +29,35 @@ if ($filtro) {
             break;
         }
     }
-}
-// Base query
-$query = "
-    SELECT o.id, o.nombre, o.id_estado, o.imagen, c.Nombre AS category, e.tipo AS estado
-    FROM objeto o
-    INNER JOIN categorias_objetos c ON o.id = c.id
-    INNER JOIN estado e ON o.id_estado = e.id
-    WHERE c.id = :filtro
+}$query = "
+SELECT o.id, o.nombre, o.id_estado, o.imagen, c.Nombre AS category, e.tipo AS estado
+FROM objeto o
+INNER JOIN categorias_objetos c ON o.id = c.id
+INNER JOIN estado e ON o.id_estado = e.id
+WHERE c.id = :filtro
 ";
+$query = "SELECT * FROM objeto o WHERE 1=1"; // Siempre es bueno partir de una condición sencilla
 
-// Add the filter for 'estado' if it is set
+// Aplica filtros si están presentes
+if ($filtro) {
+    $query .= " AND o.id_categoria = :filtro";
+}
+
 if ($estadoFilter) {
     $query .= " AND o.id_estado = :estadoFilter";
 }
 
-// Modify the query for the search filter
 if ($busqueda) {
     $query .= " AND o.nombre LIKE :busqueda";
 }
 
 $query .= " ORDER BY o.id DESC";
 
+// Preparar y ejecutar la consulta
 try {
-    // Prepare and execute the query
     $stmt = $pdo->prepare($query);
     $stmt->bindParam(':filtro', $filtro, PDO::PARAM_INT);
     
-    // Bind the estado filter if it's set
     if ($estadoFilter) {
         $stmt->bindParam(':estadoFilter', $estadoFilter, PDO::PARAM_INT);
     }
@@ -64,7 +70,7 @@ try {
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    die("Error de conexión: " . $e->getMessage());
+    die("Error en la consulta: " . $e->getMessage());
 }
 ?>
 
@@ -73,7 +79,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Listado de Productos</title>
+    <title>Productos</title>
     <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -333,30 +339,28 @@ button[type="submit"]:focus {
     <form method="GET" action="">
     <div class="content-wrapper">
     <div class="filter-container">
-        <select name="estado" id="estado">
-            <option value="">Seleccione un estado</option>
-            <?php
-            // Retrieve the list of states (you need to fetch them from the 'estado' table)
-            try {
-                $stmt = $pdo->prepare("SELECT id, tipo FROM estado ORDER BY tipo");
-                $stmt->execute();
-                $estados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($estados as $estado) {
-                    // Check if the current estado matches the selected filter
-                    $selected = ($estado['id'] == $estadoFilter) ? 'selected' : '';
-                    echo "<option value='" . $estado['id'] . "' $selected>" . htmlspecialchars($estado['tipo']) . "</option>";
-                }
-            } catch (PDOException $e) {
-                echo "<option value=''>Error al obtener estados</option>";
-            }
-            ?>
+    <form method="GET" action="PaginaProducto.php" style="display: flex; gap: 10px;">
+        <!-- Mantén el valor de filtro de categoría -->
+        <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
+
+        <select id="estado" name="estado">
+            <option value="">Seleccionar Estado</option>
+            <!-- Itera sobre los estados -->
+            <?php foreach ($estados as $estado): ?>
+                <option value="<?php echo $estado['id']; ?>" <?php echo isset($estadoFilter) && $estadoFilter == $estado['id'] ? 'selected' : ''; ?>>
+                    <?php echo htmlspecialchars($estado['tipo']); ?>
+                </option>
+            <?php endforeach; ?>
         </select>
-        <button type="submit">Filtrar</button>
-    </div>
+
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+    </form>
+</div>
+</div>
+
 </div>
 </form>
     <div class="container mt-4">
-                <h1 class="mb-4">Listado de Productos</h1>
                 <div class="row g-4">
                     <?php if (count($productos) > 0): ?>
                         <!-- Modal global (debe estar FUERA del foreach) -->
