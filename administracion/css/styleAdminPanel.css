@@ -1,13 +1,16 @@
 /* Variables de colores */
 :root {
-    --primary-bg: #95572e; /* Marrón */
-    --accent-color: #c39243; /* Dorado */
-    --text-light: #fefaef; /* Beige claro */
-    --card-bg: #131105; /* Marrón oscuro */
-    --primary-gold: #c39243; /* Dorado */
-    --light-bg: #fefaef; /* Beige claro */
-    --dark-green: #5c640f; /* Verde oscuro */
-    --dark-brown: #131105; /* Marrón oscuro */
+    --primary-bg: #f28930; /* Naranja principal */
+    --accent-color: #f5b97f; /* Naranja suave/dorado */
+    --text-light: #fcf5eb; /* Beige muy claro */
+    --card-bg: #f3e5d8; /* Beige cálido */
+    --primary-gold: #f5b97f; /* Dorado cálido */
+    --light-bg: #fcf5eb; /* Beige claro */
+    --dark-green: #8aa6c1; /* Azul crema suave */
+    --darker-green: #6f8fa5; /* Azul grisáceo pastel */
+    --dark-brown: #2f4858; /* Azul profundo, con base grisácea */
+    --luz-difuminacion: #f7c598; /* Naranja pastel para luces */
+    --light-green: #bcd3e1; /* Azul muy claro, casi pastel */
 }
 
 /* General */
@@ -144,8 +147,8 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #fefaef;
-    color: #131105;
+    background-color: #fcf5eb;
+    color: #2f4858;
 }
 
 .container {
@@ -154,7 +157,7 @@ body {
 
 /* Header */
 .header {
-    background-color: #95572e;
+    background-color: #f28930;
     padding: 10px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -169,7 +172,7 @@ body {
 }
 
 .header-buttons .btn {
-    background-color: #c39243;
+    background-color: #f5b97f;
     color: white;
     padding: 10px 20px;
     border-radius: 5px;
@@ -178,7 +181,7 @@ body {
 }
 
 .header .btn-secondary {
-    background-color: #5c640f;
+    background-color: #8aa6c1;
 }
 
 /* Productos */
@@ -191,8 +194,8 @@ body {
 }
 
 .producto-card {
-    background-color: #131105;
-    color: #fefaef;
+    background-color: #2f4858;
+    color: #fcf5eb;
     padding: 15px;
     border-radius: 8px;
     width: 250px;
@@ -209,7 +212,7 @@ body {
     display: inline-block;
     margin-top: 10px;
     padding: 5px 10px;
-    background-color: #c39243;
+    background-color: #f5b97f;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -221,7 +224,7 @@ body {
 
 /* Footer */
 .footer {
-    background-color: #95572e;
+    background-color: #f28930;
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -229,7 +232,7 @@ body {
 }
 
 .footer-link {
-    color: #fefaef;
+    color: #fcf5eb;
     text-decoration: none;
     margin: 0 10px;
 }

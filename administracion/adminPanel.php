@@ -50,11 +50,11 @@
                 </a>
                 <!-- Botones centrados -->
                 <div class="header-buttons d-flex justify-content-center">
-                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#5c640f;"> Gestionar usuarios </a>
-                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#5c640f;"> Gestionar chat </a>
+                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#8aa6c1;"> Gestionar usuarios </a>
+                    <a href = "gestionarUsuarios.php" class = "btn" style="background:#8aa6c1;"> Gestionar chat </a>
                 </div>
                 <!-- Botón a la derecha -->
-                <a href="funciones/logout.php" class="btn" style="background:#5c640f;">Cerrar sesión</a>
+                <a href="funciones/logout.php" class="btn" style="background:#8aa6c1;">Cerrar sesión</a>
             </div>
         </header>
 
@@ -65,7 +65,7 @@
 
             <!-- Filtro de validación -->
             <form method="GET" action="">
-                <select  style="background:#5c640f; color: white" name="validado" onchange="this.form.submit()">
+                <select  style="background:#8aa6c1; color: white" name="validado" onchange="this.form.submit()">
                     <option value="todos" <?php echo $validado == 'todos' ? 'selected' : ''; ?>>Todos</option>
                     <option value="validados" <?php echo $validado == 'validados' ? 'selected' : ''; ?>>Validados</option>
                     <option value="no_validados" <?php echo $validado == 'no_validados' ? 'selected' : ''; ?>>No validados</option>

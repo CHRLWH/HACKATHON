@@ -21,8 +21,8 @@ body {
 
 /* Título */
 h1 {
-  background-color: #95572e;
-  color: #fefaef;
+  background-color: #f28930;
+  color: #fcf5eb;
   padding: 20px;
   margin: 0;
   text-align: center;
@@ -47,8 +47,8 @@ h1 {
 
 .sidebar .nav-item {
   padding: 10px;
-  background-color: #95572e;
-  color: #fefaef;
+  background-color: #f28930;
+  color: #fcf5eb;
   margin-bottom: 10px;
   text-align: center;
   border-radius: 5px;
@@ -57,7 +57,7 @@ h1 {
 }
 
 .sidebar .nav-item:hover {
-  background-color: #5c640f;
+  background-color: #8aa6c1;
 }
 
 /* Sección principal */
@@ -76,7 +76,7 @@ h1 {
 }
 
 h2 {
-  color: #95572e;
+  color: #f28930;
 }
 
 /* Estilos para especificaciones del usuario */
@@ -96,20 +96,20 @@ h2 {
 .field label {
   font-weight: bold;
   margin-bottom: 5px;
-  color: #95572e;
+  color: #f28930;
 }
 
 .field input {
   padding: 8px;
-  border: 1px solid #fefaef;
+  border: 1px solid #fcf5eb;
   border-radius: 5px;
   font-size: 1rem;
 }
 
 button#recover-password {
   padding: 10px;
-  background-color: #95572e;
-  color: #fefaef;
+  background-color: #f28930;
+  color: #fcf5eb;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -118,7 +118,7 @@ button#recover-password {
 }
 
 button#recover-password:hover {
-  background-color: #5c640f;
+  background-color: #8aa6c1;
 }
 
 p#recovery-message {
@@ -135,7 +135,7 @@ p#recovery-message {
   max-width: 600px;
   margin: 20px auto;
   background-color: #fff3e6;
-  border: 1px solid #c39243;
+  border: 1px solid #f5b97f;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
@@ -144,7 +144,7 @@ p#recovery-message {
 /* Chatbox */
 .chatbox {
   position: relative;
-  background-color: #fefaef;
+  background-color: #fcf5eb;
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -152,7 +152,7 @@ p#recovery-message {
 
 /* Barra superior */
 .top-bar {
-  background-color: #95572e;
+  background-color: #f28930;
   color: #fff;
   padding: 15px;
   display: flex;
@@ -162,7 +162,7 @@ p#recovery-message {
 .avatar {
   width: 35px;
   height: 35px;
-  background-color: #c39243;
+  background-color: #f5b97f;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -185,7 +185,7 @@ p#recovery-message {
 }
 
 .bubble {
-  background-color: #c39243;
+  background-color: #f5b97f;
   padding: 10px 15px;
   border-radius: 15px;
   margin-bottom: 10px;
@@ -194,12 +194,12 @@ p#recovery-message {
 }
 
 .incoming .bubble {
-  background-color: #c39243;
+  background-color: #f5b97f;
   align-self: flex-start;
 }
 
 .outgoing .bubble {
-  background-color: #c39243;
+  background-color: #f5b97f;
   align-self: flex-end;
   margin-left: auto;
 }
@@ -208,8 +208,8 @@ p#recovery-message {
 .bottom-bar {
   display: flex;
   padding: 10px;
-  background-color: #fefaef;
-  border-top: 1px solid #c39243;
+  background-color: #fcf5eb;
+  border-top: 1px solid #f5b97f;
 }
 
 .bottom-bar input {
@@ -221,7 +221,7 @@ p#recovery-message {
 }
 
 .bottom-bar button {
-  background-color: #95572e;
+  background-color: #f28930;
   color: #fff;
   border: none;
   padding: 10px;
@@ -231,7 +231,7 @@ p#recovery-message {
 }
 
 .bottom-bar button:hover {
-  background-color: #5c640f;
+  background-color: #8aa6c1;
 }
 
 /* Estilos para la sección del formulario */
@@ -262,7 +262,7 @@ form {
 
 .mb-3 label {
   font-weight: bold;
-  color: #95572e;
+  color: #f28930;
   margin-bottom: 5px;
   text-align: center;
 }
@@ -278,17 +278,17 @@ form {
 
 /* Zona de carga */
 .drop-zone {
-  border: 2px dashed #95572e;
+  border: 2px dashed #f28930;
   border-radius: 5px;
   padding: 20px;
   text-align: center;
   cursor: pointer;
-  color: #95572e;
+  color: #f28930;
   transition: background-color 0.3s;
 }
 
 .drop-zone:hover {
-  background-color: #fefaef;
+  background-color: #fcf5eb;
 }
 
 .preview-container {
@@ -310,8 +310,8 @@ form {
 /* Botón de envío */
 button[type="submit"] {
   padding: 10px;
-  background-color: #95572e;
-  color: #fefaef;
+  background-color: #f28930;
+  color: #fcf5eb;
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -321,7 +321,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-  background-color: #5c640f;
+  background-color: #8aa6c1;
 }
 
 .bubble {
@@ -337,7 +337,7 @@ button[type="submit"]:hover {
 }
 
 .other-user {
-  background-color: #c39243;
+  background-color: #f5b97f;
   align-self: flex-start;
 }
 
@@ -352,7 +352,7 @@ button[type="submit"]:hover {
 
 .mb-3 label {
   font-weight: bold;
-  color: #95572e;
+  color: #f28930;
 }
 
 .mb-3 select {
@@ -361,17 +361,17 @@ button[type="submit"]:hover {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
-  background-color: #fefaef;
+  background-color: #fcf5eb;
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 /* Efecto hover y focus para select */
 .mb-3 select:hover {
-  border-color: #95572e;
+  border-color: #f28930;
 }
 
 .mb-3 select:focus {
-  border-color: #95572e;
+  border-color: #f28930;
   box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
   outline: none;
 }
@@ -399,7 +399,7 @@ button[type="submit"]:hover {
   font-size: 20px;
   cursor: pointer;
   margin-right: 10px;
-  color: #fefaef;
+  color: #fcf5eb;
 }
 
 .chat-container {

@@ -79,14 +79,17 @@
         <title>Detalles del Producto</title>
         <style>
            :root {
-            --primary-bg: #95572e; /* Brown */
-            --accent-color: #c39243; /* Gold */
-            --text-light: #fefaef; /* Light beige */
-            --card-bg: #131105; /* Dark brown */
-            --primary-gold: #c39243; /* Gold */
-            --light-bg: #fefaef; /* Light beige */
-            --dark-green: #5c640f; /* Dark green */
-            --dark-brown: #131105; /* Dark brown */
+                --primary-bg: #f28930; /* Naranja principal */
+                --accent-color: #f5b97f; /* Naranja suave/dorado */
+                --text-light: #fcf5eb; /* Beige muy claro */
+                --card-bg: #f3e5d8; /* Beige cálido */
+                --primary-gold: #f5b97f; /* Dorado cálido */
+                --light-bg: #fcf5eb; /* Beige claro */
+                --dark-green: #8aa6c1; /* Azul crema suave */
+                --darker-green: #6f8fa5; /* Azul grisáceo pastel */
+                --dark-brown: #2f4858; /* Azul profundo, con base grisácea */
+                --luz-difuminacion: #f7c598; /* Naranja pastel para luces */
+                --light-green: #bcd3e1; /* Azul muy claro, casi pastel */
             }
 
             body {

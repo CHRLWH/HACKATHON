@@ -1,3 +1,7 @@
+<?php
+    include '../../phpessentials/form_product.php';
+?>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -9,14 +13,17 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <style>
             :root {
-                --primary-bg: #95572e;
-                --accent-color: #c39243;
-                --text-light: #fefaef;
-                --card-bg: #131105;
-                --primary-gold: #c39243;
-                --light-bg: #fefaef;
-                --dark-green: #5c640f;
-                --dark-brown: #131105;
+                --primary-bg: #f28930; /* Naranja principal */
+                --accent-color: #f5b97f; /* Naranja suave/dorado */
+                --text-light: #fcf5eb; /* Beige muy claro */
+                --card-bg: #f3e5d8; /* Beige cálido */
+                --primary-gold: #f5b97f; /* Dorado cálido */
+                --light-bg: #fcf5eb; /* Beige claro */
+                --dark-green: #8aa6c1; /* Azul crema suave */
+                --darker-green: #6f8fa5; /* Azul grisáceo pastel */
+                --dark-brown: #2f4858; /* Azul profundo, con base grisácea */
+                --luz-difuminacion: #f7c598; /* Naranja pastel para luces */
+                --light-green: #bcd3e1; /* Azul muy claro, casi pastel */
             }
 
             body {
@@ -123,6 +130,54 @@
                 background-color: #f8d7da;
                 color: #721c24;
             }
+
+            /* Estilos para el chat expandido */
+            .chat-list {
+                display: block; /* Mostrar el listado de chats por defecto */
+            }
+
+            .chat-list.hidden {
+                display: none; /* Ocultar el listado de chats cuando el chat está expandido */
+            }
+
+            .chat-window.expanded {
+                position: fixed;
+                top: 5em;
+                left: 0;
+                width: 70%;
+                height: 100%;
+                z-index: 1000;
+                background-color: var(--text-light);
+                border-radius: 0;
+                margin-left: 50em;
+            }
+
+            .chat-window.expanded .chat-header {
+                background-color: var(--primary-bg);
+                padding: 15px;
+                font-size: 1.2em;
+            }
+
+            .chat-window.expanded .chat-messages {
+                max-height: calc(100vh - 120px);
+            }
+
+            .chat-window.expanded .chat-input {
+                padding: 15px;
+            }
+
+            .back-btn {
+                background: none;
+                border: none;
+                font-size: 24px;
+                color: var(--text-light);
+                cursor: pointer;
+                margin-right: 10px;
+            }
+
+            .back-btn:hover {
+                color: var(--accent-color);
+            }
         </style>
     </head>
 
@@ -130,19 +185,19 @@
         <div class="profile-container">
             <h1>Perfil de Usuario <i class="fa-solid fa-user"></i></h1>
             <div class="content">
-                <nav class="sidebar">
+                <nav class="sidebar" style="font-size: 20px">
                     <ul>
                         <li class="nav-item" onclick="showSection('chats')">
-                            <i class="fas fa-comments" style="min-width: 20px; text-align: center;"></i> Chats Activos
+                            <i class="fas fa-comments fa-lg" style="min-width: 20px; text-align: center;"></i> Chats Activos
                         </li>
                         <li class="nav-item" onclick="showSection('especificaciones')">
-                            <i class="fas fa-user-cog" style="min-width: 20px; text-align: center;"></i> Especificaciones
+                            <i class="fas fa-user-cog fa-lg" style="min-width: 20px; text-align: center;"></i> Especificaciones
                         </li>
                         <li class="nav-item" onclick="showSection('aniadir-objeto')">
-                            <i class="fas fa-plus-circle" style="min-width: 20px; text-align: center;"></i> Añadir Objeto
+                            <i class="fas fa-plus-circle fa-lg" style="min-width: 20px; text-align: center;"></i> Añadir Objeto
                         </li>
                         <li class="nav-item" onclick="showSection('actualizar')">
-                            <i class="fas fa-sync-alt" style="min-width: 20px; text-align: center;"></i> Actualizar
+                            <i class="fas fa-sync-alt fa-lg" style="min-width: 20px; text-align: center; "></i> Actualizar
                         </li>
                     </ul>
                 </nav>
@@ -208,37 +263,39 @@
                     <!-- Sección Chats -->
                     <div id="chats" class="section-content">
                         <div class="chat-list">
-                            <?php
-                                // Código para mostrar chats (se mantiene de tu versión original)
-                                $chatDirectory = __DIR__ . '/chats/';
-                                if (!file_exists($chatDirectory)) {
-                                    mkdir($chatDirectory, 0777, true);
-                                }
-                                $chatFiles = glob($chatDirectory . 'chat_*.txt');
-                                if (empty($chatFiles)) {
-                                    echo "<p>No hay chats activos.</p>";
-                                } else {
-                                    foreach ($chatFiles as $chatFile) {
-                                        $chatId = basename($chatFile, '.txt');
-                                        $chatName = str_replace('chat_', '', $chatId);
-                                        $chatParts = explode('_', $chatName);
-                                        $productName = urldecode(end($chatParts));
-                                        $chatContent = file_get_contents($chatFile);
-                                        $chatData = json_decode($chatContent, true);
-                                        $lastMessage = end($chatData);
-                                        $preview = isset($lastMessage['message']) ? substr($lastMessage['message'], 0, 30) . '...' : 'Sin mensajes';
-                                        
-                                        echo "<div class='chat-item' onclick='openChat(\"$chatId\")'>";
-                                        echo "<div class='avatar'>💬</div>";
-                                        echo "<div class='chat-preview'>";
-                                        echo "<strong>$productName</strong><br>";
-                                        echo "<small>$preview</small>";
-                                        echo "</div>";
-                                        echo "</div>";
+                                <?php
+                                    // Código para mostrar chats
+                                    $chatDirectory = __DIR__ . '/chats/';
+                                    if (!file_exists($chatDirectory)) {
+                                        mkdir($chatDirectory, 0777, true);
                                     }
-                                }
-                            ?>
-                        </div>
+
+                                    $chatFiles = glob($chatDirectory . 'chat_*.txt');
+
+                                    if (empty($chatFiles)) {
+                                        echo "<p>No hay chats activos.</p>";
+                                    } else {
+                                        foreach ($chatFiles as $chatFile) {
+                                            $chatId = basename($chatFile, '.txt');
+                                            $chatName = str_replace('chat_', '', $chatId);
+                                            $chatParts = explode('_', $chatName);
+                                            $productName = urldecode(end($chatParts));
+                                            $chatContent = file_get_contents($chatFile);
+                                            $chatData = json_decode($chatContent, true);
+                                            $lastMessage = end($chatData);
+                                            $preview = isset($lastMessage['message']) ? substr($lastMessage['message'], 0, 30) . '...' : 'Sin mensajes';
+                                            
+                                            echo "<div class='chat-item' onclick='openChat(\"$chatId\")'>";
+                                            echo "<div class='avatar'>💬</div>";
+                                            echo "<div class='chat-preview'>";
+                                            echo "<strong>$productName</strong><br>";
+                                            echo "<small>$preview</small>";
+                                            echo "</div>";
+                                            echo "</div>";
+                                        }
+                                    }
+                                ?>
+                            </div>
                         <div id="chat-windows-container"></div>
                     </div>
 
@@ -304,7 +361,6 @@
                             </div>
                         </div>
                     </div>
-
                 </section>
             </div>
         </div>
@@ -365,13 +421,18 @@
 
             // Funciones de chat y otros scripts se mantienen (según tu código original)
             function openChat(chatId) {
+                // Mostrar la sección de chats
+                showSection('chats');
+
+                // Crear o mostrar la ventana de chat
                 let chatWindow = document.getElementById('chat-' + chatId);
                 if (!chatWindow) {
                     chatWindow = document.createElement('div');
                     chatWindow.id = 'chat-' + chatId;
-                    chatWindow.className = 'chat-window';
+                    chatWindow.className = 'chat-window expanded';
                     chatWindow.innerHTML = `
                         <div class="chat-header">
+                            <button class="back-btn" onclick="closeExpandedChat('${chatId}')">←</button>
                             <span>Chat ${chatId}</span>
                             <button class="close-btn" onclick="closeChat('${chatId}')">&times;</button>
                         </div>
@@ -382,13 +443,34 @@
                         </form>
                     `;
                     document.getElementById('chat-windows-container').appendChild(chatWindow);
+                } else {
+                    chatWindow.classList.add('expanded');
                 }
+
+                // Cargar los mensajes del chat
                 loadMessages(chatId);
-                chatWindow.style.display = 'block';
-                updateChatList();
             }
+            function closeExpandedChat(chatId) {
+                // Ocultar el chat expandido
+                const chatWindow = document.getElementById('chat-' + chatId);
+                if (chatWindow) {
+                    chatWindow.classList.remove('expanded');
+                }
+
+                // Mostrar el listado de chats
+                document.querySelector('.chat-list').classList.remove('hidden');
+            }
+
             function closeChat(chatId) {
-                document.getElementById('chat-' + chatId).style.display = 'none';
+                const chatWindow = document.getElementById('chat-' + chatId);
+                if (chatWindow) {
+                    chatWindow.remove(); // Eliminar la ventana de chat
+                }
+
+                // Mostrar el listado de chats si no hay chats abiertos
+                if (document.querySelectorAll('.chat-window').length === 0) {
+                    document.querySelector('.chat-list').classList.remove('hidden');
+                }
             }
             async function loadMessages(chatId) {
                 const response = await fetch('chat.php?chat=' + encodeURIComponent(chatId));

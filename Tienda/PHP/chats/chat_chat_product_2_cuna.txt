@@ -1,0 +1,1 @@
+[{"time":"21:58","user":3,"message":"Hola, me gusta mucho la cuna, est\u00e1 sin uso?","session_id":"r2q0b22u4ib6sljf6a8lvl41aa"},{"time":"21:59","user":4,"message":"Si, est\u00e1 sin usar. Te interesar\u00eda?","session_id":"78q93sp0d5ldhdd1604l8mil6q"}]

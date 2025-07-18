@@ -14,7 +14,7 @@
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
                     <a class="navbar-brand" href="#">
-                        <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo">
+                        <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" style="max-width: 200px;">
                     </a>
                     <div class="ms-auto">
                         <a href="javascript:history.back()" class="btn btn-primary">Volver</a>
@@ -76,11 +76,13 @@
                         <a href="QyA.html" class="footer-link">QyA</a>
                     </div>
                 </div>
+
                 <div class="d-flex justify-content-around align-items-center">
-                    <img src="../img/Imagen de WhatsApp 2025-02-03 a las 00.35.34_f954b894.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 100px;">
+                    <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
                     <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
-                    <img src="../img/Imagen de WhatsApp 2025-02-03 a las 00.35.34_66f17eaf.jpg" alt="Logo UAX" class="img-fluid" style="max-height: 100px;">
+                    <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
                 </div>
+
                 <div class="text-center mt-3">
                     <p class="text-light">&copy; 2024 Hilan. Todos los derechos reservados.</p>
                 </div>
@@ -88,6 +90,11 @@
         </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="js/acordeon.js"></script>
+        <script>
+            function toggleAccordion(element) {
+                const content = element.nextElementSibling;
+                content.classList.toggle('active');
+            }
+        </script>
     </body>
 </html>

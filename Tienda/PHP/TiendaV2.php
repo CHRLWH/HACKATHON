@@ -1,8 +1,8 @@
 <?php
-include '../../phpessentials/sesioncheck.php';
-include '../../phpessentials/obtener_categorias.php';
-include '../../phpessentials/obtener_productos.php';
-include '../../phpessentials/funciones.php';
+    include '../../phpessentials/sesioncheck.php';
+    include '../../phpessentials/obtener_categorias.php';
+    include '../../phpessentials/obtener_productos.php';
+    include '../../phpessentials/funciones.php';
 ?>
 
 
@@ -19,55 +19,53 @@ include '../../phpessentials/funciones.php';
         <link rel="stylesheet" href="../css/csst.css">
     </head>
 
-
-
     <body>
-    <!-- Modal de consentimiento de cookies -->
-    <header class="shop-header" style="font-size:20px;">
-        <nav class="navbar navbar-expand-lg navbar-dark py-3">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 150px; height: 70px;">
-                </a>
+        <!-- Modal de consentimiento de cookies -->
+        <header class="shop-header" style="font-size:20px;">
+            <nav class="navbar navbar-expand-lg navbar-dark py-3">
+                <div class="container">
+                    <a class="navbar-brand" href="#">
+                        <img src="../../img/4-removebg-preview (1).png" alt="Logo" style="width: 150px; height: 70px;">
+                    </a>
 
-                <!-- Botón de menú para móviles -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
-    <ul class="navbar-nav">
-        <?php foreach ($categorias as $categoria): ?>
-            <li class="nav-item">
-                <a href="PaginaProducto.php?filtro=<?php echo $categoria['id']; ?><?php echo !empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''; ?>"
-                   class="nav-link <?php echo isset($filtro) && $filtro == $categoria['id'] ? 'active' : ''; ?>"
-                   style="transition: 0.3s;">
-                    <?php echo htmlspecialchars($categoria['nombre']); ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
-    </ul>
-</div>
-
-                <!-- Botones alineados a la derecha -->
-                <div class="d-flex ms-auto">
-    <!-- Botón de usuario -->
-                    <button onclick="abrirModal()" class="btn buttonBackground btn-link text-light" type="button" title="Perfil" style="width: 60px; height: 60px;">
-                    <i class="fa-solid fa-user fa-lg"></i>
+                    <!-- Botón de menú para móviles -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
                     </button>
-                </div>
-                    
-                <div class="d-flex ms-auto">
 
-                    <!-- Botón de salir -->
-                    <button onclick="cerrarSesion()" class="btn buttonBackground btn-link text-light" type="submit" title="CerrarSesion" style="margin-left: 10px; width: 60px; height: 60px;">
-                        <i class="fa-solid fa-right-to-bracket fa-lg"></i>
-                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <?php foreach ($categorias as $categoria): ?>
+                                <li class="nav-item">
+                                    <a href="PaginaProducto.php?filtro=<?php echo $categoria['id']; ?><?php echo !empty($busqueda) ? '&busqueda=' . urlencode($busqueda) : ''; ?>"
+                                    class="nav-link <?php echo isset($filtro) && $filtro == $categoria['id'] ? 'active' : ''; ?>"
+                                    style="transition: 0.3s;">
+                                        <?php echo htmlspecialchars($categoria['nombre']); ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+
+                    <!-- Botones alineados a la derecha -->
+                    <div class="d-flex ms-auto">
+                        <!-- Botón de usuario -->
+                        <button onclick="abrirModal()" class="btn buttonBackground btn-link text-light" type="button" title="Perfil" style="width: 60px; height: 60px;">
+                            <i class="fa-solid fa-user fa-lg"></i>
+                        </button>
+                    </div>
+                        
+                    <div class="d-flex ms-auto">
+
+                        <!-- Botón de salir -->
+                        <button onclick="cerrarSesion()" class="btn buttonBackground btn-link text-light" type="submit" title="CerrarSesion" style="margin-left: 10px; width: 60px; height: 60px;">
+                            <i class="fa-solid fa-right-to-bracket fa-lg"></i>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        </nav>
-    </header>
+            </nav>
+        </header>
 
         <section class="hero-carousel mb-5">
             <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -216,7 +214,7 @@ include '../../phpessentials/funciones.php';
             </div>
         </section>
 
-        <footer class="footer">
+        <footer class="footer justify-content-center">
             <div class="container">
                 <hr class="mb-5">
                 <div class="row g-4 justify-content-center text-light text-center mb-5">
@@ -234,9 +232,9 @@ include '../../phpessentials/funciones.php';
                 </div>
 
                 <div class="d-flex justify-content-around align-items-center">
-                    <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
-                    <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
-                    <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
+                    <img src="../../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
+                    <img src="../../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
+                    <img src="../../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
                 </div>
             </div>
         </footer>

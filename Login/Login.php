@@ -13,14 +13,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Hilan-Login</title>
         <link rel="icon" type="image/x-icon" href="../img/1-2feccb09.ico">
-        <link href="LoginCss/style.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link href="LoginCss/pruebalogincesese.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
         <div id="cookieModal" class="modal" style="display:none;">
             <div class="modal-content">
                 <p>🍪 Usamos cookies para mejorar tu experiencia. ¿Aceptas el uso de cookies? Lea nuestra <a href="../../Footer/Terminos.html">Politica de privacidad</a> y 
-                <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
+                    <a href="../../Footer/Terminos.html">Terminos y condiciones</a> para mas información
                 </p>
                 <button id="acceptCookiesBtn">Aceptar</button>
                 <button id="declineCookiesBtn">Rechazar</button>
@@ -29,25 +30,25 @@
 
         <style>
             .modal {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            margin-top: 20%;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: 90%;
+                max-width: 400px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+                margin-top: 20%;
             }
 
             /* Contenido del modal */
             .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
+                background: white;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
             }
         </style>
     </head>
@@ -56,7 +57,7 @@
         <header class="fondoDiv">
             <nav class="navbar navbar-expand-lg navbar-dark">
                 <div class="container">
-                    <a class="navbar-brand" href="javascript:history.back()">
+                    <a class="navbar-brand" href="../Landing/index.html">
                         <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" width="200" height="100">
                     </a>
                 </div>
@@ -85,7 +86,7 @@
                     <div class="user_forms-login">
                         <h2 class="forms_title">Login</h2>
 
-                        <form class="forms_form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" target="_self">
+                        <form class="forms_form" action=" <?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST" target="_self">
                             <fieldset class="forms_fieldset">
                                 <div class="forms_field">
                                     <label for="codigo_CAM">Código</label>
@@ -135,9 +136,6 @@
 
                         <button id="user-login-button" class="forms_buttons-action">Usuarios</button>
 
-                        <?php if ($adminLoginFallido): ?>
-                            <p id="failMessageAdmin" class="failMessage">¡Usuario o contraseña de administrador incorrectos!</p>
-                        <?php endif; ?>
                     </div>
 
                     <div class="user_forms-signup">
@@ -179,7 +177,7 @@
             <div class="container text-center">
                 <div class="row g-4 mb-5 justify-content-center">
                     <div class="col-md-2">
-                        <a href="../privacidad.html" class="footer-link">Política de privacidad</a>
+                        <a href="../Footer/privacidad.html" class="footer-link">Política de privacidad</a>
                     </div>
 
                     <div class="col-md-2">
@@ -187,7 +185,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <a href="../QyA.html" class="footer-link">QyA</a>
+                        <a href="../Footer/QyA.html" class="footer-link">QyA</a>
                     </div>
                 </div>
 

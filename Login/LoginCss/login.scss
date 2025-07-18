@@ -1,11 +1,4 @@
-
-/**
- * * General variables
- * */
-/**
- * * General configs
- * */
- * {
+* {
   box-sizing: border-box;
 }
 
@@ -286,8 +279,8 @@ input::placeholder {
 }
 
 /**
- * * Triggers
- * */
+ ** Triggers
+ **/
 .user_options-forms.bounceLeft {
   -webkit-animation: bounceLeft 1s forwards;
           animation: bounceLeft 1s forwards;

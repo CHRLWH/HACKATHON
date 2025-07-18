@@ -3,72 +3,61 @@ include '../../phpessentials/sesioncheck.php';
 include '../../phpessentials/obtener_categorias.php';
 include '../../phpessentials/obtener_productos.php';
 include '../../phpessentials/funciones.php'; // Ensure this file correctly defines $pdo
-$status = isset($_GET['status']) ? $_GET['status'] : 'all';
-$filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
-$busqueda = isset($_GET['busqueda']) ? $_GET['busqueda'] : '';
-$filtroTitulo = isset($_GET['filtroTitulo']) ? $_GET['filtroTitulo'] : null;
+
+$status = $_GET['status'] ?? 'all';
+$filtro = $_GET['filtro'] ?? null;
+$busqueda = $_GET['busqueda'] ?? '';
+$filtroTitulo = $_GET['filtroTitulo'] ?? null;
+$estadoFilter = $_GET['estado'] ?? null; // Estado filter
 $headingText = 'Listado de Productos';
-// Obtener los estados desde la base de datos
+
+// Fetch categories
+foreach ($categorias as $categoria) {
+    if ($categoria['id'] == $filtro) {
+        $headingText = htmlspecialchars($categoria['nombre']);
+        break;
+    }
+}
+
+// Fetch states
 $queryEstados = "SELECT * FROM estado";
 $stmtEstados = $pdo->prepare($queryEstados);
 $stmtEstados->execute();
 $estados = $stmtEstados->fetchAll(PDO::FETCH_ASSOC);
 
-// Variables for new filters
-$estadoFilter = isset($_GET['estado']) ? $_GET['estado'] : null; // Estado filter
-$categoryFilter = isset($_GET['filtro']) ? $_GET['filtro'] : null; // Category filter
-$searchQuery = isset($_GET['busqueda']) ? $_GET['busqueda'] : ''; // Search query
-$categoryTitle = isset($_GET['filtroTitulo']) ? $_GET['filtroTitulo'] : null; // Filter Title
-
-// Default heading
-if ($filtro) {
-    // Look for the category name based on the selected filter ID
-    foreach ($categorias as $categoria) {
-        if ($categoria['id'] == $filtro) {
-            $headingText = htmlspecialchars($categoria['nombre']);
-            break;
-        }
-    }
-}$query = "
-SELECT o.id, o.nombre, o.id_estado, o.imagen, c.Nombre AS category, e.tipo AS estado
-FROM objeto o
-INNER JOIN categorias_objetos c ON o.id = c.id
-INNER JOIN estado e ON o.id_estado = e.id
-WHERE c.id = :filtro
+// Build query dynamically
+$query = "
+    SELECT o.id, o.nombre, o.imagen, o.id_estado, c.Nombre AS categoria_nombre, e.tipo AS estado_tipo 
+    FROM objeto o
+    LEFT JOIN categorias_objetos c ON o.id_categoria = c.id
+    LEFT JOIN estado e ON o.id_estado = e.id
+    WHERE 1=1
 ";
-$query = "SELECT * FROM objeto o WHERE 1=1"; // Siempre es bueno partir de una condición sencilla
 
-// Aplica filtros si están presentes
+$params = [];
+
+// Apply filters
 if ($filtro) {
     $query .= " AND o.id_categoria = :filtro";
+    $params[':filtro'] = $filtro;
 }
 
 if ($estadoFilter) {
     $query .= " AND o.id_estado = :estadoFilter";
+    $params[':estadoFilter'] = $estadoFilter;
 }
 
-if ($busqueda) {
+if (!empty($busqueda)) {
     $query .= " AND o.nombre LIKE :busqueda";
+    $params[':busqueda'] = '%' . $busqueda . '%';
 }
 
 $query .= " ORDER BY o.id DESC";
 
-// Preparar y ejecutar la consulta
 try {
     $stmt = $pdo->prepare($query);
-    $stmt->bindParam(':filtro', $filtro, PDO::PARAM_INT);
-    
-    if ($estadoFilter) {
-        $stmt->bindParam(':estadoFilter', $estadoFilter, PDO::PARAM_INT);
-    }
-
-    if ($busqueda) {
-        $searchTerm = '%' . $busqueda . '%';
-        $stmt->bindParam(':busqueda', $searchTerm, PDO::PARAM_STR);
-    }
-
-    $stmt->execute();
-    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $stmt->execute($params);
+    $productos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Error en la consulta: " . $e->getMessage());
 }
@@ -80,206 +69,150 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Productos</title>
-    <link rel="icon" type="image/x-icon" href="../../img/1-2feccb09.ico">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-        <link rel="stylesheet" href="../css/csst.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/csst.css">
     <style>
-       :root {
-  --primary-bg: #95572e; /* Brown */
-  --accent-color: #c39243; /* Gold */
-  --text-light: #fefaef; /* Light beige */
-  --card-bg: #131105; /* Dark brown */
-  --primary-gold: #c39243; /* Gold */
-  --light-bg: #fefaef; /* Light beige */
-  --dark-green: #5c640f; /* Dark green */
-  --dark-brown: #131105; /* Dark brown */
-}
+        :root {
+            --primary-bg: #95572e; /* Brown */
+            --accent-color: #c39243; /* Gold */
+            --text-light: #fefaef; /* Light beige */
+            --card-bg: #131105; /* Dark brown */
+            --primary-gold: #c39243; /* Gold */
+            --light-bg: #fefaef; /* Light beige */
+            --dark-green: #5c640f; /* Dark green */
+            --dark-brown: #131105; /* Dark brown */
+        }
 
-body {
-  font-family: Bahnschrift, sans-serif;
-  background-color: var(--light-bg);
-}
+        *{
+            font-family: Bahnschrift, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
+        }
 
-h1 {
-  font-size: 24px;
-  margin-bottom: 30px;
-  text-align: center;
-  color: var(--primary-bg);
-}
+        body {
+            background-color: var(--light-bg);
+        }
 
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-content: center;
-}
+        nav{
+            padding-left: 1%;
+            background-color: var(--primary-bg);
+            border-bottom: 1px solid var(--accent-color);
+        }
 
-.product-card {
-  background: var(--text-light);
-  border: 1px solid var(--accent-color);
-  border-radius: 8px;
-  overflow: hidden;
-  padding: 0;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
-}
+        .containerOtro {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-.product-card:hover {
-  transform: scale(1.05);
-}
+        .boton {
+            background-color: var(--dark-green);
+            color: var(--text-light);
+        }
 
-.product-image {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+        .boton:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-brown);
+        }
 
-.product-info {
-  padding: 15px;
-  text-align: center;
-}
+        .filtro {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
 
-.product-name {
-  font-size: 18px;
-  margin: 0 0 10px 0;
-  color: var(--primary-bg);
-}
+        .filtro .d-flex {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
 
-.product-category {
-  color: var(--dark-green);
-  font-size: 14px;
-  margin: 5px 0;
-}
+        .filtro .form-select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            background-color: var(--text-light);
+            color: var(--dark-brown);
+            width: auto;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23c39243%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px top 50%;
+            background-size: 12px auto;
+        }
 
-.product-status {
-  margin: 10px 0;
-  font-size: 14px;
-  color: var(--dark-brown);
-}
+        .filtro .form-select:hover {
+            border-color: var(--primary-bg);
+        }
 
-.status-label {
-  font-weight: bold;
-  color: var(--primary-bg);
-}
+        .filtro .form-select:focus {
+            outline: none;
+            border-color: var(--primary-bg);
+            box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
+        }
 
-.view-button {
-  display: block;
-  width: 80%;
-  margin: 10px auto;
+        .filtro .btn-primary {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: var(--primary-bg);
+            color: var(--text-light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .filtro .btn-primary:hover {
+            background-color: var(--accent-color);
+        }
+
+        .filtro .btn-primary:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .filtro .d-flex {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filtro .form-select,
+            .filtro .btn-primary {
+                width: 100%;
+            }
+        }
+
+        .footer {
   background-color: var(--primary-bg);
   color: var(--text-light);
-  padding: 10px;
+  padding: 3rem 0;
+}
+
+.footer-link {
+  color: var(--primary-gold);
   text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s;
+  transition: color 0.3s ease;
 }
 
-.view-button:hover {
-  background-color: var(--accent-color);
+.footer-link:hover {
+  color: var(--dark-green);
 }
 
-@media (max-width: 900px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.footer hr {
+  border-color: var(--accent-color);
+  opacity: 0.2;
 }
 
-@media (max-width: 600px) {
-  .products-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-footer {
-  margin-top: 40em;
-  background-color: var(--dark-brown);
-  color: var(--text-light);
-  padding: 20px 0;
-}
-.content-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    position: relative;
-}
-
-.filter-container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-#estado {
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid var(--accent-color);
-    border-radius: 4px;
-    background-color: var(--text-light);
-    color: var(--dark-brown);
-    width: 200px;
-    cursor: pointer;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23c39243%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
-    background-repeat: no-repeat;
-    background-position: right 10px top 50%;
-    background-size: 12px auto;
-}
-
-#estado:hover {
-    border-color: var(--primary-bg);
-}
-
-#estado:focus {
-    outline: none;
-    border-color: var(--primary-bg);
-    box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
-}
-
-button[type="submit"] {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: var(--primary-bg);
-    color: var(--text-light);
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button[type="submit"]:hover {
-    background-color: var(--accent-color);
-}
-
-button[type="submit"]:focus {
-    outline: none;
-    box-shadow: 0 0 5px rgba(149, 87, 46, 0.5);
-}
-
-@media (max-width: 768px) {
-    .filter-container {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    #estado, button[type="submit"] {
-        width: 100%;
-    }
+.footer .navbar-brand img {
+  width: 100px;
+  height: 50px;
 }
     </style>
 </head>
@@ -296,12 +229,7 @@ button[type="submit"]:focus {
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div id="modalOverlayPerfil">
-                            <div id="modalContentPerfil">
-                                <button id="closeModal" onclick="cerrarModal()"><i class="fa-solid fa-xmark"></i></button>
-                                <iframe class="iframePerfil" src="http://localhost/HACKATHON/Tienda/PHP/Perfil.php" title="Contenido"></iframe>
-                            </div>
-                        </div>
+
                 <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
     <ul class="navbar-nav">
         <?php foreach ($categorias as $categoria): ?>
@@ -315,6 +243,7 @@ button[type="submit"]:focus {
         <?php endforeach; ?>
     </ul>
 </div>
+
                 <!-- Botones alineados a la derecha -->
                 <div class="d-flex ms-auto">
     <!-- Botón de usuario -->
@@ -333,107 +262,62 @@ button[type="submit"]:focus {
             </div>
         </nav>
     </header>
+
+    <div id="modalOverlayPerfil">
+        <div id="modalContentPerfil">
+            <button id="closeModal" onclick="cerrarModal()"><i class="fa-solid fa-xmark"></i></button>
+            <iframe class="iframePerfil" src="http://localhost/HACKATHON/Tienda/PHP/Perfil.php" title="Contenido"></iframe>
+        </div>
+    </div>
+    <h1 class="text-left display-2 " style="margin-left: 6.5em; margin-top: 2em; font-weight: bold;"><?php echo $headingText; ?></h1>
+    <hr>
     <div class="container">
-    <h1 class="fs-1 text-dark text-xl-start" style="margin-top:1em; margin-bottom:1em;"><?php echo $headingText; ?></h1>
-    <hr class="dark">
-    <form method="GET" action="">
-    <div class="content-wrapper">
-    <div class="filter-container">
-    <form method="GET" action="PaginaProducto.php" style="display: flex; gap: 10px;">
-        <!-- Mantén el valor de filtro de categoría -->
-        <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
+        <form method="GET" action="PaginaProducto.php">
+            <input type="hidden" name="filtro" value="<?php echo htmlspecialchars($filtro); ?>">
+            <div class="d-flex justify-content-end mb-3">
+                <select id="estado" name="estado" class="form-select w-auto">
+                    <option value="">Seleccionar Estado</option>
+                    <?php foreach ($estados as $estado): ?>
+                        <option value="<?php echo $estado['id']; ?>" <?php echo ($estadoFilter == $estado['id']) ? 'selected' : ''; ?>>
+                            <?php echo htmlspecialchars($estado['tipo']); ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <button type="submit" class="btn boton ms-2"><i class="fa-solid fa-filter"></i> Filtrar</button>
+            </div>
+        </form>
 
-        <select id="estado" name="estado">
-            <option value="">Seleccionar Estado</option>
-            <!-- Itera sobre los estados -->
-            <?php foreach ($estados as $estado): ?>
-                <option value="<?php echo $estado['id']; ?>" <?php echo isset($estadoFilter) && $estadoFilter == $estado['id'] ? 'selected' : ''; ?>>
-                    <?php echo htmlspecialchars($estado['tipo']); ?>
-                </option>
-            <?php endforeach; ?>
-        </select>
+        <div id="modalOverlayProducto" class="modal-overlayProducto">
+            <div id="modalContentProducto" class="modal-contentProducto">
+                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modalProducto"><i class="fa-solid fa-xmark"></i></button>
+                <iframe id="modalIframeProducto" title="Detalles del Producto"></iframe>
+            </div>
+        </div>
 
-        <button type="submit" class="btn btn-primary">Filtrar</button>
-    </form>
-</div>
-</div>
-
-</div>
-</form>
-    <div class="container mt-4">
-                <div class="row g-4">
-                    <?php if (count($productos) > 0): ?>
-                        <!-- Modal global (debe estar FUERA del foreach) -->
-                        <div id="modalOverlayProducto" class="modal-overlayProducto">
-                            <div id="modalContentProducto" class="modal-contentProducto">
-                                <button id="closeModal" onclick="cerrarModalProducto()" class="close-modalProducto"><i class="fa-solid fa-xmark"></i></button>
-                                <iframe id="modalIframeProducto" title="Detalles del Producto"></iframe>
-                            </div>
-                        </div>
-
-                        <?php foreach ($productos as $producto): ?>
-                            <div class="col-md-4">
-                                <div class="card h-100">
-                                    <!-- Carrusel de Imágenes -->
-                                    <div id="carousel-<?php echo $producto['id']; ?>" class="carousel slide" data-bs-ride="carousel">
-                                        <div class="carousel-inner">
-                                            <?php 
-                                                $imagenes = [
-                                                    $producto['imagen'],
-                                                    $producto['imagen2'],
-                                                    $producto['imagen3'],
-                                                    $producto['imagen4'],
-                                                    $producto['imagen5']
-                                                ];
-
-                                                foreach ($imagenes as $index => $ruta_imagen): 
-                                                    if (!empty($ruta_imagen)):
-                                            ?>
-                                                <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                                                    <img src="<?php echo htmlspecialchars($ruta_imagen); ?>" class="d-block w-100" alt="Imagen de <?php echo htmlspecialchars($producto['nombre']); ?>">
-                                                </div>
-                                            <?php 
-                                                endif;
-                                                endforeach; 
-                                            ?>
-                                        </div>
-
-                                        <?php if (count(array_filter($imagenes)) > 1): ?>
-                                            <button class="carousel-control-prev" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Anterior</span>
-                                            </button>
-
-                                            <button class="carousel-control-next" type="button" data-bs-target="#carousel-<?php echo $producto['id']; ?>" data-bs-slide="next">
-                                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                <span class="visually-hidden">Siguiente</span>
-                                            </button>
-                                        <?php endif; ?>
-                                    </div>
-
-                                    <!-- Detalles del Producto -->
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo htmlspecialchars($producto['nombre']); ?></h5>
-                                        <p class="card-text">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
-                                        <p class="card-text">
-                                            Estado: 
-                                            <span class="<?php echo getEstadoClass($producto['estado_tipo']); ?>">
-                                                <?php echo htmlspecialchars($producto['estado_tipo']); ?>
-                                            </span>
-                                        </p>
-                                        <button onclick="abrirModalProducto(<?php echo $producto['id']; ?>)" class="btn-custom">
-                                        <i class="fa-solid fa-magnifying-glass"></i> Ver producto
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php else: ?>
-                        <p class="text-center">No se encontraron productos.</p>
-                    <?php endif; ?>
+        <div class="row">
+    <?php if (count($productos) > 0): ?>
+        <?php foreach ($productos as $producto): ?>
+            <div class="col-md-4 mb-3"> <!-- Aumenta el tamaño de las tarjetas -->
+                <div class="card p-3" style="font-size: 1.2rem;"> <!-- Se agranda el texto -->
+                    <img src="<?php echo htmlspecialchars($producto['imagen']); ?>" class="card-img-top" alt="<?php echo htmlspecialchars($producto['nombre']); ?>" style="height: 250px; width:250px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="card-title fs-5"><?php echo htmlspecialchars($producto['nombre']); ?></h2> <!-- Aumenta el tamaño del título -->
+                        <p class="card-text fs-5">Categoría: <?php echo htmlspecialchars($producto['categoria_nombre']); ?></p>
+                        <p class="card-text fs-5">Estado: <strong><?php echo htmlspecialchars($producto['estado_tipo']); ?></strong></p>
+                        <a href="#" class="btn boton btn-lg" onclick="abrirModalProducto(<?php echo $producto['id']; ?>); return false;">
+                            <i class="fa-solid fa-magnifying-glass"></i> Ver Producto
+                        </a>
+                    </div>
                 </div>
             </div>
-    <footer class="footer">
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p class="text-center fs-4">No se encontraron productos.</p> <!-- Texto más grande -->
+    <?php endif; ?>
+</div>
+
+    </div>
+    <footer class="footer justify-content-center">
             <div class="container">
                 <hr class="mb-5">
                 <div class="row g-4 justify-content-center text-light text-center mb-5">
@@ -451,49 +335,47 @@ button[type="submit"]:focus {
                 </div>
 
                 <div class="d-flex justify-content-around align-items-center">
-                    <img src="../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
-                    <img src="../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
-                    <img src="../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
+                    <img src="../../img/logomadrid.jpg" alt="Logo Madrid" class="img-fluid" style="max-height: 80px;">
+                    <img src="../../img/4-removebg-preview (1).png" alt="Hilan Logo" class="img-fluid" style="max-height: 80px;">
+                    <img src="../../img/logouax.png" alt="Logo UAX" class="img-fluid" style="max-height: 140px;">
                 </div>
             </div>
         </footer>
-        <script>
-            // Función para abrir el modal
-            function abrirModal() {
-                document.getElementById('modalOverlayPerfil').style.display = 'flex';
-            }
+    <script>
+        // Función para abrir el modal
+        function abrirModal() {
+            document.getElementById('modalOverlayPerfil').style.display = 'flex';
+        }
 
-            // Función para cerrar el modal
-            function cerrarModal() {
-                document.getElementById('modalOverlayPerfil').style.display = 'none';
-            }
+        // Función para cerrar el modal
+        function cerrarModal() {
+            document.getElementById('modalOverlayPerfil').style.display = 'none';
+        }
 
-            // Función para abrir el modal del producto
-             // Función para abrir el modal del producto
-             function abrirModalProducto(productoId) {
-                let modal = document.getElementById('modalOverlayProducto');  // Selecciona el único modal
-                let iframe = document.getElementById('modalIframeProducto');
+        // Función para abrir el modal del producto
+        function abrirModalProducto(productoId) {
+            let modal = document.getElementById('modalOverlayProducto');  // Selecciona el único modal
+            let iframe = document.getElementById('modalIframeProducto');
 
-                modal.style.display = 'flex';
-                iframe.src = `verProducto.php?id=${productoId}`;  // Carga el producto seleccionado
-            }
+            modal.style.display = 'flex';
+            iframe.src = `verProducto.php?id=${productoId}`;  // Carga el producto seleccionado
+        }
 
-            // Función para cerrar el modal del producto
-            function cerrarModalProducto() {
-                let modal = document.getElementById('modalOverlayProducto');
-                let iframe = document.getElementById('modalIframeProducto');
+        // Función para cerrar el modal del producto
+        function cerrarModalProducto() {
+            let modal = document.getElementById('modalOverlayProducto');
+            let iframe = document.getElementById('modalIframeProducto');
 
-                modal.style.display = 'none';
-                iframe.src = '';  // Limpia el iframe para evitar recargas innecesarias
-            }
+            modal.style.display = 'none';
+            iframe.src = '';  // Limpia el iframe para evitar recargas innecesarias
+        }
 
-
-            function cerrarSesion() {
-                fetch('../../phpessentials/logout.php', { method: 'POST' }) 
+        function cerrarSesion() {
+            fetch('../../phpessentials/logout.php', { method: 'POST' }) 
                 .then(() => window.location.href = "http://localhost/HACKATHON/Login/Login.php") 
                 .catch(error => console.error('Error:', error));
-            }
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
