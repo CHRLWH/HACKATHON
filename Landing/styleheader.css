@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #FFF7E5; /* Fondo naranja suave */
+    color: #333;
+}
+.hero {
+    background-color: #FFA726; /* Naranja medio */
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+}
+.section {
+    padding: 40px 20px;
+}
+.section:nth-child(even) {
+    background-color: #FFE0B2; /* Naranja claro */
+}
+.section:nth-child(odd) {
+    background-color: #FFCC80; /* Naranja intermedio */
+}
+.btn-primary {
+    background-color: #FB8C00; /* Naranja intenso */
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #E65100; /* Naranja más oscuro */
+}
+.carousel img {
+    border-radius: 10px;
+}
+.testimonials img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 15px;
+      }
